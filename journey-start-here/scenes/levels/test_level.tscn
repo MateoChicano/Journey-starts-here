@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfoaluajumgxr"]
+
+[ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/player.tscn" id="1_jbqir"]
+[ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_yautc"]
+
+[sub_resource type="Environment" id="Environment_jbqir"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_yautc"]
+vertices = PackedVector3Array(-10.6396, 0.415026, -9.65745, -10.6396, 0.415026, 9.59255, 10.6104, 0.415026, 9.59255, 10.6104, 0.415026, -9.65745)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fr1um"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v45ci"]
+
+[node name="test level" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999995, -0.00304813, 0.000749559, -0.000736504, 0.00428164, 0.999991, -0.00305131, -0.999986, 0.00427937, -0.623099, 16.7342, 0.675)
+directional_shadow_mode = 0
+directional_shadow_max_distance = 8192.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jbqir")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_yautc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(22.2791, 0, 0, 0, 0.169948, 0, 0, 0, 20.3149, 0, 0, 0)
+mesh = SubResource("BoxMesh_fr1um")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_v45ci")
+
+[node name="player" parent="." instance=ExtResource("1_jbqir")]
+
+[node name="camera_trigger" parent="." instance=ExtResource("2_yautc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5324, 0)
+
+[node name="CollisionShape3D" parent="camera_trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42445, -4.05241, 1.09302)
+
+[node name="camera" parent="camera_trigger" index="1"]
+transform = Transform3D(0.867826, 0.236452, -0.436999, 0, 0.879507, 0.475885, 0.496868, -0.412986, 0.763259, -5.61688, 0.810372, 9.9408)
+
+[editable path="camera_trigger"]

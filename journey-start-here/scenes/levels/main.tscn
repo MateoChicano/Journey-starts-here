@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvyppk3dovabg"]
+
+[ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_2vj2h"]
+[ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/player.tscn" id="2_y0acb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o5qli"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0wfyh"]
+sky_material = SubResource("ProceduralSkyMaterial_o5qli")
+
+[sub_resource type="Environment" id="Environment_sugp2"]
+background_mode = 2
+sky = SubResource("Sky_0wfyh")
+tonemap_mode = 2
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sugp2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.72176, -0.238996, 0.649572, 0, 0.938493, 0.345298, -0.692143, 0.249222, -0.677367, 0, 0, 0)
+shadow_enabled = true
+
+[node name="ground" type="CSGBox3D" parent="."]
+transform = Transform3D(5.00697, 0, 0, 0, 1, 0, 0, 0, 4.3346, 1.80305, 0, -2.2005)
+use_collision = true
+size = Vector3(1.72021, 1, 2.94281)
+
+[node name="path" type="CSGCylinder3D" parent="ground"]
+transform = Transform3D(0.638546, 0, 0, 0, 0.151137, 0.923654, 0, -0.996987, 0.00745236, -0.0273071, 0.961077, -0.0150127)
+operation = 2
+height = 3.05029
+
+[node name="player" parent="." instance=ExtResource("2_y0acb")]
+transform = Transform3D(-0.998393, 0, 0.0566755, 0, 1, 0, -0.0566755, 0, -0.998393, 1.94692, 1.24908, -7.10745)
+collision_layer = 1
+
+[node name="camera_trigger" parent="." instance=ExtResource("2_2vj2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38185, 0)
+
+[node name="CollisionShape3D" parent="camera_trigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.282776, 0, 0)
+
+[node name="camera" parent="camera_trigger" index="1"]
+transform = Transform3D(0.820438, 0.212648, -0.530718, -0.0640055, 0.956585, 0.284339, 0.568142, -0.199313, 0.798429, 0, 0, 3.31821)
+
+[node name="camera_trigger2" parent="." instance=ExtResource("2_2vj2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05726, -6.01146)
+
+[node name="CollisionShape3D" parent="camera_trigger2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8175, -1.06405, 2.91739)
+
+[node name="camera" parent="camera_trigger2" index="1"]
+transform = Transform3D(-0.995932, 0, -0.0901111, 0, 1, 0, 0.0901111, 0, -0.995932, 2.52502, 0, -0.228462)
+
+[editable path="camera_trigger"]
+[editable path="camera_trigger2"]
