@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="Journey start here"
-run/main_scene="uid://dvyppk3dovabg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=2
 
 [input]
 
