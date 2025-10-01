@@ -12,9 +12,7 @@ func _physics_process(delta : float) -> void :
 	if (navAgent.is_navigation_finished()) :
 		return
 	moveToPoint(delta)
-		
-		
-		
+			
 func enter_trigger(area : Area3D) -> void:
 	cam = area.get_child(1)
 	cam.make_current()
@@ -34,6 +32,11 @@ func _input(_event:InputEvent) -> void:
 		var res : Dictionary = space.intersect_ray(rayQuery)
 		
 		navAgent.set_target_position(res.position)
+
+	if Input.is_action_just_pressed("escape"):
+		self.get_tree().paused = !self.get_tree().paused
+		get_tree().change_scene_to_file("res://scenes/pause_menu.tscn")
+
 		
 func moveToPoint(delta : float) -> void :
 	var targetPos : Vector3 = navAgent.get_next_path_position()

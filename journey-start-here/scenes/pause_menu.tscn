@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfluwbpmsotx1"]
+
+[ext_resource type="Script" uid="uid://civfiirqveyj2" path="res://scripts/pause_button.gd" id="1_n87rw"]
+
+[node name="pause menu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1170.0
+offset_bottom = 673.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 150.0
+offset_right = 587.0
+offset_bottom = 173.0
+text = "Paused"
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 205.0
+offset_right = 587.0
+offset_bottom = 236.0
+text = "resume"
+script = ExtResource("1_n87rw")
