@@ -2,4 +2,7 @@ extends Button
 
 
 func _on_pressed() -> void :
-    pass
+	get_tree().paused = false
+	owner.queue_free()
+
+		

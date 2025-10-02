@@ -32,3 +32,5 @@ offset_right = 587.0
 offset_bottom = 236.0
 text = "resume"
 script = ExtResource("1_n87rw")
+
+[connection signal="pressed" from="Panel/Button" to="Panel/Button" method="_on_pressed"]

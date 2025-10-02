@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfoaluajumgxr"]
+[gd_scene load_steps=17 format=3 uid="uid://dfoaluajumgxr"]
 
-[ext_resource type="Script" uid="uid://dxm81uoi6xme6" path="res://scripts/test_level.gd" id="1_fr1um"]
 [ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/player.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_yautc"]
 
@@ -37,7 +36,6 @@ size = Vector3(5.26257, 1, 4.67682)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7x1jh"]
 
 [node name="test level" type="Node3D"]
-script = ExtResource("1_fr1um")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.999995, -0.00304813, 0.000749559, -0.000736504, 0.00428164, 0.999991, -0.00305131, -0.999986, 0.00427937, -0.623099, 16.7342, 0.675)
