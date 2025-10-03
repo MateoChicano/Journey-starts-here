@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfoaluajumgxr"]
+[gd_scene load_steps=19 format=3 uid="uid://dfoaluajumgxr"]
 
 [ext_resource type="Script" uid="uid://dxm81uoi6xme6" path="res://scripts/test_level.gd" id="1_fr1um"]
 [ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/player.tscn" id="1_jbqir"]
@@ -7,8 +7,8 @@
 [sub_resource type="Environment" id="Environment_jbqir"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yautc"]
-vertices = PackedVector3Array(13.1104, 0.431437, 9.84255, 13.1104, 0.431437, 6.84255, 10.8604, 0.431437, 6.59255, -10.6396, 0.431437, 9.84255, 10.8604, 0.431437, -9.65745, -10.6396, 0.431437, -9.65745, 15.3604, 0.431437, 5.09255, 24.6105, 0.431437, 5.34255, 24.6105, 0.431437, -4.15745, 15.3604, 0.431437, -4.15745, 15.1104, 0.431437, 9.84255, 15.1104, 0.431437, 6.84255, 15.3604, 0.431437, 11.5926, 24.6105, 0.431437, 11.3426, 15.3604, 0.431437, 17.5926, 24.6105, 0.431437, 17.5926)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 2, 5), PackedInt32Array(5, 2, 3), PackedInt32Array(9, 8, 6), PackedInt32Array(6, 8, 7), PackedInt32Array(11, 10, 1), PackedInt32Array(1, 10, 0), PackedInt32Array(11, 6, 10), PackedInt32Array(10, 6, 12), PackedInt32Array(12, 6, 7), PackedInt32Array(12, 7, 13), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 13)]
+vertices = PackedVector3Array(11.1104, 0.472221, 8.84255, 13.1104, 0.472221, 8.84255, 12.8604, 0.472221, 7.59255, 9.61045, 0.472221, 7.34255, -10.6396, 0.472221, 9.84255, 9.61045, 0.472221, 6.09255, 10.8604, 0.472221, 9.84255, 10.8604, 0.472221, 5.84255, 10.8604, 0.472221, -9.65745, -10.6396, 0.472221, -9.65745, 14.8604, 0.472221, 7.59255, 16.1105, 0.472221, 8.84255, 15.3604, 0.472221, 6.59255, 24.6105, 0.472221, 9.84255, 24.6105, 0.472221, -4.15745, 15.3604, 0.472221, -4.15745, 16.3605, 0.472221, 9.84255, 16.1105, 0.472221, 10.8426, 15.3604, 0.472221, 10.8426, 15.3604, 0.472221, 17.5926, 24.6105, 0.472221, 17.5926)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 3, 4), PackedInt32Array(0, 6, 3), PackedInt32Array(3, 6, 4), PackedInt32Array(7, 5, 8), PackedInt32Array(8, 5, 9), PackedInt32Array(9, 5, 4), PackedInt32Array(2, 10, 1), PackedInt32Array(1, 10, 11), PackedInt32Array(11, 12, 13), PackedInt32Array(13, 12, 15), PackedInt32Array(13, 15, 14), PackedInt32Array(11, 10, 12), PackedInt32Array(13, 16, 11), PackedInt32Array(19, 18, 17), PackedInt32Array(17, 16, 19), PackedInt32Array(19, 16, 13), PackedInt32Array(19, 13, 20)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_fr1um"]
 
@@ -17,6 +17,9 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 [sub_resource type="BoxMesh" id="BoxMesh_yautc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yautc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hfwtw"]
+size = Vector3(0.996796, 10.458, 0.170334)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v45ci"]
 
@@ -51,17 +54,17 @@ environment = SubResource("Environment_jbqir")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.202352, 0, -0.317352)
 navigation_mesh = SubResource("NavigationMesh_yautc")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Zone naviguable"]
+[node name="salle 1" type="MeshInstance3D" parent="Zone naviguable"]
 transform = Transform3D(22.2791, 0, 0, 0, 0.169948, 0, 0, 0, 20.3149, 0, 0, 0)
 mesh = SubResource("BoxMesh_fr1um")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Zone naviguable/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Zone naviguable/salle 1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/salle 1/StaticBody3D"]
 shape = SubResource("BoxShape3D_v45ci")
 
 [node name="pont" type="MeshInstance3D" parent="Zone naviguable"]
-transform = Transform3D(4.38146, 0, 0, 0, 0.248156, 0, 0, 0, 3.83889, 13.2161, -0.0489453, 8.27091)
+transform = Transform3D(4.38146, 0, 0, 0, 0.248156, 0, 0, 0, 3.83889, 13.2161, -0.0489457, 8.27091)
 mesh = SubResource("BoxMesh_yautc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Zone naviguable/pont"]
@@ -71,45 +74,58 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.99686, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.94452, 0)
 shape = SubResource("BoxShape3D_yautc")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Zone naviguable"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Zone naviguable/pont"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/pont/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.181969, 4.91776, -0.393981)
+shape = SubResource("BoxShape3D_hfwtw")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Zone naviguable/pont"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.610867, 0.775563)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/pont/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103325, 4.91776, -0.355399)
+shape = SubResource("BoxShape3D_hfwtw")
+
+[node name="salle 2" type="MeshInstance3D" parent="Zone naviguable"]
 transform = Transform3D(9.94876, 0, 0, 0, 0.125856, 0, 0, 0, 22.5109, 20.0337, 0, 6.71913)
 mesh = SubResource("BoxMesh_v45ci")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Zone naviguable/MeshInstance3D3"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Zone naviguable/salle 2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/MeshInstance3D3/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/salle 2/StaticBody3D"]
 shape = SubResource("BoxShape3D_fr1um")
 
 [node name="player" parent="." instance=ExtResource("1_jbqir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97268, 1.3725, 1.87338)
 
-[node name="salle" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger salle" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8879, 3.94307, 0)
 
-[node name="CollisionShape3D" parent="salle" index="0"]
+[node name="CollisionShape3D" parent="trigger salle" index="0"]
 transform = Transform3D(-0.0320038, 0, -0.999488, 0, 1, 0, 0.999488, 0, -0.0320038, -2.10865, -3.36071, 8.11816)
 
-[node name="camera" parent="salle" index="1"]
+[node name="camera" parent="trigger salle" index="1"]
 transform = Transform3D(-0.915992, 0, 0.401196, 0, 1, 0, -0.401196, 0, -0.915992, 5.87453, -2.4633, -2.61498)
 
-[node name="salle 1" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger salle 1" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5324, 0)
 
-[node name="CollisionShape3D" parent="salle 1" index="0"]
+[node name="CollisionShape3D" parent="trigger salle 1" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.65797, -4.05241, 4.55711)
 shape = SubResource("BoxShape3D_48ne7")
 
-[node name="camera" parent="salle 1" index="1"]
+[node name="camera" parent="trigger salle 1" index="1"]
 transform = Transform3D(0.867826, 0.236452, -0.436999, 0, 0.879507, 0.475885, 0.496868, -0.412986, 0.763259, -5.61688, 0.810372, 9.9408)
 
-[node name="pont" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger pont" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0082, 3.13418, 6.76451)
 
-[node name="CollisionShape3D" parent="pont" index="0"]
+[node name="CollisionShape3D" parent="trigger pont" index="0"]
 transform = Transform3D(-0.0235946, 0, -0.999722, 0, 1, 0, 0.999722, 0, -0.0235946, 1.2151, -2.97431, 1.50186)
 shape = SubResource("BoxShape3D_6xh4u")
 
-[node name="camera" parent="pont" index="1"]
+[node name="camera" parent="trigger pont" index="1"]
 transform = Transform3D(-0.998513, -0.00879003, -0.0538011, 0, 0.986915, -0.161242, 0.0545145, -0.161002, -0.985447, 0.603418, -2.05695, -5.25158)
 
 [node name="Mur" type="MeshInstance3D" parent="."]
@@ -131,6 +147,6 @@ mesh = SubResource("BoxMesh_6xh4u")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_7x1jh")
 
-[editable path="salle"]
-[editable path="salle 1"]
-[editable path="pont"]
+[editable path="trigger salle"]
+[editable path="trigger salle 1"]
+[editable path="trigger pont"]

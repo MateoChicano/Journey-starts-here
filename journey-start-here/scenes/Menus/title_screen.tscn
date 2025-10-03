@@ -22,7 +22,7 @@ offset_left = 527.0
 offset_top = 284.0
 offset_right = 656.0
 offset_bottom = 351.0
-text = "Load scene"
+text = "Play"
 script = ExtResource("1_fgkus")
 
 [node name="Label" type="Label" parent="Panel"]
