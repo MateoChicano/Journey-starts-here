@@ -4,6 +4,7 @@ const SPEED : int = 4
 const RAYLENGTH : int = 100
 const GRAVITY : float = 4
 var cam : Camera3D
+var hud : PackedScene = preload("res://scenes/Menus/hud.tscn")
 
 @onready var navAgent := $NavigationAgent3D
 	
@@ -12,6 +13,10 @@ func _physics_process(delta : float) -> void :
 	if (navAgent.is_navigation_finished()) :
 		return
 	moveToPoint(delta)
+
+func _ready() -> void :
+	var instance_hud : Node = hud.instantiate()
+	self.add_child(instance_hud)
 			
 func enter_trigger(area : Area3D) -> void:
 	cam = area.get_child(1)
