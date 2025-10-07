@@ -34,7 +34,8 @@ escape={
 
 [layer_names]
 
-3d_physics/layer_2="CameraArea"
+3d_physics/layer_2="CameraTriggers"
+3d_physics/layer_3="NpcTriggers"
 
 [rendering]
 
