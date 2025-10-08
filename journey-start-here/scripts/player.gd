@@ -8,8 +8,7 @@ var hud : PackedScene = preload("res://scenes/Menus/hud.tscn")
 var npc_trigger_entered : bool = false
 
 @onready var navAgent := $NavigationAgent3D
-	
-	
+		
 func _physics_process(delta : float) -> void :
 	if (navAgent.is_navigation_finished()) :
 		return
@@ -26,7 +25,8 @@ func enter_trigger_camera(area : Area3D) -> void:
 func enter_trigger_npc(_area : Area3D) -> void :
 	npc_trigger_entered = true
 
-func exit_trigger_npc(_area : Area3D) -> void:
+func exit_trigger_npc(area : Area3D) -> void:
+	area.owner.get_node("Text_box").hide()
 	npc_trigger_entered = false
 
 func _input(_event:InputEvent) -> void:
@@ -40,12 +40,15 @@ func _input(_event:InputEvent) -> void:
 		
 		var ray : Dictionary = space.intersect_ray(rayQuery)
 		var collider : Node3D = ray.collider
-		
+
 		if collider is npc :
+			navAgent.set_target_position(ray.position)
 			if npc_trigger_entered :
 				interactWith(collider)
-		navAgent.set_target_position(ray.position)
 		
+		if collider.get_parent().get_parent() is NavigationRegion3D :
+				navAgent.set_target_position(ray.position)
+
 func moveToPoint(delta : float) -> void :
 	var targetPos : Vector3 = navAgent.get_next_path_position()
 	var direction : Vector3= global_position.direction_to(targetPos)
@@ -59,4 +62,5 @@ func moveToPoint(delta : float) -> void :
 func interactWith(target : Node3D) -> void :
 	if target is npc :
 		target.displayDialog()
+
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx7kloy1xtmdb"]
+[gd_scene load_steps=7 format=3 uid="uid://dx7kloy1xtmdb"]
 
 [ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/npc.gd" id="1_i4rdu"]
 
@@ -11,6 +11,9 @@ radius = 1.84523
 
 [sub_resource type="LabelSettings" id="LabelSettings_usq0f"]
 font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_i4rdu"]
+font_size = 22
 
 [node name="NPC" type="CharacterBody3D"]
 collision_mask = 0
@@ -25,7 +28,6 @@ shape = SubResource("CapsuleShape3D_nh2m4")
 
 [node name="Interact_Area" type="Area3D" parent="."]
 collision_layer = 4
-collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interact_Area"]
 shape = SubResource("SphereShape3D_abqhh")
@@ -33,16 +35,30 @@ shape = SubResource("SphereShape3D_abqhh")
 [node name="Text_box" type="Panel" parent="."]
 offset_left = 152.0
 offset_top = 403.0
-offset_right = 885.0
+offset_right = 986.0
 offset_bottom = 618.0
 
 [node name="Dialog" type="Label" parent="Text_box"]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 18.0
-offset_right = 713.0
-offset_bottom = 193.0
-text = "Le talking is very la importation que je fais les carabistouilles"
+offset_left = 11.0
+offset_top = 44.0
+offset_right = 769.0
+offset_bottom = 208.0
+text = "Lorem ipsum dolor sit amet"
 label_settings = SubResource("LabelSettings_usq0f")
 autowrap_mode = 2
 clip_text = true
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = -0.0153846
+
+[node name="Name" type="Label" parent="Text_box"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 129.0
+offset_bottom = 38.0
+text = "Nom"
+label_settings = SubResource("LabelSettings_i4rdu")
+
+[connection signal="area_exited" from="Interact_Area" to="." method="_on_interact_area_area_exited"]

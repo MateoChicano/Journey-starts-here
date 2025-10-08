@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://bn6bw6iuuckhv"]
+[gd_scene load_steps=2 format=3 uid="uid://bn6bw6iuuckhv"]
+
+[ext_resource type="Script" uid="uid://cjrltkrpjcbrh" path="res://scripts/hud.gd" id="1_3fgt4"]
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_3fgt4")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 981.0
@@ -8,3 +11,5 @@ offset_top = 541.0
 offset_right = 1108.0
 offset_bottom = 601.0
 text = "button"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]

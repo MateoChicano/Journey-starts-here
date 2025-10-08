@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfoaluajumgxr"]
+[gd_scene load_steps=21 format=3 uid="uid://dfoaluajumgxr"]
 
 [ext_resource type="Script" uid="uid://dxm81uoi6xme6" path="res://scripts/test_level.gd" id="1_fr1um"]
 [ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/Characters/player.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_yautc"]
 [ext_resource type="PackedScene" uid="uid://dx7kloy1xtmdb" path="res://scenes/Characters/npc.tscn" id="4_v45ci"]
-[ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/npc.gd" id="5_48ne7"]
 
 [sub_resource type="Environment" id="Environment_jbqir"]
 
@@ -33,6 +32,10 @@ size = Vector3(0.732285, 10.458, 0.170334)
 [sub_resource type="BoxShape3D" id="BoxShape3D_cyt5c"]
 size = Vector3(1.3103, 1, 1.00018)
 
+[sub_resource type="BoxMesh" id="BoxMesh_6xh4u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7x1jh"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_48ne7"]
 size = Vector3(12.6423, 1, 9.34162)
 
@@ -41,10 +44,6 @@ size = Vector3(5.26257, 1, 4.67682)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2mu0v"]
 size = Vector3(5.26257, 2.47314, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6xh4u"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7x1jh"]
 
 [node name="test level" type="Node3D"]
 script = ExtResource("1_fr1um")
@@ -114,6 +113,15 @@ skeleton = NodePath("StaticBody3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0894775, 0, 9.26852e-05)
 shape = SubResource("BoxShape3D_cyt5c")
 
+[node name="Plateforme qui vole" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.3974, 0, 0, 0, 0.965926, -2.39417, 0, -0.258819, -8.93518, 5.83519, 2.78048, 14.4425)
+mesh = SubResource("BoxMesh_6xh4u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plateforme qui vole"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plateforme qui vole/StaticBody3D"]
+shape = SubResource("BoxShape3D_7x1jh")
+
 [node name="player" parent="." instance=ExtResource("1_jbqir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97268, 1.3725, 1.87338)
 
@@ -157,18 +165,10 @@ shape = SubResource("BoxShape3D_2mu0v")
 transform = Transform3D(0.723823, 0, -0.689986, 0, 1, 0, 0.689986, 0, 0.723823, -8.42373, 0, 4.08131)
 fov = 55.7073
 
-[node name="Plateforme qui vole" type="MeshInstance3D" parent="."]
-transform = Transform3D(11.3974, 0, 0, 0, 1, 0, 0, 0, -9.25038, 8.3574, 0, 14.6898)
-mesh = SubResource("BoxMesh_6xh4u")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Plateforme qui vole"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Plateforme qui vole/StaticBody3D"]
-shape = SubResource("BoxShape3D_7x1jh")
-
 [node name="NPC" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19325, 1.02701, 7.79173)
-script = ExtResource("5_48ne7")
+npc_name = "Yanis"
+dialog = "Donne argent stp pour figurine de sylphie"
 
 [editable path="trigger salle"]
 [editable path="trigger salle 1"]
