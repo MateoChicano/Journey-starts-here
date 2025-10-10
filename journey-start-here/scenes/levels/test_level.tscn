@@ -143,6 +143,7 @@ shape = SubResource("BoxShape3D_48ne7")
 
 [node name="camera" parent="trigger salle 1" index="1"]
 transform = Transform3D(0.867826, 0.236452, -0.436999, 0, 0.879507, 0.475885, 0.496868, -0.412986, 0.763259, -5.61688, 0.810372, 9.9408)
+has_transition = true
 
 [node name="trigger pont" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0082, 3.13418, 6.76451)
@@ -163,12 +164,12 @@ shape = SubResource("BoxShape3D_2mu0v")
 
 [node name="camera" parent="trigger salle1_5" index="1"]
 transform = Transform3D(0.723823, 0, -0.689986, 0, 1, 0, 0.689986, 0, 0.723823, -8.42373, 0, 4.08131)
-fov = 55.7073
+has_transition = true
 
 [node name="NPC" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19325, 1.02701, 7.79173)
-npc_name = "Yanis"
-dialog = "Donne argent stp pour figurine de sylphie"
+npc_name = "mec chupacabra"
+dialog = "me voy a chuparte con la cabra"
 
 [editable path="trigger salle"]
 [editable path="trigger salle 1"]

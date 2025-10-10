@@ -50,7 +50,7 @@ autowrap_mode = 2
 clip_text = true
 visible_characters = 0
 visible_characters_behavior = 1
-visible_ratio = -0.0153846
+visible_ratio = 0.0
 
 [node name="Name" type="Label" parent="Text_box"]
 layout_mode = 0

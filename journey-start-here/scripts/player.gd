@@ -3,12 +3,14 @@ class_name Player extends CharacterBody3D
 const SPEED : int = 4
 const RAYLENGTH : int = 100
 const GRAVITY : float = 4
+const TWEEN_DURATION : float = 1.0
 var cam : Camera3D
 var hud : PackedScene = preload("res://scenes/Menus/hud.tscn")
 var npc_trigger_entered : bool = false
 
 @onready var navAgent := $NavigationAgent3D
 		
+#Fonctions communes
 func _physics_process(delta : float) -> void :
 	if (navAgent.is_navigation_finished()) :
 		return
@@ -17,10 +19,29 @@ func _physics_process(delta : float) -> void :
 func _ready() -> void :
 	var instance_hud : Node = hud.instantiate()
 	self.add_child(instance_hud)
-			
+
+#Fonction entrer dans zone	
 func enter_trigger_camera(area : Area3D) -> void:
+	var camOrigin : Camera3D = get_viewport().get_camera_3d()
 	cam = area.get_child(1)
-	cam.make_current()
+
+	if !cam.current && camOrigin.current :
+		if cam.has_transition :
+			var camTrans : Camera3D = camOrigin.duplicate()
+			owner.add_child(camTrans)
+			camTrans.global_position = camOrigin.global_position
+			camTrans.make_current()
+
+			var transPos : Tween = create_tween()
+			
+			transPos.tween_property(camTrans, "global_position", cam.global_position, TWEEN_DURATION)
+			transPos.set_parallel(true)
+			transPos.tween_property(camTrans, "rotation", cam.rotation, TWEEN_DURATION)
+
+			transPos.tween_callback(Callable(cam, "make_current"));
+		else : 
+			cam.make_current()
+	else : pass
 
 func enter_trigger_npc(_area : Area3D) -> void :
 	npc_trigger_entered = true
@@ -29,6 +50,7 @@ func exit_trigger_npc(area : Area3D) -> void:
 	area.owner.get_node("Text_box").hide()
 	npc_trigger_entered = false
 
+#Input
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
 
@@ -49,6 +71,7 @@ func _input(_event:InputEvent) -> void:
 		if collider.get_parent().get_parent() is NavigationRegion3D :
 				navAgent.set_target_position(ray.position)
 
+#Fonctions définies
 func moveToPoint(delta : float) -> void :
 	var targetPos : Vector3 = navAgent.get_next_path_position()
 	var direction : Vector3= global_position.direction_to(targetPos)
@@ -62,5 +85,11 @@ func moveToPoint(delta : float) -> void :
 func interactWith(target : Node3D) -> void :
 	if target is npc :
 		target.displayDialog()
+
+func transitionCam() -> void :
+	pass
+	#var transition : Tween= create_tween()
+
+
 
 		
