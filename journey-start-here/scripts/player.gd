@@ -33,12 +33,12 @@ func enter_trigger_camera(area : Area3D) -> void:
 			camTrans.make_current()
 
 			var transPos : Tween = create_tween()
+			var transRot : Tween = create_tween()
 			
 			transPos.tween_property(camTrans, "global_position", cam.global_position, TWEEN_DURATION)
-			transPos.set_parallel(true)
-			transPos.tween_property(camTrans, "rotation", cam.rotation, TWEEN_DURATION)
+			transRot.tween_property(camTrans, "rotation", cam.rotation, TWEEN_DURATION)
 
-			transPos.tween_callback(Callable(cam, "make_current"));
+			transRot.tween_callback(Callable(cam, "make_current"));
 		else : 
 			cam.make_current()
 	else : pass
