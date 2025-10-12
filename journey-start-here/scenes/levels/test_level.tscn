@@ -132,7 +132,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8879, 3.94307, 0)
 transform = Transform3D(-0.0320038, 0, -0.999488, 0, 1, 0, 0.999488, 0, -0.0320038, -2.10865, -3.36071, 8.11816)
 
 [node name="camera" parent="trigger salle" index="1"]
-transform = Transform3D(-0.915992, 0, 0.401196, 0, 1, 0, -0.401196, 0, -0.915992, 5.87453, -2.4633, -2.61498)
+transform = Transform3D(-0.957712, 0, 0.287728, 0, 1, 0, -0.287728, 0, -0.957712, 7.04424, -2.4633, -6.5084)
+has_transition = true
 
 [node name="trigger salle 1" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5324, 0)
@@ -143,6 +144,7 @@ shape = SubResource("BoxShape3D_48ne7")
 
 [node name="camera" parent="trigger salle 1" index="1"]
 transform = Transform3D(0.867826, 0.236452, -0.436999, 0, 0.879507, 0.475885, 0.496868, -0.412986, 0.763259, -5.61688, 0.810372, 9.9408)
+current = true
 has_transition = true
 
 [node name="trigger pont" parent="." instance=ExtResource("2_yautc")]
@@ -153,7 +155,7 @@ transform = Transform3D(-0.0235946, 0, -0.999722, 0, 1, 0, 0.999722, 0, -0.02359
 shape = SubResource("BoxShape3D_6xh4u")
 
 [node name="camera" parent="trigger pont" index="1"]
-transform = Transform3D(-0.998513, -0.00879003, -0.0538011, 0, 0.986915, -0.161242, 0.0545145, -0.161002, -0.985447, 0.603418, -2.05695, -5.25158)
+transform = Transform3D(-0.863923, 0, 0.503623, 0, 1, 0, -0.503623, 0, -0.863923, 2.95995, -2.05695, -4.66301)
 
 [node name="trigger salle1_5" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28005, 2.33628, 9.11724)

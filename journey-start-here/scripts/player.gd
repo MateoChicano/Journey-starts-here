@@ -4,8 +4,11 @@ const SPEED : int = 4
 const RAYLENGTH : int = 100
 const GRAVITY : float = 4
 const TWEEN_DURATION : float = 1.0
+const HUD : PackedScene = preload("res://scenes/Menus/hud.tscn")
+
+var skip_query : bool = false
+var instance_hud : hud = HUD.instantiate()
 var cam : Camera3D
-var hud : PackedScene = preload("res://scenes/Menus/hud.tscn")
 var npc_trigger_entered : bool = false
 
 @onready var navAgent := $NavigationAgent3D
@@ -17,7 +20,6 @@ func _physics_process(delta : float) -> void :
 	moveToPoint(delta)
 
 func _ready() -> void :
-	var instance_hud : Node = hud.instantiate()
 	self.add_child(instance_hud)
 
 #Fonction entrer dans zone	
@@ -53,6 +55,8 @@ func exit_trigger_npc(area : Area3D) -> void:
 #Input
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
+		if instance_hud.skip_movement == true :
+			return
 
 		var mousePos : Vector2 = get_viewport().get_mouse_position()
 		var from : Vector3 = cam.project_ray_origin(mousePos)
@@ -62,7 +66,6 @@ func _input(_event:InputEvent) -> void:
 		
 		var ray : Dictionary = space.intersect_ray(rayQuery)
 		var collider : Node3D = ray.collider
-
 		if collider is npc :
 			navAgent.set_target_position(ray.position)
 			if npc_trigger_entered :
@@ -85,11 +88,6 @@ func moveToPoint(delta : float) -> void :
 func interactWith(target : Node3D) -> void :
 	if target is npc :
 		target.displayDialog()
-
-func transitionCam() -> void :
-	pass
-	#var transition : Tween= create_tween()
-
 
 
 		
