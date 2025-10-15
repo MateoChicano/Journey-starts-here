@@ -19,6 +19,14 @@ config/icon="res://icon.svg"
 
 gdscript/warnings/untyped_declaration=2
 
+[display]
+
+window/stretch/mode="canvas_items"
+
+[global_group]
+
+Player="rassemble tout ce qui attrait au Joueur"
+
 [input]
 
 left_click={

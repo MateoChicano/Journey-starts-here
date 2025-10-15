@@ -8,6 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_3fgt4")
 
 [node name="Inventory" type="Button" parent="."]
+layout_mode = 0
 offset_left = 981.0
 offset_top = 541.0
 offset_right = 1108.0

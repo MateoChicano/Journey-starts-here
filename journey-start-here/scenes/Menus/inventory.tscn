@@ -18,11 +18,11 @@ offset_right = 763.0
 offset_bottom = 457.0
 current_tab = 0
 
-[node name="Panel" type="Panel" parent="TabContainer"]
+[node name="Panel1" type="Panel" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Label" type="Label" parent="TabContainer/Panel"]
+[node name="Label" type="Label" parent="TabContainer/Panel1"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -38,3 +38,6 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "contenu 2"
+
+[connection signal="mouse_entered" from="TabContainer" to="." method="hover_inventory_panel"]
+[connection signal="mouse_exited" from="TabContainer" to="." method="off_inventory_panel"]

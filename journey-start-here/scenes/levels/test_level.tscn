@@ -170,8 +170,6 @@ has_transition = true
 
 [node name="NPC" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19325, 1.02701, 7.79173)
-npc_name = "mec chupacabra"
-dialog = "me voy a chuparte con la cabra"
 
 [editable path="trigger salle"]
 [editable path="trigger salle 1"]
