@@ -7,7 +7,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3fgt4")
 
-[node name="Inventory" type="Button" parent="."]
+[node name="Inventory toggle" type="Button" parent="."]
 layout_mode = 0
 offset_left = 981.0
 offset_top = 541.0
@@ -15,6 +15,53 @@ offset_right = 1108.0
 offset_bottom = 601.0
 text = "button"
 
-[connection signal="mouse_entered" from="Inventory" to="." method="hover_inventory"]
-[connection signal="mouse_exited" from="Inventory" to="." method="off_inventory"]
-[connection signal="pressed" from="Inventory" to="." method="on_inventory_pressed"]
+[node name="general menu" type="TabContainer" parent="."]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 204.0
+offset_right = 812.0
+offset_bottom = 478.0
+mouse_filter = 0
+current_tab = 0
+
+[node name="tab1" type="Panel" parent="general menu"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Label" type="Label" parent="general menu/tab1"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 49.0
+offset_right = 274.0
+offset_bottom = 161.0
+text = "Contenu 1"
+
+[node name="tab2" type="Panel" parent="general menu"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="general menu/tab2"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 81.0
+offset_right = 241.0
+offset_bottom = 145.0
+text = "Contenu 2"
+
+[node name="map toggle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1041.0
+offset_top = 15.0
+offset_right = 1117.0
+offset_bottom = 63.0
+text = "map"
+
+[connection signal="mouse_entered" from="Inventory toggle" to="." method="hover_gui"]
+[connection signal="mouse_exited" from="Inventory toggle" to="." method="off_gui"]
+[connection signal="pressed" from="Inventory toggle" to="." method="on_inventory_pressed"]
+[connection signal="mouse_entered" from="general menu/tab1" to="." method="hover_gui"]
+[connection signal="mouse_exited" from="general menu/tab1" to="." method="off_gui"]
+[connection signal="mouse_entered" from="general menu/tab2" to="." method="hover_gui"]
+[connection signal="mouse_exited" from="general menu/tab2" to="." method="off_gui"]
+[connection signal="pressed" from="map toggle" to="." method="on_map_pressed"]

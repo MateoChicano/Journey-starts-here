@@ -1,25 +1,31 @@
 class_name hud extends Control
 
-const INVENTORY : PackedScene = preload("res://scenes/Menus/inventory.tscn")
-var is_mouse_on_hud : bool
-var instance_inv : Node = INVENTORY.instantiate()
-
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
+
+@onready var menu_gen : TabContainer = get_node("general menu")
 
 
 func _ready() -> void :
-	self.add_child(instance_inv)
-	instance_inv.hide()
+	menu_gen.hide()
 
 
 func on_inventory_pressed() -> void:
-	instance_inv.visible = !instance_inv.visible
+	menu_gen.visible = ! menu_gen.visible
 
 
-func hover_inventory() -> void:
+func hover_gui() -> void:
 	player.skip_move = true
 	print(player.skip_move)
 
-func off_inventory() -> void:
+func off_gui() -> void:
 	player.skip_move = false
 	print(player.skip_move)
+
+
+func on_map_pressed() -> void:
+	if menu_gen.visible :
+		menu_gen.current_tab = 1
+	else :
+		menu_gen.current_tab = 1
+		menu_gen.show()
+		
