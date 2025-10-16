@@ -1,13 +1,10 @@
 extends Node3D
 
-var pause_menu : PackedScene = preload("res://scenes/Menus/pause_menu.tscn")
+const load_pause_menu : PackedScene = preload("res://scenes/Menus/pause_menu.tscn")
+var instance_pause : pause = load_pause_menu.instantiate()
 
-
-func _input(_event:InputEvent) -> void:
-
-	if Input.is_action_just_pressed("escape") :
-		get_tree().paused = true
-		var instance : Node = pause_menu.instantiate()
-		self.add_child(instance)
+func _ready() -> void:
+	self.add_child(instance_pause)
+	instance_pause.hide()
 
 	

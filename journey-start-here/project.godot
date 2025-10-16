@@ -26,6 +26,7 @@ window/stretch/mode="canvas_items"
 [global_group]
 
 Player="rassemble tout ce qui attrait au Joueur"
+HUD=""
 
 [input]
 

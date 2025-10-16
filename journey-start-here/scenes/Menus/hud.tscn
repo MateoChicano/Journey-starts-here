@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjrltkrpjcbrh" path="res://scripts/hud.gd" id="1_3fgt4"]
 
-[node name="HUD" type="Control"]
+[node name="HUD" type="Control" groups=["HUD"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3fgt4")
