@@ -28,28 +28,19 @@ text = "map"
 
 [node name="menu container" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="menu container"]
-position = Vector2(567.5, 290)
-shape = SubResource("RectangleShape2D_3fgt4")
-
 [node name="general menu" type="TabContainer" parent="menu container"]
 offset_left = 342.0
 offset_top = 105.0
 offset_right = 793.0
 offset_bottom = 458.0
+mouse_filter = 2
 current_tab = 0
 
-[node name="tab1" type="Panel" parent="menu container/general menu"]
+[node name="tab1" type="GridContainer" parent="menu container/general menu"]
+clip_contents = true
 layout_mode = 2
+columns = 9
 metadata/_tab_index = 0
-
-[node name="Label" type="Label" parent="menu container/general menu/tab1"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 49.0
-offset_right = 274.0
-offset_bottom = 161.0
-text = "Contenu 1"
 
 [node name="tab2" type="Panel" parent="menu container/general menu"]
 visible = false
@@ -65,6 +56,7 @@ offset_bottom = 145.0
 text = "Contenu 2"
 
 [node name="quit_menu" type="Button" parent="menu container"]
+visible = false
 offset_left = 758.0
 offset_top = 104.0
 offset_right = 793.0
@@ -72,6 +64,10 @@ offset_bottom = 135.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "  X  "
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu container"]
+position = Vector2(567.5, 290)
+shape = SubResource("RectangleShape2D_3fgt4")
 
 [connection signal="mouse_entered" from="Inventory toggle" to="." method="hover_gui"]
 [connection signal="mouse_exited" from="Inventory toggle" to="." method="off_gui"]

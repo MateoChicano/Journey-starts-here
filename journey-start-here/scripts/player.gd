@@ -5,7 +5,9 @@ const RAYLENGTH : int = 100
 const GRAVITY : float = 4
 const TWEEN_DURATION : float = 1.0
 const HUD : PackedScene = preload("res://scenes/Menus/hud.tscn")
+const load_pause_menu : PackedScene = preload("res://scenes/Menus/pause_menu.tscn")
 
+var instance_pause : pause = load_pause_menu.instantiate()
 var instance_hud : hud = HUD.instantiate()
 var cam : Camera3D
 var npc_trigger_entered : bool = false
@@ -21,6 +23,8 @@ func _physics_process(delta : float) -> void :
 
 func _ready() -> void :
 	self.add_child(instance_hud)
+	self.add_child(instance_pause)
+	instance_pause.hide()
 
 #Fonction entrer dans zone	
 func enter_trigger_camera(area : Area3D) -> void:
