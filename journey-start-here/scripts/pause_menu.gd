@@ -4,8 +4,8 @@ class_name pause extends Control
 
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("escape") :
-		if HUD.menu_gen.visible :
-			HUD.menu_gen.hide()
+		if HUD.contain_menu.visible :
+			HUD.contain_menu.hide()
 		else :
 			if get_tree().paused :
 				self.quit_menu.call_deferred()
