@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cjrltkrpjcbrh" path="res://scripts/hud.gd" id="1_3fgt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fgt4"]
-size = Vector2(535, 342)
+size = Vector2(487, 396)
 
 [node name="HUD" type="Control" groups=["HUD"]]
 layout_mode = 3
@@ -27,16 +27,16 @@ offset_bottom = 63.0
 text = "map"
 
 [node name="menu container" type="Area2D" parent="."]
-position = Vector2(257, 108)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="menu container"]
-position = Vector2(257.5, 161)
+position = Vector2(567.5, 290)
 shape = SubResource("RectangleShape2D_3fgt4")
 
 [node name="general menu" type="TabContainer" parent="menu container"]
-offset_right = 504.0
-offset_bottom = 316.0
-mouse_filter = 0
+offset_left = 342.0
+offset_top = 105.0
+offset_right = 793.0
+offset_bottom = 458.0
 current_tab = 0
 
 [node name="tab1" type="Panel" parent="menu container/general menu"]
@@ -65,9 +65,10 @@ offset_bottom = 145.0
 text = "Contenu 2"
 
 [node name="quit_menu" type="Button" parent="menu container"]
-offset_left = 469.0
-offset_right = 504.0
-offset_bottom = 31.0
+offset_left = 758.0
+offset_top = 104.0
+offset_right = 793.0
+offset_bottom = 135.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "  X  "
