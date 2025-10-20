@@ -1,8 +1,9 @@
 class_name hud extends Control
 
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
-@onready var menu_gen : TabContainer = contain_menu.get_node("general menu")
+
 @onready var contain_menu : Node = get_node("menu container")
+@onready var menu_gen : TabContainer = contain_menu.get_node("general menu")
 
 
 func _ready() -> void :

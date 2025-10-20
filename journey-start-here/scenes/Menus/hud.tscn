@@ -56,7 +56,6 @@ offset_bottom = 145.0
 text = "Contenu 2"
 
 [node name="quit_menu" type="Button" parent="menu container"]
-visible = false
 offset_left = 758.0
 offset_top = 104.0
 offset_right = 793.0

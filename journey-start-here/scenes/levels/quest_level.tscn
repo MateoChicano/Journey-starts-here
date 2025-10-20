@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2255vxbl0fkj"]
+[gd_scene load_steps=10 format=3 uid="uid://b2255vxbl0fkj"]
+
+[sub_resource type="Environment" id="Environment_v61cf"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v61cf"]
+vertices = PackedVector3Array(-0.472584, 0.659478, 1.06798, 0.0274155, 0.659478, 1.31798, 0.0274155, 0.659478, -1.68202)
+polygons = [PackedInt32Array(2, 1, 0)]
 
 [sub_resource type="BoxMesh" id="BoxMesh_clwe3"]
 
@@ -8,7 +12,23 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_rttpa"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_v61cf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clwe3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rttpa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ui2d6"]
+
 [node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v61cf")
+
+[node name="DirectionalLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.485188, 4.60506, 0.0495257)
+omni_range = 4096.0
+omni_attenuation = 0.2
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(7.41507, 0, 0, 0, 1, 0, 0, 0, 3.58963, 0, 0, 0)
@@ -24,17 +44,37 @@ mesh = SubResource("BoxMesh_clwe3")
 shape = SubResource("BoxShape3D_xm0cj")
 
 [node name="mur est" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(2.64484, 0, 0, 0, 1, 0, 0, 0, 0.180462, 0, 0.777697, -2.40039)
+transform = Transform3D(2.64484, 0, 0, 0, 14.3062, 0, 0, 0, 0.180462, 0, 0.777697, -2.40039)
 mesh = SubResource("BoxMesh_rttpa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/mur est"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/mur est/StaticBody3D"]
+shape = SubResource("BoxShape3D_v61cf")
 
 [node name="mur ouest" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(2.64484, 0, 0, 0, 1, 0, 0, 0, 0.180462, 0, 0.777697, 2.0619)
+transform = Transform3D(5.94517, 0, 0, 0, 17.2364, 0, 0, 0, 0.411291, 0, 0.777697, 2.0619)
 mesh = SubResource("BoxMesh_rttpa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/mur ouest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/mur ouest/StaticBody3D"]
+shape = SubResource("BoxShape3D_clwe3")
 
 [node name="mur sud" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(-2.34746e-07, 0, 0.180462, 0, 1, 0, -5.37037, 0, -7.88826e-09, -0.846736, 0.777697, -1.83425)
+transform = Transform3D(-2.27104e-07, 0, 0.180462, 0, 15.6636, 0, -5.19554, 0, -7.88826e-09, -0.846736, 0.777697, -1.83425)
 mesh = SubResource("BoxMesh_rttpa")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/mur sud"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/mur sud/StaticBody3D"]
+shape = SubResource("BoxShape3D_rttpa")
+
 [node name="mur nord" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(-2.34746e-07, 0, 0.180462, 0, 1, 0, -5.37037, 0, -7.88826e-09, 0.785446, 0.777697, -0.0930185)
+transform = Transform3D(-2.34746e-07, 0, 0.180462, 0, 13.1595, 0, -5.37037, 0, -7.88826e-09, 0.785446, 0.777697, -0.0930185)
 mesh = SubResource("BoxMesh_rttpa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/mur nord"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/mur nord/StaticBody3D"]
+shape = SubResource("BoxShape3D_ui2d6")
