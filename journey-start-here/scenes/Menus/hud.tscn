@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bn6bw6iuuckhv"]
 
-[ext_resource type="Script" uid="uid://cjrltkrpjcbrh" path="res://scripts/hud.gd" id="1_3fgt4"]
+[ext_resource type="Script" uid="uid://cjrltkrpjcbrh" path="res://scripts/Menus/hud.gd" id="1_3fgt4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3fgt4"]
 size = Vector2(487, 396)
@@ -63,7 +63,6 @@ size_flags_vertical = 0
 text = "  X  "
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="menu container"]
-visible = false
 position = Vector2(567.5, 290)
 shape = SubResource("RectangleShape2D_3fgt4")
 
