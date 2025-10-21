@@ -85,7 +85,6 @@ func moveToPoint(delta : float) -> void :
 	var direction : Vector3= global_position.direction_to(targetPos)
 	velocity.x = direction.x*SPEED
 	velocity.z = direction.z*SPEED
-
 	if !self.is_on_floor() :
 		velocity.y -= GRAVITY*delta
 	move_and_slide()

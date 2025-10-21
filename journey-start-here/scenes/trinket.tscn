@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf713qoxppj0f"]
+
+[ext_resource type="Script" uid="uid://nvtntt2ga71u" path="res://scripts/item.gd" id="1_kvkbt"]
+[ext_resource type="Texture2D" uid="uid://btihyk2ahjblk" path="res://icon.svg" id="2_t2jio"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qct1h"]
+
+[node name="Trinket" type="Area2D"]
+script = ExtResource("1_kvkbt")
+item_name = "Trinket"
+icon = ExtResource("2_t2jio")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qct1h")

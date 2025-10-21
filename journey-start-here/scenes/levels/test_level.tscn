@@ -7,7 +7,7 @@
 [sub_resource type="Environment" id="Environment_jbqir"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yautc"]
-vertices = PackedVector3Array(-2.88955, 0.38526, 9.25258, -2.88955, 0.38526, 8.75258, -3.88955, 0.38526, 8.75258, -10.1396, 0.38526, 9.25258, -4.63955, 0.38526, 8.00258, -4.63955, 0.38526, -9.24742, -10.1396, 0.38526, -9.24742, -1.88955, 0.38526, 8.75258, 13.1104, 0.38526, 9.25258, 13.1104, 0.38526, 7.25258, 11.1104, 0.38526, 7.25258, -1.13955, 0.38526, 8.00258, 10.3604, 0.38526, 6.50258, 10.3604, 0.38526, -9.24742, -1.13955, 0.38526, -9.24742, 15.8604, 0.38526, 5.00258, 24.1105, 0.38526, 5.25258, 24.1105, 0.38526, -3.74742, 15.8604, 0.38526, -3.74742, 15.1104, 0.38526, 9.25258, 15.1104, 0.38526, 7.25258, 15.8604, 0.38526, 10.0026, 15.8604, 0.38526, 11.5026, 24.1105, 0.38526, 11.2526, 15.8604, 0.38526, 6.50258, 15.8604, 0.38526, 17.0026, 24.1105, 0.38526, 17.0026)
+vertices = PackedVector3Array(-2.63955, 0.38526, 9.25258, -2.63955, 0.38526, 8.75258, -3.63955, 0.38526, 8.75258, -10.1396, 0.38526, 9.25258, -4.38955, 0.38526, 8.00258, -4.38955, 0.38526, -9.24742, -10.1396, 0.38526, -9.24742, -1.88955, 0.38526, 8.75258, 13.1104, 0.38526, 9.25258, 13.1104, 0.38526, 7.25258, 11.1104, 0.38526, 7.25258, -1.13955, 0.38526, 8.00258, 10.3604, 0.38526, 6.50258, 10.3604, 0.38526, -9.24742, -1.13955, 0.38526, -9.24742, 15.8604, 0.38526, 5.00258, 24.1105, 0.38526, 5.25258, 24.1105, 0.38526, -3.74742, 15.8604, 0.38526, -3.74742, 15.1104, 0.38526, 9.25258, 15.1104, 0.38526, 7.25258, 15.8604, 0.38526, 10.0026, 15.8604, 0.38526, 11.5026, 24.1105, 0.38526, 11.2526, 15.8604, 0.38526, 6.50258, 15.8604, 0.38526, 17.0026, 24.1105, 0.38526, 17.0026)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 3), PackedInt32Array(4, 2, 3), PackedInt32Array(0, 1, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 7), PackedInt32Array(7, 8, 0), PackedInt32Array(12, 10, 11), PackedInt32Array(11, 10, 7), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 11), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(20, 19, 9), PackedInt32Array(9, 19, 8), PackedInt32Array(23, 22, 21), PackedInt32Array(20, 24, 19), PackedInt32Array(19, 24, 21), PackedInt32Array(21, 24, 16), PackedInt32Array(21, 16, 23), PackedInt32Array(24, 15, 16), PackedInt32Array(25, 22, 26), PackedInt32Array(26, 22, 23)]
 agent_radius = 1.0
 
@@ -29,7 +29,6 @@ size = Vector3(0.732285, 10.458, 0.170334)
 [sub_resource type="BoxMesh" id="BoxMesh_48ne7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cyt5c"]
-size = Vector3(1.3103, 1, 1.00018)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6xh4u"]
 
@@ -108,7 +107,6 @@ skeleton = NodePath("StaticBody3D")
 [node name="StaticBody3D" type="StaticBody3D" parent="Zone naviguable/Mur"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Zone naviguable/Mur/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0894775, 0, 9.26852e-05)
 shape = SubResource("BoxShape3D_cyt5c")
 
 [node name="Plateforme qui vole" type="MeshInstance3D" parent="."]

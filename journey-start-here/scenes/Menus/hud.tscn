@@ -36,10 +36,8 @@ offset_bottom = 458.0
 mouse_filter = 2
 current_tab = 0
 
-[node name="tab1" type="GridContainer" parent="menu container/general menu"]
-clip_contents = true
+[node name="tab1" type="Panel" parent="menu container/general menu"]
 layout_mode = 2
-columns = 9
 metadata/_tab_index = 0
 
 [node name="tab2" type="Panel" parent="menu container/general menu"]
@@ -65,6 +63,7 @@ size_flags_vertical = 0
 text = "  X  "
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="menu container"]
+visible = false
 position = Vector2(567.5, 290)
 shape = SubResource("RectangleShape2D_3fgt4")
 
