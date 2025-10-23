@@ -1,13 +1,13 @@
 class_name npc extends CharacterBody3D
 
 @export var npc_name : String = "name"
-var dialog : String = 
-
-
 
 func _ready() -> void:
 	get_child(3).hide()
-	get_node("Text_box/Dialog").text = self.dialog
+	loadDialog("res://scripts/Characters/Dialogs.json")
+
+func loadDialog(path : String) -> void :
+	var file : FileAccess = FileAccess.open(path, FileAccess.READ)
 
 func displayDialog() -> void :
 
