@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dx7kloy1xtmdb"]
 
-[ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/npc.gd" id="1_i4rdu"]
+[ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/Characters/npc.gd" id="1_i4rdu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
 
@@ -62,3 +62,6 @@ text = "Nom"
 label_settings = SubResource("LabelSettings_i4rdu")
 
 [connection signal="area_exited" from="Interact_Area" to="." method="_on_interact_area_area_exited"]
+[connection signal="gui_input" from="Text_box" to="." method="_on_text_box_click"]
+[connection signal="mouse_entered" from="Text_box" to="." method="_on_text_box_hover"]
+[connection signal="mouse_exited" from="Text_box" to="." method="_off_text_box"]

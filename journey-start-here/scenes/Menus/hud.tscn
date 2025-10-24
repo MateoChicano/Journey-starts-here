@@ -31,21 +31,21 @@ text = "map"
 [node name="general menu" type="TabContainer" parent="menu container"]
 offset_left = 342.0
 offset_top = 105.0
-offset_right = 793.0
+offset_right = 794.0
 offset_bottom = 458.0
-mouse_filter = 2
-current_tab = 0
+mouse_filter = 0
+current_tab = 1
 
-[node name="tab1" type="Panel" parent="menu container/general menu"]
+[node name="Inventory" type="Panel" parent="menu container/general menu"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="tab2" type="Panel" parent="menu container/general menu"]
-visible = false
+[node name="Map" type="Panel" parent="menu container/general menu"]
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Label" type="Label" parent="menu container/general menu/tab2"]
+[node name="Label" type="Label" parent="menu container/general menu/Map"]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 81.0

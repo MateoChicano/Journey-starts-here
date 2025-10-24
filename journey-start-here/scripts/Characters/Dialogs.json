@@ -1,4 +1,10 @@
 {
-    "name":"mec chokabr",
-    "Dialog":"Je suis de retour salopard"
- }
+    
+    "mec chokabr" : 
+        { 
+            "day0" : ["Je suis de retour salopard", "Nan c'est bon "], 
+            "day1" : ["On est le lendemain mdr", "je suis chokabr"]
+        }
+            
+
+}
