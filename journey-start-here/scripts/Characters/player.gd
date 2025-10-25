@@ -1,6 +1,5 @@
 class_name Player extends CharacterBody3D
 
-const SPEED : int = 4
 const RAYLENGTH : int = 100
 const GRAVITY : float = 4
 const TWEEN_DURATION : float = 1.0
@@ -11,9 +10,9 @@ var instance_pause : pause = load_pause_menu.instantiate()
 var instance_hud : hud = HUD.instantiate()
 var cam : Camera3D
 var npc_trigger_entered : bool = false
-var skip_move : bool = false
 
 @onready var navAgent := $NavigationAgent3D
+@export var speed : int = 4
 		
 #Fonctions communes
 func _physics_process(delta : float) -> void :
@@ -58,8 +57,6 @@ func exit_trigger_npc(area : Area3D) -> void:
 #Input
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
-		if skip_move :
-			return
 
 		var mousePos : Vector2 = get_viewport().get_mouse_position()
 		var from : Vector3 = cam.project_ray_origin(mousePos)
@@ -70,12 +67,16 @@ func _input(_event:InputEvent) -> void:
 		var ray : Dictionary = space.intersect_ray(rayQuery)
 		if ray.is_empty() :
 			return
+
 		var collider : Node3D = ray.collider
 		if collider is npc :
-			navAgent.set_target_position(ray.position)
 			if npc_trigger_entered :
+				skip_movemvent()
 				interactWith(collider)
-		
+			else : 
+				navAgent.set_target_position(ray.position)
+			
+
 		if collider.get_parent().get_parent() is NavigationRegion3D :
 				navAgent.set_target_position(ray.position)
 
@@ -83,8 +84,8 @@ func _input(_event:InputEvent) -> void:
 func moveToPoint(delta : float) -> void :
 	var targetPos : Vector3 = navAgent.get_next_path_position()
 	var direction : Vector3= global_position.direction_to(targetPos)
-	velocity.x = direction.x*SPEED
-	velocity.z = direction.z*SPEED
+	velocity.x = direction.x*speed
+	velocity.z = direction.z*speed
 	if !self.is_on_floor() :
 		velocity.y -= GRAVITY*delta
 	move_and_slide()
@@ -92,6 +93,9 @@ func moveToPoint(delta : float) -> void :
 func interactWith(target : Node3D) -> void :
 	if target is npc :
 		target.displayDialog()
+
+func skip_movemvent() -> void :
+	return
 
 
 		

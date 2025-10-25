@@ -28,13 +28,5 @@ func on_map_pressed() -> void:
 			contain_menu.hide()
 	menu_gen.current_tab = 1
 
-func hover_gui() -> void:
-	player.skip_move = true
-	print(player.skip_move)
-
-func off_gui() -> void:
-	player.skip_move = false
-	print(player.skip_move)
-
 func _on_quit_menu_pressed() -> void :
 	contain_menu.hide()

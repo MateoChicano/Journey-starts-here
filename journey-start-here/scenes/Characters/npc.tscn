@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx7kloy1xtmdb"]
+[gd_scene load_steps=8 format=3 uid="uid://dx7kloy1xtmdb"]
 
 [ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/Characters/npc.gd" id="1_i4rdu"]
+[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="2_cdq1g"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
 
@@ -37,6 +38,7 @@ offset_left = 152.0
 offset_top = 403.0
 offset_right = 986.0
 offset_bottom = 618.0
+script = ExtResource("2_cdq1g")
 
 [node name="Dialog" type="Label" parent="Text_box"]
 layout_mode = 0
@@ -63,5 +65,3 @@ label_settings = SubResource("LabelSettings_i4rdu")
 
 [connection signal="area_exited" from="Interact_Area" to="." method="_on_interact_area_area_exited"]
 [connection signal="gui_input" from="Text_box" to="." method="_on_text_box_click"]
-[connection signal="mouse_entered" from="Text_box" to="." method="_on_text_box_hover"]
-[connection signal="mouse_exited" from="Text_box" to="." method="_off_text_box"]

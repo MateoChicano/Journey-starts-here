@@ -1,5 +1,7 @@
-extends CenterContainer
+class_name item extends RigidBody2D
 
+@export var item_name : String
+@export var item_description : String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
