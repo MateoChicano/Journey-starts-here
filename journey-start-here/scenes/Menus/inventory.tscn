@@ -1,9 +1,74 @@
-[gd_scene format=3 uid="uid://c2aa0j51ystr4"]
+[gd_scene load_steps=4 format=3 uid="uid://c2aa0j51ystr4"]
+
+[ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://scripts/Menus/Hud/inventory.gd" id="1_ay0u5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_me4au"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay0u5"]
+size = Vector2(2, 2)
 
 [node name="Inventory" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -6.0
+offset_right = -3.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ay0u5")
+
+[node name="inventory_container" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1166.0
+offset_bottom = 649.0
+pivot_offset = Vector2(-973, 432)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="inventory_container"]
+position = Vector2(599, 518)
+scale = Vector2(137.546, 17.614)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/StaticBody2D"]
+position = Vector2(-2.98023e-08, -2.98023e-08)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_me4au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/StaticBody2D"]
+shape = SubResource("RectangleShape2D_ay0u5")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="inventory_container"]
+position = Vector2(477, 400)
+rotation = -1.57079
+scale = Vector2(137.546, 17.614)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/StaticBody2D2"]
+position = Vector2(-2.98023e-08, -2.98023e-08)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_me4au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_ay0u5")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="inventory_container"]
+position = Vector2(722, 396)
+rotation = -1.57079
+scale = Vector2(137.546, 17.614)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/StaticBody2D3"]
+position = Vector2(-2.98023e-08, -2.98023e-08)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_me4au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_ay0u5")
+
+[node name="quit_button" type="Button" parent="inventory_container"]
+layout_mode = 0
+offset_left = 1106.0
+offset_top = 15.0
+offset_right = 1148.0
+offset_bottom = 46.0
+text = "Quit"
+
+[connection signal="pressed" from="inventory_container/quit_button" to="." method="_on_quit_pressed"]
