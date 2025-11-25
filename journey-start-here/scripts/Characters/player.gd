@@ -10,6 +10,7 @@ var instance_pause : pause = pause_menu.instantiate()
 var instance_hud : hud = HUD.instantiate()
 var cam : Camera3D
 var npc_trigger_entered : bool = false
+var skip_rayQuery : bool = false
 
 @onready var navAgent := $NavigationAgent3D
 @export var speed : int = 4
@@ -35,13 +36,12 @@ func enter_trigger_camera(area : Area3D) -> void:
 			camTrans.global_position = camOrigin.global_position
 			camTrans.make_current()
 
-			var transPos : Tween = create_tween()
-			var transRot : Tween = create_tween()
+			var transition : Tween = create_tween()
 			
-			transPos.tween_property(camTrans, "global_position", cam.global_position, TWEEN_DURATION)
-			transRot.tween_property(camTrans, "rotation", cam.rotation, TWEEN_DURATION)
+			transition.tween_property(camTrans, "global_position", cam.global_position, TWEEN_DURATION)
+			transition.parallel().tween_property(camTrans, "rotation", cam.rotation, TWEEN_DURATION)
 
-			transRot.tween_callback(Callable(cam, "make_current"));
+			transition.tween_callback(Callable(cam, "make_current"));
 		else : 
 			cam.make_current()
 
@@ -55,6 +55,8 @@ func exit_trigger_npc(area : Area3D) -> void:
 #Input
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
+		if skip_rayQuery :
+			return
 
 		var mousePos : Vector2 = get_viewport().get_mouse_position()
 		var from : Vector3 = cam.project_ray_origin(mousePos)
@@ -69,22 +71,24 @@ func _input(_event:InputEvent) -> void:
 		var collider : Node3D = ray.collider
 		if collider is npc :
 			if npc_trigger_entered :
-				skip_movemvent()
+				self.skip_movement()
 				interactWith(collider)
 			else : 
 				navAgent.set_target_position(ray.position)
 			
-
 		if collider.get_parent().get_parent() is NavigationRegion3D :
 				navAgent.set_target_position(ray.position)
 
 	if Input.is_action_just_pressed("escape") :
-		if instance_hud.contain_menu.visible :
+		if instance_hud.contain_menu.visible:
 			instance_hud.contain_menu.hide()
 		else :
-			get_tree().paused = true
-			self.add_child(instance_pause)
-			instance_pause = pause_menu.instantiate()
+			if self.get_child_count() == 7 and self.get_child(6).visible :
+				self.get_child(6).hide()
+			else :
+				get_tree().paused = true
+				self.add_child(instance_pause)
+				instance_pause = pause_menu.instantiate()
 
 #Fonctions définies
 func moveToPoint(delta : float) -> void :
@@ -100,7 +104,7 @@ func interactWith(target : Node3D) -> void :
 	if target is npc :
 		target.displayDialog()
 
-func skip_movemvent() -> void :
+func skip_movement() -> void :
 	return
 
 

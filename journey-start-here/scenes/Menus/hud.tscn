@@ -71,6 +71,11 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "  X  "
 
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="inventory toggle" to="." method="on_inventory_pressed"]
 [connection signal="pressed" from="map toggle" to="." method="on_map_pressed"]
 [connection signal="pressed" from="menu container/quit_menu" to="." method="_on_quit_menu_pressed"]

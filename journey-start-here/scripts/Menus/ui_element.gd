@@ -7,7 +7,9 @@ func _ready() -> void:
 	self.mouse_exited.connect(off_ui)
 
 func hover_ui() -> void:
-	player.skip_movemvent()
+	player.skip_rayQuery = true
+
 
 func off_ui() -> void:
-	player.skip_movemvent()
+	player.skip_rayQuery = false
+

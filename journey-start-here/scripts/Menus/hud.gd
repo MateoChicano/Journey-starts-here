@@ -9,14 +9,15 @@ const inventory : PackedScene = preload("res://scenes/Menus/inventory.tscn")
 var instance_inv : Inventory = inventory.instantiate()
 
 func _ready() -> void :
+	player.add_child(instance_inv)
 	contain_menu.hide()
 	menu_gen.show()
+	player.get_child(6).hide()
 
 func on_inventory_pressed() -> void:
+	self.hide()
 	get_tree().paused = true
 	instance_inv.show()
-	
-	
 
 func on_map_pressed() -> void:
 	if !contain_menu.visible :
