@@ -3,19 +3,22 @@ class_name Player extends CharacterBody3D
 const RAYLENGTH : int = 100
 const GRAVITY : float = 4
 const TWEEN_DURATION : float = 1.0
-const HUD : PackedScene = preload("res://scenes/Menus/hud.tscn")
-const pause_menu : PackedScene = preload("res://scenes/Menus/pause_menu.tscn")
 
-var instance_pause : pause = pause_menu.instantiate()
-var instance_hud : hud = HUD.instantiate()
+@onready var HUD : hud = get_node("HUD")
+@onready var inventory : Inventory = get_node("Inventory")
+@onready var pause_menu : pause = get_node("pause_menu")
+@onready var navAgent := $NavigationAgent3D
+@export var speed : int = 4
+
+var item_lo : PackedScene
+var instance_item : item
+# var instance_pause : pause = pause_menu.instantiate()
 var cam : Camera3D
 var npc_trigger_entered : bool = false
 var item_trigger_entered : bool = false
 var skip_rayQuery : bool = false
-
-@onready var navAgent := $NavigationAgent3D
-@export var speed : int = 4
-		
+@onready var dernier_item : int = inventory.get_node("inventory_container").get_child_count()
+	
 #Fonctions communes
 func _physics_process(delta : float) -> void :
 	if (navAgent.is_navigation_finished()) :
@@ -23,7 +26,9 @@ func _physics_process(delta : float) -> void :
 	moveToPoint(delta)
 
 func _ready() -> void :
-	self.add_child(instance_hud)
+	HUD.contain_menu.hide()
+	inventory.hide()
+	
 
 #Fonction entrer dans zone	
 func enter_trigger_camera(area : Area3D) -> void:
@@ -54,12 +59,22 @@ func exit_trigger_npc(area : Area3D) -> void:
 	npc_trigger_entered = false
 
 func enter_trigger_item(area : Area3D) -> void :
+	item_trigger_entered = true
+	item_lo = load("res://scenes/Items/" + area.owner.get_scene_name())
+	instance_item = item_lo.instantiate()
+	add_item(instance_item)
+
+func exit_trigger_item(area : Area3D) -> void :
+	item_trigger_entered = false
+	if instance_item.is_in_container :
+		area.owner.queue_free()
+		remove_item(inventory.get_child(dernier_item))
 
 
 #Input
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
-		if skip_rayQuery :
+		if skip_rayQuery or inventory.visible:
 			return
 
 		var mousePos : Vector2 = get_viewport().get_mouse_position()
@@ -84,8 +99,8 @@ func _input(_event:InputEvent) -> void:
 				navAgent.set_target_position(ray.position)
 
 	if Input.is_action_just_pressed("escape") :
-		if instance_hud.contain_menu.visible:
-			instance_hud.contain_menu.hide()
+		if HUD.contain_menu.visible:
+			HUD.contain_menu.hide()
 		else :
 			if self.get_child_count() == 7 and self.get_child(6).visible :
 				self.get_child(6).hide()
@@ -110,6 +125,13 @@ func interactWith(target : Node3D) -> void :
 
 func skip_movement() -> void :
 	return
+
+func add_item(p_item : item) -> void :
+	inventory.get_node("inventory_container").add_child(p_item)
+
+func remove_item(p_item : item) -> void :
+	inventory.get_node("inventory_container").remove_child(p_item)
+
 
 
 

@@ -3,11 +3,13 @@ class_name item extends RigidBody2D
 @export var item_name : String
 @export var item_description : String
 
+
 var mouse_left_down: bool = false
 var mouse_pos : Vector2
 var mouse_force : float = 15
 var previous_pos : Vector2
 var is_body_entered : bool
+var is_in_container : bool
 var move : bool
 var positions : Array[Vector2]
 
@@ -26,11 +28,12 @@ func _input( event:InputEvent ) -> void:
 			if move == true :
 				self.linear_velocity = sum(positions) / positions.size() * mouse_force
 				self.gravity_scale = 1.0
+				mouse_left_down = false	
 			if is_body_entered == false :
 				move = false
 			mouse_left_down = false		
 			
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	positions.append(mouse_pos - global_position)
 
 	if positions.size() >= 6 :
@@ -45,3 +48,11 @@ func sum(tableau : Array[Vector2]) -> Vector2 :
 		resultat.x += i.x
 		resultat.y += i.y
 	return resultat
+
+
+
+func _on_exited_container(_area:Area2D) -> void:
+	is_in_container = true
+
+func _on_entered_container(_area:Area2D) -> void:
+	is_in_container = false

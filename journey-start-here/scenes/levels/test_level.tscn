@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://dfoaluajumgxr"]
+[gd_scene load_steps=21 format=3 uid="uid://dfoaluajumgxr"]
 
 [ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/Characters/player.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_yautc"]
+[ext_resource type="PackedScene" uid="uid://d3kpeiyisoabl" path="res://scenes/Items/item_box_3d.tscn" id="4_48ne7"]
 [ext_resource type="PackedScene" uid="uid://dx7kloy1xtmdb" path="res://scenes/Characters/npc.tscn" id="4_v45ci"]
 
 [sub_resource type="Environment" id="Environment_jbqir"]
@@ -171,6 +172,10 @@ npc_name = "mec chokabr"
 [node name="mec chill" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4394, 0.964924, 5.11824)
 npc_name = "mec chill"
+
+[node name="item_box3d" parent="." instance=ExtResource("4_48ne7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995574, 2.63986, -2.93492)
+nom = "item_logo"
 
 [editable path="trigger salle"]
 [editable path="trigger salle 1"]

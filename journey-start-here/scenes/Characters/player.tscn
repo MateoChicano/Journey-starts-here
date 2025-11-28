@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bukakowd3k1xx"]
+[gd_scene load_steps=10 format=3 uid="uid://bukakowd3k1xx"]
 
 [ext_resource type="Script" uid="uid://c56dnn6txs57y" path="res://scripts/Characters/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://bn6bw6iuuckhv" path="res://scenes/Menus/hud.tscn" id="2_8iw34"]
+[ext_resource type="PackedScene" uid="uid://c2aa0j51ystr4" path="res://scenes/Menus/inventory.tscn" id="3_7xbc7"]
+[ext_resource type="PackedScene" uid="uid://bfluwbpmsotx1" path="res://scenes/Menus/pause_menu.tscn" id="4_7xbc7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 
@@ -37,8 +40,6 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cam_detector"]
 shape = SubResource("CapsuleShape3D_3vyb7")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
 [node name="item_detector" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 8
@@ -47,6 +48,16 @@ collision_mask = 8
 transform = Transform3D(3.36429, 0, 0, 0, 3.36429, 0, 0, 0, 3.36429, 0.0216885, -0.599012, -0.00380611)
 shape = SubResource("BoxShape3D_xwt18")
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("2_8iw34")]
+
+[node name="Inventory" parent="." instance=ExtResource("3_7xbc7")]
+
+[node name="pause menu" parent="." instance=ExtResource("4_7xbc7")]
+
 [connection signal="area_entered" from="NPC_detector" to="." method="enter_trigger_npc"]
 [connection signal="area_exited" from="NPC_detector" to="." method="exit_trigger_npc"]
 [connection signal="area_entered" from="Cam_detector" to="." method="enter_trigger_camera"]
+[connection signal="area_entered" from="item_detector" to="." method="enter_trigger_item"]
+[connection signal="area_exited" from="item_detector" to="." method="exit_trigger_item"]

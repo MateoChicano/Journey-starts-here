@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2aa0j51ystr4"]
+[gd_scene load_steps=8 format=3 uid="uid://c2aa0j51ystr4"]
 
 [ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://scripts/Menus/Hud/inventory.gd" id="1_ay0u5"]
 [ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://scripts/Menus/mouse_area.gd" id="3_ovyma"]
@@ -10,6 +10,9 @@ size = Vector2(2, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ieqw4"]
 size = Vector2(1213, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyma"]
+size = Vector2(26.6251, 24.1597)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1mf"]
 size = Vector2(3.5, 3.5)
@@ -49,6 +52,7 @@ collision_mask = 0
 [node name="StaticBody2D" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
 position = Vector2(5, 131)
 scale = Vector2(137.546, 17.614)
+collision_mask = 0
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D"]
 position = Vector2(-2.98023e-08, -2.98023e-08)
@@ -62,6 +66,7 @@ shape = SubResource("RectangleShape2D_ay0u5")
 position = Vector2(-117, 13)
 rotation = -1.57079
 scale = Vector2(137.546, 17.614)
+collision_mask = 0
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D2"]
 position = Vector2(-2.98023e-08, -2.98023e-08)
@@ -75,6 +80,7 @@ shape = SubResource("RectangleShape2D_ay0u5")
 position = Vector2(128, 9)
 rotation = -1.57079
 scale = Vector2(137.546, 17.614)
+collision_mask = 0
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D3"]
 position = Vector2(-2.98023e-08, -2.98023e-08)
@@ -89,7 +95,7 @@ position = Vector2(36, 402)
 shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="ceiling" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
-position = Vector2(5, -286)
+position = Vector2(-6, -471)
 shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="wall_right" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
@@ -98,9 +104,19 @@ rotation = -1.57079
 shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="wall_left" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
-position = Vector2(-571, 125)
+position = Vector2(-647, 69)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ieqw4")
+
+[node name="item_container" type="Area2D" parent="inventory_container"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/item_container"]
+position = Vector2(554, 292.814)
+rotation = -3.14159
+scale = Vector2(8.26289, 8.26289)
+shape = SubResource("RectangleShape2D_ovyma")
 
 [node name="mouse_area" type="Area2D" parent="."]
 collision_layer = 2
