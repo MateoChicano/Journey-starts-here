@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwiug78uim572"]
+[gd_scene load_steps=4 format=3 uid="uid://dwiug78uim572"]
 
 [ext_resource type="Script" uid="uid://b8m80rco5kvc5" path="res://scripts/Menus/item.gd" id="1_ifcx2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1wcy"]
 
-[node name="item_box" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifcx2"]
+
+[node name="item_box" type="RigidBody2D" groups=["items"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_ifcx2")
@@ -13,3 +15,11 @@ script = ExtResource("1_ifcx2")
 
 [node name="box_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t1wcy")
+
+[node name="mouse_detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detector"]
+shape = SubResource("RectangleShape2D_ifcx2")
+
+[connection signal="mouse_entered" from="." to="." method="mouse_in_body"]
+[connection signal="mouse_exited" from="." to="." method="mouse_off_body"]

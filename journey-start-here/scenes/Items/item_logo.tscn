@@ -1,21 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb3rxocbddhb6"]
+[gd_scene load_steps=5 format=3 uid="uid://bb3rxocbddhb6"]
 
 [ext_resource type="Script" uid="uid://b8m80rco5kvc5" path="res://scripts/Menus/item.gd" id="1_chhuj"]
 [ext_resource type="Texture2D" uid="uid://btihyk2ahjblk" path="res://icon.svg" id="2_pa8qr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1wcy"]
+size = Vector2(20.87, 19)
 
-[node name="item_box" type="RigidBody2D"]
-collision_layer = 2
-collision_mask = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chhuj"]
+size = Vector2(21, 19)
+
+[node name="item_box" type="RigidBody2D" groups=["items"]]
+collision_mask = 0
 script = ExtResource("1_chhuj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.163639, 0.146847)
+scale = Vector2(0.748798, 0.671959)
 texture = ExtResource("2_pa8qr")
 
 [node name="box_collision" type="CollisionShape2D" parent="."]
+scale = Vector2(4.57591, 4.57591)
 shape = SubResource("RectangleShape2D_t1wcy")
 
-[connection signal="mouse_entered" from="." to="." method="mouse_in_body"]
-[connection signal="mouse_exited" from="." to="." method="mouse_off_body"]
+[node name="mouse_detector" type="Area2D" parent="."]
+scale = Vector2(4.57591, 4.57591)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detector"]
+shape = SubResource("RectangleShape2D_chhuj")
+debug_color = Color(0.797976, 0.324679, 0.691726, 0.42)
+
+[connection signal="mouse_entered" from="mouse_detector" to="." method="mouse_in_body"]
+[connection signal="mouse_exited" from="mouse_detector" to="." method="mouse_off_body"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bukakowd3k1xx"]
+[gd_scene load_steps=7 format=3 uid="uid://bukakowd3k1xx"]
 
 [ext_resource type="Script" uid="uid://c56dnn6txs57y" path="res://scripts/Characters/player.gd" id="1_3vyb7"]
 
@@ -9,6 +9,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xwt18"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwt18"]
+size = Vector3(0.970703, 0.268555, 1)
 
 [node name="player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_3vyb7")
@@ -35,6 +38,14 @@ collision_mask = 2
 shape = SubResource("CapsuleShape3D_3vyb7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="item_detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_detector"]
+transform = Transform3D(3.36429, 0, 0, 0, 3.36429, 0, 0, 0, 3.36429, 0.0216885, -0.599012, -0.00380611)
+shape = SubResource("BoxShape3D_xwt18")
 
 [connection signal="area_entered" from="NPC_detector" to="." method="enter_trigger_npc"]
 [connection signal="area_exited" from="NPC_detector" to="." method="exit_trigger_npc"]

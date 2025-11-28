@@ -17,3 +17,6 @@ func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("escape") :
 		player.get_child(5).show()
 		get_tree().paused = false
+
+func add_item(item : item) -> void :
+	

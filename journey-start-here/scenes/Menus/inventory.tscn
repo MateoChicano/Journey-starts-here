@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2aa0j51ystr4"]
+[gd_scene load_steps=7 format=3 uid="uid://c2aa0j51ystr4"]
 
 [ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://scripts/Menus/Hud/inventory.gd" id="1_ay0u5"]
-[ext_resource type="PackedScene" uid="uid://bb3rxocbddhb6" path="res://scenes/Items/item_logo.tscn" id="2_ieqw4"]
 [ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://scripts/Menus/mouse_area.gd" id="3_ovyma"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_me4au"]
@@ -10,9 +9,10 @@
 size = Vector2(2, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ieqw4"]
-size = Vector2(1708, 49)
+size = Vector2(1213, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1mf"]
+size = Vector2(3.5, 3.5)
 
 [node name="Inventory" type="Control"]
 process_mode = 3
@@ -88,19 +88,22 @@ shape = SubResource("RectangleShape2D_ay0u5")
 position = Vector2(36, 402)
 shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="item_box" parent="inventory_container/Box_coll/Container" instance=ExtResource("2_ieqw4")]
-position = Vector2(244, -6)
-collision_mask = 3
+[node name="ceiling" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(5, -286)
+shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="Sprite2D" parent="inventory_container/Box_coll/Container/item_box" index="0"]
-scale = Vector2(1.01544, 0.911242)
+[node name="wall_right" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(628.001, -165.5)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="box_collision" parent="inventory_container/Box_coll/Container/item_box" index="1"]
-scale = Vector2(6.20539, 6.20539)
+[node name="wall_left" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(-571, 125)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="mouse_area" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("3_ovyma")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_area"]
@@ -108,5 +111,4 @@ shape = SubResource("RectangleShape2D_eh1mf")
 
 [connection signal="pressed" from="inventory_container/quit_button" to="." method="_on_quit_pressed"]
 [connection signal="area_entered" from="mouse_area" to="mouse_area" method="_on_area_entered"]
-
-[editable path="inventory_container/Box_coll/Container/item_box"]
+[connection signal="area_exited" from="mouse_area" to="mouse_area" method="_on_area_exited"]

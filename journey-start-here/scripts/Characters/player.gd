@@ -10,6 +10,7 @@ var instance_pause : pause = pause_menu.instantiate()
 var instance_hud : hud = HUD.instantiate()
 var cam : Camera3D
 var npc_trigger_entered : bool = false
+var item_trigger_entered : bool = false
 var skip_rayQuery : bool = false
 
 @onready var navAgent := $NavigationAgent3D
@@ -51,6 +52,9 @@ func enter_trigger_npc(_area : Area3D) -> void :
 func exit_trigger_npc(area : Area3D) -> void:
 	area.owner.get_node("Text_box").hide()
 	npc_trigger_entered = false
+
+func enter_trigger_item(area : Area3D) -> void :
+
 
 #Input
 func _input(_event:InputEvent) -> void:
@@ -106,6 +110,7 @@ func interactWith(target : Node3D) -> void :
 
 func skip_movement() -> void :
 	return
+
 
 
 		
