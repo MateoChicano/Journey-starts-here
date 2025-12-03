@@ -2,8 +2,10 @@ class_name item extends RigidBody2D
 
 @export var item_name : String
 @export var item_description : String
+@export var item_shape : String
+@onready var player :Player = get_tree().get_first_node_in_group("Player")
 
-
+const TAILLE_MAX_POS : int = 6
 var mouse_left_down: bool = false
 var mouse_pos : Vector2
 var mouse_force : float = 15
@@ -29,6 +31,7 @@ func _input( event:InputEvent ) -> void:
 				self.linear_velocity = sum(positions) / positions.size() * mouse_force
 				self.gravity_scale = 1.0
 				mouse_left_down = false	
+				move = false
 			if is_body_entered == false :
 				move = false
 			mouse_left_down = false		
@@ -36,7 +39,7 @@ func _input( event:InputEvent ) -> void:
 func _physics_process(_delta: float) -> void:
 	positions.append(mouse_pos - global_position)
 
-	if positions.size() >= 6 :
+	if positions.size() >= TAILLE_MAX_POS :
 		positions.remove_at(0)
 	if mouse_left_down and move:
 		mouse_pos = get_viewport().get_mouse_position()
@@ -52,7 +55,15 @@ func sum(tableau : Array[Vector2]) -> Vector2 :
 
 
 func _on_exited_container(_area:Area2D) -> void:
-	is_in_container = true
+	is_in_container = false
+	if not player.item_trigger_entered :
+		player.drop_item(self)
+
 
 func _on_entered_container(_area:Area2D) -> void:
-	is_in_container = false
+	is_in_container = true
+
+func make_3d() -> void :
+	if item_shape == "carre" :
+		var instance_3d : item_3d = load("res://scenes/Items/item_box_3d.tscn").instantiate()
+		instance_3d.nom = item_name

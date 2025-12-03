@@ -2,16 +2,24 @@ class_name npc extends CharacterBody3D
 
 @export var npc_name : String
 @export var day_ident : String = "0"
+@export var attached_quest : String
 @onready var loadDialog : Dictionary = DialogManager.loadDialog(npc_name)
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
-@onready var displayed_text : Label = get_child(3).get_child(0)
+@onready var displayed_text : Label = get_node("Text_box/Dialog")
+@onready var text_box : Panel = get_node("Text_box")
 
 var dialog_finished : bool
+var has_quest : bool
+var visited : bool
 var cptDialog : int = 0
 
 
 func _ready() -> void:
-	get_child(3).hide() #cache la text box
+	text_box.hide()
+	if attached_quest != null :
+		has_quest = true
+	else :
+		has_quest = false
 	
 
 func displayDialog() -> void :
@@ -21,7 +29,7 @@ func displayDialog() -> void :
 
 	
 	get_node("Text_box/Name").text = self.npc_name
-	get_child(3).show() #montre la text box
+	text_box.show()
 	displayed_text.visible_characters = 0
 
 	if cptDialog < loadDialog["day"+day_ident].size() :
@@ -29,21 +37,24 @@ func displayDialog() -> void :
 		cptDialog += 1
 	else :
 		displayed_text.text = loadDialog["day"+day_ident][cptDialog-1] #recup la derniere ligne de dialogue
-	var char_max : int = len(get_node("Text_box/Dialog").text) + 1
+	var char_max : int = len(displayed_text.text) + 1
 
 	for i in range(char_max) :
 		displayed_text.visible_characters = i
 		await get_tree().create_timer(delay).timeout
+	if has_quest and not visited:
+		player.HUD.get_node("menu container/general menu/Quest").add_quest(attached_quest)
+	visited = true
 	dialog_finished = true
 
 func _on_text_box_click(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
-		if dialog_finished :
+		if visited :
 			if cptDialog == loadDialog["day"+day_ident].size():
 				self.closeDialogBox()
 			else :
 				self.displayDialog()
 
 func closeDialogBox() -> void :
-	get_child(3).hide()
+	text_box.hide()
 		

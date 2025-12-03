@@ -15,5 +15,4 @@ func _input(_event:InputEvent) -> void:
 		player.get_child(8).show()
 		get_tree().paused = false
 
-# func add_item(item : item) -> void :
 	

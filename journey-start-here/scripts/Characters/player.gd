@@ -6,18 +6,18 @@ const TWEEN_DURATION : float = 1.0
 
 @onready var HUD : hud = get_node("HUD")
 @onready var inventory : Inventory = get_node("Inventory")
-@onready var pause_menu : pause = get_node("pause_menu")
+@onready var pause_menu : pause = get_node("pause menu")
 @onready var navAgent := $NavigationAgent3D
+@onready var dernier_item : int = inventory.get_node("inventory_container").get_child_count()
 @export var speed : int = 4
 
 var item_lo : PackedScene
 var instance_item : item
-# var instance_pause : pause = pause_menu.instantiate()
 var cam : Camera3D
 var npc_trigger_entered : bool = false
 var item_trigger_entered : bool = false
 var skip_rayQuery : bool = false
-@onready var dernier_item : int = inventory.get_node("inventory_container").get_child_count()
+
 	
 #Fonctions communes
 func _physics_process(delta : float) -> void :
@@ -28,6 +28,7 @@ func _physics_process(delta : float) -> void :
 func _ready() -> void :
 	HUD.contain_menu.hide()
 	inventory.hide()
+	pause_menu.hide()
 	
 
 #Fonction entrer dans zone	
@@ -60,15 +61,15 @@ func exit_trigger_npc(area : Area3D) -> void:
 
 func enter_trigger_item(area : Area3D) -> void :
 	item_trigger_entered = true
-	item_lo = load("res://scenes/Items/" + area.owner.get_scene_name())
-	instance_item = item_lo.instantiate()
-	add_item(instance_item)
+	instance_item = area.owner.get_item()
+	pick_item(instance_item)
 
 func exit_trigger_item(area : Area3D) -> void :
 	item_trigger_entered = false
 	if instance_item.is_in_container :
 		area.owner.queue_free()
-		remove_item(inventory.get_child(dernier_item))
+	else :
+		self.remove_item(instance_item)
 
 
 #Input
@@ -106,8 +107,6 @@ func _input(_event:InputEvent) -> void:
 				self.get_child(6).hide()
 			else :
 				get_tree().paused = true
-				self.add_child(instance_pause)
-				instance_pause = pause_menu.instantiate()
 
 #Fonctions définies
 func moveToPoint(delta : float) -> void :
@@ -126,11 +125,14 @@ func interactWith(target : Node3D) -> void :
 func skip_movement() -> void :
 	return
 
-func add_item(p_item : item) -> void :
+func pick_item(p_item : item) -> void :
 	inventory.get_node("inventory_container").add_child(p_item)
 
 func remove_item(p_item : item) -> void :
 	inventory.get_node("inventory_container").remove_child(p_item)
+
+func drop_item(p_item : item) -> void :
+	p_item.make_3d()
 
 
 

@@ -6,6 +6,7 @@
 
 [node name="Item_ball" type="RigidBody2D"]
 script = ExtResource("1_y1dhn")
+item_shape = "ball"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 

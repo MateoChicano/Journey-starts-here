@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn6bw6iuuckhv"]
+[gd_scene load_steps=5 format=3 uid="uid://bn6bw6iuuckhv"]
 
 [ext_resource type="Script" uid="uid://cjrltkrpjcbrh" path="res://scripts/Menus/hud.gd" id="1_3fgt4"]
 [ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="2_fomu2"]
+[ext_resource type="Script" uid="uid://s4qph7tf7q7w" path="res://scripts/Menus/Hud/quest.gd" id="3_fomu2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v3i0"]
+bg_color = Color(0.244776, 0.244776, 0.244776, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.114897, 0.114897, 0.114897, 1)
+border_blend = true
 
 [node name="HUD" type="Control" groups=["HUD"]]
 layout_mode = 3
@@ -32,8 +42,6 @@ offset_left = 335.0
 offset_top = 136.0
 offset_right = 890.0
 offset_bottom = 491.0
-script = ExtResource("2_fomu2")
-metadata/_custom_type_script = "uid://bvw80cnhdc4ad"
 
 [node name="general menu" type="TabContainer" parent="menu container"]
 layout_mode = 2
@@ -42,10 +50,12 @@ offset_top = 38.0
 offset_right = 489.0
 offset_bottom = 334.0
 mouse_filter = 0
-current_tab = 0
+current_tab = 1
 
 [node name="Map" type="Panel" parent="menu container/general menu"]
+visible = false
 layout_mode = 2
+script = ExtResource("2_fomu2")
 metadata/_tab_index = 0
 
 [node name="Label" type="Label" parent="menu container/general menu/Map"]
@@ -55,11 +65,27 @@ offset_right = 419.0
 offset_bottom = 144.0
 text = "Contenu 2"
 
-[node name="Quest" type="VBoxContainer" parent="menu container/general menu"]
-visible = false
+[node name="Quest" type="HBoxContainer" parent="menu container/general menu"]
 layout_mode = 2
-script = ExtResource("2_fomu2")
+script = ExtResource("3_fomu2")
 metadata/_tab_index = 1
+
+[node name="name_container" type="VBoxContainer" parent="menu container/general menu/Quest"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="menu container/general menu/Quest/name_container"]
+layout_mode = 2
+text = "example"
+
+[node name="desc_container" type="Panel" parent="menu container/general menu/Quest"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8v3i0")
+
+[node name="Label" type="Label" parent="menu container/general menu/Quest/desc_container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="quit_menu" type="Button" parent="menu container"]
 layout_mode = 2
