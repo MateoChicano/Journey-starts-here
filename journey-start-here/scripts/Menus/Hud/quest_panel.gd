@@ -1,12 +1,14 @@
 class_name quest_panel extends Control
 
-
+@onready var player : Player = get_tree().get_first_node_in_group("Player")
 @onready var displayed_desc : Label = self.get_node("Label")
 @onready var selector_container : VBoxContainer = self.get_node("selectors")
 
 var selectors : Array[Node]
 
 func _ready() -> void:
+	self.mouse_entered.connect(hover_ui)
+	self.mouse_exited.connect(off_ui)
 	update_quests()
 
 func get_quest(quest_name : String) -> void:
@@ -20,3 +22,17 @@ func update_quests() -> void:
 
 func _on_select_pressed(bouton : Button) -> void:
 	get_quest(bouton.text)
+
+func add_quest(quest_name : String) -> void :
+	var new_quest : Button = Button.new()
+	new_quest.text = quest_name
+	selector_container.add_child(new_quest)
+
+#ui_element
+
+func hover_ui() -> void:
+	player.skip_rayQuery = true
+
+
+func off_ui() -> void:
+	player.skip_rayQuery = false

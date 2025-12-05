@@ -42,6 +42,7 @@ offset_right = 489.0
 offset_bottom = 334.0
 mouse_filter = 0
 current_tab = 1
+script = ExtResource("2_fomu2")
 
 [node name="Map" type="Panel" parent="menu container/general menu"]
 visible = false

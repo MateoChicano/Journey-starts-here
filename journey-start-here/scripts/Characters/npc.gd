@@ -43,7 +43,8 @@ func displayDialog() -> void :
 		displayed_text.visible_characters = i
 		await get_tree().create_timer(delay).timeout
 	if has_quest and not visited:
-		player.HUD.get_node("menu container/general menu/Quest").add_quest(attached_quest)
+		player.HUD.get_node("menu container/general menu/Quest/HBoxContainer").add_quest(attached_quest)
+		player.HUD.get_node("menu container/general menu/Quest/HBoxContainer").update_quests()
 	visited = true
 	dialog_finished = true
 
