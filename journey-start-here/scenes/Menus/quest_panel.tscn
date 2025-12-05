@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw175mki5igp0"]
+
+[ext_resource type="Script" uid="uid://2bcbhrxc2koe" path="res://scripts/Menus/Hud/quest_panel.gd" id="1_mbtrr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbtrr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 178.0
+offset_right = 178.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 237.0
+offset_bottom = 66.0
+script = ExtResource("1_mbtrr")
+
+[node name="selectors" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_mbtrr")
+autowrap_mode = 2
+visible_characters_behavior = 1

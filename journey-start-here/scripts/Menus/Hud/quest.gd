@@ -18,6 +18,7 @@ func add_quest(quest_name : String) -> void :
 func give_item(given : item) -> void :
 	player.pick_item(given)
 
+
 	
 
 #ui_element
