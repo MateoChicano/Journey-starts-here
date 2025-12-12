@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2aa0j51ystr4"]
+[gd_scene load_steps=9 format=3 uid="uid://c2aa0j51ystr4"]
 
 [ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://scripts/Menus/Hud/inventory.gd" id="1_ay0u5"]
 [ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://scripts/Menus/mouse_area.gd" id="3_ovyma"]
@@ -13,6 +13,9 @@ size = Vector2(1213, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyma"]
 size = Vector2(26.6251, 24.1597)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57u14"]
+size = Vector2(1205, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1mf"]
 size = Vector2(3.5, 3.5)
@@ -117,6 +120,15 @@ position = Vector2(554, 292.814)
 rotation = -3.14159
 scale = Vector2(8.26289, 8.26289)
 shape = SubResource("RectangleShape2D_ovyma")
+debug_color = Color(0.0707943, 0.639989, 0.326614, 0.42)
+
+[node name="Ground_trigger" type="Area2D" parent="inventory_container"]
+position = Vector2(565, 606)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Ground_trigger"]
+position = Vector2(-21.5, -15)
+shape = SubResource("RectangleShape2D_57u14")
+debug_color = Color(0.841334, 0.330261, 0.505615, 0.42)
 
 [node name="mouse_area" type="Area2D" parent="."]
 collision_layer = 2
@@ -125,6 +137,12 @@ script = ExtResource("3_ovyma")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_area"]
 shape = SubResource("RectangleShape2D_eh1mf")
 
+[node name="Items" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="inventory_container/quit_button" to="." method="_on_quit_pressed"]
+[connection signal="area_entered" from="inventory_container/Ground_trigger" to="." method="_on_ground_touched"]
 [connection signal="area_entered" from="mouse_area" to="mouse_area" method="_on_area_entered"]
 [connection signal="area_exited" from="mouse_area" to="mouse_area" method="_on_area_exited"]

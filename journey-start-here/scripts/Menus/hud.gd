@@ -13,10 +13,6 @@ func on_inventory_pressed() -> void:
 func on_map_pressed() -> void:
 	if !contain_menu.visible :
 		contain_menu.show()
-	else :
-		if menu_gen.current_tab == 1 :
-			contain_menu.hide()
-	menu_gen.current_tab = 1
 
 func _on_quit_menu_pressed() -> void :
 	contain_menu.hide()

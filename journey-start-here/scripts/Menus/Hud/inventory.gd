@@ -8,6 +8,12 @@ func _on_quit_pressed() -> void:
 	get_tree().paused = false
 	self.hide()
 	player.get_node("HUD").show()
+	for i in get_node("Items").get_children():
+		i.just_spawned = false
+		if i.is_in_container :
+			i.dropped = false
+		else :
+			i.queue_free()
 	
 
 func _input(_event:InputEvent) -> void:
@@ -16,3 +22,7 @@ func _input(_event:InputEvent) -> void:
 		get_tree().paused = false
 
 	
+func _on_ground_touched(area:Area2D) -> void:
+	if not area.owner.just_spawned and not area.owner.dropped :
+		area.owner.dropped = true
+		area.owner.make_3d()

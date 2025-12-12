@@ -12,6 +12,8 @@ var mouse_force : float = 15
 var previous_pos : Vector2
 var is_body_entered : bool
 var is_in_container : bool
+var just_spawned : bool
+var dropped : bool
 var move : bool
 var positions : Array[Vector2]
 
@@ -56,8 +58,6 @@ func sum(tableau : Array[Vector2]) -> Vector2 :
 
 func _on_exited_container(_area:Area2D) -> void:
 	is_in_container = false
-	if not player.item_trigger_entered :
-		player.drop_item(self)
 
 
 func _on_entered_container(_area:Area2D) -> void:
@@ -65,5 +65,11 @@ func _on_entered_container(_area:Area2D) -> void:
 
 func make_3d() -> void :
 	if item_shape == "carre" :
-		var instance_3d : item_3d = load("res://scenes/Items/item_box_3d.tscn").instantiate()
+		var instance_3d : item_3d 
+		instance_3d = preload("res://scenes/Items/item_box_3d.tscn").instantiate()
 		instance_3d.nom = item_name
+		instance_3d.just_spawned = true
+		var offset : Vector3 = Vector3(2,2,2)
+		player.get_parent().add_child(instance_3d)
+		
+		instance_3d.global_position = player.global_position + offset

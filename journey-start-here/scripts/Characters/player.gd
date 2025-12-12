@@ -61,15 +61,18 @@ func exit_trigger_npc(area : Area3D) -> void:
 
 func enter_trigger_item(area : Area3D) -> void :
 	item_trigger_entered = true
-	instance_item = area.owner.get_item()
-	pick_item(instance_item)
+	instance_item = area.owner.get_item_2d()
+	instance_item.just_spawned = true
+	if not area.owner.just_spawned :
+		pick_item(instance_item)
 
 func exit_trigger_item(area : Area3D) -> void :
 	item_trigger_entered = false
 	if instance_item.is_in_container :
 		area.owner.queue_free()
 	else :
-		self.remove_item(instance_item)
+		area.owner.just_spawned = false
+		# self.remove_item(area.owner.get_item_2d())
 
 
 #Input
@@ -126,13 +129,10 @@ func skip_movement() -> void :
 	return
 
 func pick_item(p_item : item) -> void :
-	inventory.get_node("inventory_container").add_child(p_item)
+	inventory.get_node("Items").add_child(p_item)
 
-func remove_item(p_item : item) -> void :
-	inventory.get_node("inventory_container").remove_child(p_item)
-
-func drop_item(p_item : item) -> void :
-	p_item.make_3d()
+# func remove_item(p_item : item) -> void :
+# 	inventory.get_node("Items").remove_child(p_item)
 
 
 
