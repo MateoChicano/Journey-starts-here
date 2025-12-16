@@ -3,7 +3,6 @@ class_name npc extends CharacterBody3D
 @export var npc_name : String
 @export var day_ident : String = "0"
 @export var attached_quest : String
-@onready var loadDialog : Dictionary = DialogManager.loadDialog(npc_name)
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
 @onready var displayed_text : Label = get_node("Text_box/Dialog")
 @onready var text_box : Panel = get_node("Text_box")
@@ -12,10 +11,12 @@ var dialog_finished : bool
 var has_quest : bool
 var visited : bool
 var cptDialog : int = 0
+var loadDialog : Dictionary
 
 
 func _ready() -> void:
 	text_box.hide()
+	loadDialog = DialogManager.loadDialog(npc_name)
 	if attached_quest != null :
 		has_quest = true
 	else :

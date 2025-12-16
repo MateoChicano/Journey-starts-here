@@ -173,7 +173,7 @@ attached_quest = "Livraison de charbon"
 [node name="mec chill" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4394, 0.964924, 5.11824)
 npc_name = "mec chill"
-attached_quest = "Tabasser le vioque"
+attached_quest = "Quest 1"
 
 [node name="item_box3d" parent="." instance=ExtResource("4_48ne7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995574, 2.63986, -2.93492)

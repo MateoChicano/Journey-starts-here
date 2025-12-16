@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/Characters/npc.gd" id="1_i4rdu"]
 [ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="2_cdq1g"]
+[ext_resource type="LabelSettings" uid="uid://bnesqci6frrth" path="res://scenes/Characters/Dialog.tres" id="3_o0bl0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
 
@@ -9,9 +10,6 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_abqhh"]
 radius = 1.84523
-
-[sub_resource type="LabelSettings" id="LabelSettings_usq0f"]
-font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_i4rdu"]
 font_size = 22
@@ -41,13 +39,18 @@ offset_bottom = 618.0
 script = ExtResource("2_cdq1g")
 
 [node name="Dialog" type="Label" parent="Text_box"]
-layout_mode = 0
-offset_left = 11.0
-offset_top = 44.0
-offset_right = 769.0
-offset_bottom = 208.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.205
+anchor_right = 0.922
+anchor_bottom = 0.967
+offset_left = 0.158
+offset_top = -0.0750046
+offset_right = 0.0519409
+offset_bottom = 0.094986
 text = "Lorem ipsum dolor sit amet"
-label_settings = SubResource("LabelSettings_usq0f")
+label_settings = ExtResource("3_o0bl0")
 autowrap_mode = 2
 clip_text = true
 visible_characters = 0

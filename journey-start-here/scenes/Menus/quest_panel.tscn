@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://2bcbhrxc2koe" path="res://scripts/Menus/Hud/quest_panel.gd" id="1_mbtrr"]
 [ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="1_n82jm"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_mbtrr"]
+[sub_resource type="LabelSettings" id="LabelSettings_n82jm"]
+font_size = 20
 
 [node name="Control" type="Panel"]
 offset_right = 300.0
@@ -12,16 +13,25 @@ script = ExtResource("1_n82jm")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 237.0
+offset_right = 254.0
 offset_bottom = 66.0
 script = ExtResource("1_mbtrr")
 
 [node name="selectors" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+[node name="completed" type="VBoxContainer" parent="HBoxContainer/selectors"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_mbtrr")
+
+[node name="Label" type="Label" parent="HBoxContainer/selectors/completed"]
+layout_mode = 2
+text = "Completed"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(230, 100)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_n82jm")
 autowrap_mode = 2
+clip_text = true
 visible_characters_behavior = 1
