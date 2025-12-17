@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx7kloy1xtmdb"]
+[gd_scene load_steps=9 format=3 uid="uid://dx7kloy1xtmdb"]
 
 [ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/Characters/npc.gd" id="1_i4rdu"]
 [ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="2_cdq1g"]
@@ -7,6 +7,9 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nh2m4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o0bl0"]
+radius = 1.8378
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_abqhh"]
 radius = 1.84523
@@ -24,6 +27,13 @@ mesh = SubResource("CapsuleMesh_tcuxl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_nh2m4")
+
+[node name="item_area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_area"]
+shape = SubResource("SphereShape3D_o0bl0")
 
 [node name="Interact_Area" type="Area3D" parent="."]
 collision_layer = 4

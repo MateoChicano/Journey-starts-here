@@ -168,7 +168,7 @@ has_transition = true
 [node name="mec chokbar" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19325, 1.02701, 7.79173)
 npc_name = "mec chokabr"
-attached_quest = "Livraison de charbon"
+completing_quest = "Quest 1"
 
 [node name="mec chill" parent="." instance=ExtResource("4_v45ci")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4394, 0.964924, 5.11824)

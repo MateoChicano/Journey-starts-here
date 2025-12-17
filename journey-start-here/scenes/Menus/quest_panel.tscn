@@ -17,13 +17,16 @@ offset_right = 254.0
 offset_bottom = 66.0
 script = ExtResource("1_mbtrr")
 
-[node name="selectors" type="VBoxContainer" parent="HBoxContainer"]
+[node name="quest_titles" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="completed" type="VBoxContainer" parent="HBoxContainer/selectors"]
+[node name="ongoing" type="VBoxContainer" parent="HBoxContainer/quest_titles"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/selectors/completed"]
+[node name="completed" type="VBoxContainer" parent="HBoxContainer/quest_titles"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/quest_titles/completed"]
 layout_mode = 2
 text = "Completed"
 
