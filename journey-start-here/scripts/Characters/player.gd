@@ -130,6 +130,11 @@ func skip_movement() -> void :
 
 func pick_item(p_item : item) -> void :
 	inventory.get_node("Items").add_child(p_item)
+	var tween : Tween = get_tree().create_tween()
+	var initiale_size : Vector2 = HUD.get_node("inventory toggle").size
+	tween.tween_property(HUD.get_node("inventory toggle"), "size", HUD.get_node("inventory toggle").size*1.05, 0.05)
+	tween.tween_property(HUD.get_node("inventory toggle"), "size", initiale_size, 0.05)
+	
 
 # func remove_item(p_item : item) -> void :
 # 	inventory.get_node("Items").remove_child(p_item)

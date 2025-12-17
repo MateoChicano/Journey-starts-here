@@ -15,6 +15,7 @@ offset_left = 981.0
 offset_top = 541.0
 offset_right = 1143.0
 offset_bottom = 614.0
+pivot_offset = Vector2(78, 36)
 text = "inventory"
 script = ExtResource("2_fomu2")
 
