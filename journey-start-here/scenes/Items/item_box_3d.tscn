@@ -9,6 +9,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_bdxqr"]
 
 [node name="item_box3d" type="RigidBody3D"]
+collision_layer = 0
 script = ExtResource("1_71yv2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

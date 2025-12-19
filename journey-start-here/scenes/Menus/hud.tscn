@@ -17,6 +17,7 @@ offset_right = 1143.0
 offset_bottom = 614.0
 pivot_offset = Vector2(78, 36)
 text = "inventory"
+icon_alignment = 1
 script = ExtResource("2_fomu2")
 
 [node name="map toggle" type="Button" parent="."]

@@ -179,6 +179,10 @@ attached_quest = "Quest 1"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995574, 2.63986, -2.93492)
 nom = "item_logo"
 
+[node name="item_box3d2" parent="." instance=ExtResource("4_48ne7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69678, 2.63986, -2.93492)
+nom = "item_logo"
+
 [editable path="trigger salle"]
 [editable path="trigger salle 1"]
 [editable path="trigger pont"]

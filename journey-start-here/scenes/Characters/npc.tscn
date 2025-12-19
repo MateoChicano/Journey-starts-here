@@ -76,5 +76,6 @@ offset_bottom = 38.0
 text = "Nom"
 label_settings = SubResource("LabelSettings_i4rdu")
 
+[connection signal="area_entered" from="item_area" to="." method="_on_item_area_entered"]
 [connection signal="area_exited" from="Interact_Area" to="." method="_on_interact_area_area_exited"]
 [connection signal="gui_input" from="Text_box" to="." method="_on_text_box_click"]

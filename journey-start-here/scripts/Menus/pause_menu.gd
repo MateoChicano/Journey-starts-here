@@ -5,7 +5,6 @@ class_name pause extends Control
 func _input(_event:InputEvent) -> void:
 	if Input.is_action_just_pressed("escape") :
 		quit_menu()
-		print("pressed")
 
 func _on_pressed() -> void:
 	quit_menu()

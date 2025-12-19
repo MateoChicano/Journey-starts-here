@@ -2,7 +2,7 @@ class_name Player extends CharacterBody3D
 
 const RAYLENGTH : int = 100
 const GRAVITY : float = 4
-const TWEEN_DURATION : float = 1.0
+const TWEEN_DURATION : float = 0.5
 
 @onready var HUD : hud = get_node("HUD")
 @onready var inventory : Inventory = get_node("Inventory")
@@ -31,7 +31,7 @@ func _ready() -> void :
 	pause_menu.hide()
 	
 
-#Fonction entrer dans zone	
+#Fonction trigger	
 func enter_trigger_camera(area : Area3D) -> void:
 	var camOrigin : Camera3D = get_viewport().get_camera_3d()
 	cam = area.get_child(1)
@@ -63,16 +63,14 @@ func enter_trigger_item(area : Area3D) -> void :
 	item_trigger_entered = true
 	instance_item = area.owner.get_item_2d()
 	instance_item.just_spawned = true
+	instance_item.instance_3d = area.owner
 	if not area.owner.just_spawned :
 		pick_item(instance_item)
 
-func exit_trigger_item(area : Area3D) -> void :
-	item_trigger_entered = false
-	if instance_item.is_in_container :
-		area.owner.queue_free()
-	else :
-		area.owner.just_spawned = false
-		# self.remove_item(area.owner.get_item_2d())
+func exit_trigger_item(_area : Area3D) -> void :
+		item_trigger_entered = false
+		if not instance_item.is_in_container :
+			instance_item.queue_free()
 
 
 #Input
@@ -135,9 +133,6 @@ func pick_item(p_item : item) -> void :
 	tween.tween_property(HUD.get_node("inventory toggle"), "size", HUD.get_node("inventory toggle").size*1.05, 0.05)
 	tween.tween_property(HUD.get_node("inventory toggle"), "size", initiale_size, 0.05)
 	
-
-# func remove_item(p_item : item) -> void :
-# 	inventory.get_node("Items").remove_child(p_item)
 
 
 

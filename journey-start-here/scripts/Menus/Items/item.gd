@@ -9,11 +9,12 @@ const TAILLE_MAX_POS : int = 6
 var mouse_left_down: bool = false
 var mouse_pos : Vector2
 var mouse_force : float = 15
+var instance_3d : item_3d 
 var previous_pos : Vector2
 var is_body_entered : bool
 var is_in_container : bool
 var just_spawned : bool
-var dropped : bool
+var grounded : bool
 var move : bool
 var positions : Array[Vector2]
 
@@ -54,8 +55,6 @@ func sum(tableau : Array[Vector2]) -> Vector2 :
 		resultat.y += i.y
 	return resultat
 
-
-
 func _on_exited_container(_area:Area2D) -> void:
 	is_in_container = false
 
@@ -65,7 +64,6 @@ func _on_entered_container(_area:Area2D) -> void:
 
 func make_3d() -> void :
 	if item_shape == "carre" :
-		var instance_3d : item_3d 
 		instance_3d = preload("res://scenes/Items/item_box_3d.tscn").instantiate()
 		instance_3d.nom = item_name
 		instance_3d.just_spawned = true

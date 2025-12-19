@@ -66,3 +66,8 @@ func _on_text_box_click(_event: InputEvent) -> void:
 func closeDialogBox() -> void :
 	text_box.hide()
 		
+
+
+func _on_item_area_entered(area:Area3D) -> void:
+	if area.owner is item_3d : 
+		print("npc ramasse ", area.owner.get_item_name())
