@@ -57,6 +57,10 @@ hold_left_click={
 3d_physics/layer_2="CameraTriggers"
 3d_physics/layer_3="NpcTriggers"
 
+[physics]
+
+2d/solver/solver_iterations=32
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

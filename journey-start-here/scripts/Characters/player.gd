@@ -64,6 +64,7 @@ func enter_trigger_item(area : Area3D) -> void :
 	instance_item = area.owner.get_item_2d()
 	instance_item.just_spawned = true
 	instance_item.instance_3d = area.owner
+	print(instance_item.instance_3d)
 	if not area.owner.just_spawned :
 		pick_item(instance_item)
 

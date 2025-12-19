@@ -12,7 +12,7 @@ size = Vector2(2, 2)
 size = Vector2(1213, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyma"]
-size = Vector2(26.6251, 24.1597)
+size = Vector2(26.6251, 35.7779)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57u14"]
 size = Vector2(1205, 102)
@@ -116,7 +116,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/item_container"]
-position = Vector2(554, 292.814)
+position = Vector2(554, 244.814)
 rotation = -3.14159
 scale = Vector2(8.26289, 8.26289)
 shape = SubResource("RectangleShape2D_ovyma")
