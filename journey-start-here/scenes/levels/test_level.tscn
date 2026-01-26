@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfoaluajumgxr"]
+[gd_scene load_steps=22 format=3 uid="uid://dfoaluajumgxr"]
 
 [ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/Characters/player.tscn" id="1_jbqir"]
 [ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_yautc"]
 [ext_resource type="PackedScene" uid="uid://d3kpeiyisoabl" path="res://scenes/Items/item_box_3d.tscn" id="4_48ne7"]
 [ext_resource type="PackedScene" uid="uid://dx7kloy1xtmdb" path="res://scenes/Characters/npc.tscn" id="4_v45ci"]
+[ext_resource type="PackedScene" uid="uid://c758l8nlden06" path="res://scenes/target_icon.tscn" id="5_48ne7"]
 
 [sub_resource type="Environment" id="Environment_jbqir"]
 
@@ -139,8 +140,10 @@ mesh = SubResource("BoxMesh_6xh4u")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plateforme qui vole/StaticBody3D"]
 shape = SubResource("BoxShape3D_7x1jh")
 
+[node name="target" parent="." instance=ExtResource("5_48ne7")]
+
 [node name="player" parent="." instance=ExtResource("1_jbqir")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97268, 1.3725, 1.87338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97268, 2.18622, 1.87338)
 
 [node name="trigger salle" parent="." instance=ExtResource("2_yautc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8879, 3.94307, 0)

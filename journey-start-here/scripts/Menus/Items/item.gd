@@ -67,6 +67,7 @@ func make_3d() -> void :
 		instance_3d = preload("res://scenes/Items/item_box_3d.tscn").instantiate()
 		instance_3d.nom = item_name
 		instance_3d.just_spawned = true
+		instance_3d.item_2d = self
 		var offset : Vector3 = Vector3(2,2,2)
 		player.get_parent().add_child(instance_3d)
 		

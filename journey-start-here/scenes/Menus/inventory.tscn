@@ -15,7 +15,7 @@ size = Vector2(1213, 49)
 size = Vector2(26.6251, 35.7779)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57u14"]
-size = Vector2(1205, 102)
+size = Vector2(1141, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1mf"]
 size = Vector2(3.5, 3.5)
@@ -98,7 +98,7 @@ position = Vector2(36, 402)
 shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="ceiling" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
-position = Vector2(-6, -471)
+position = Vector2(12, -294)
 shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="wall_right" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
@@ -107,7 +107,7 @@ rotation = -1.57079
 shape = SubResource("RectangleShape2D_ieqw4")
 
 [node name="wall_left" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
-position = Vector2(-647, 69)
+position = Vector2(-567, 73)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ieqw4")
 
@@ -126,7 +126,7 @@ debug_color = Color(0.0707943, 0.639989, 0.326614, 0.42)
 position = Vector2(565, 606)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Ground_trigger"]
-position = Vector2(-21.5, -15)
+position = Vector2(10.5, -15)
 shape = SubResource("RectangleShape2D_57u14")
 debug_color = Color(0.841334, 0.330261, 0.505615, 0.42)
 

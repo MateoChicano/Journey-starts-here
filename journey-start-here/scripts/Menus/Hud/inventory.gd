@@ -5,27 +5,25 @@ class_name Inventory extends Control
 
 
 func quit_inventory() -> void:
+	# var generated_item : item_3d
 	get_tree().paused = false
 	self.hide()
 	player.get_node("HUD").show()
-	for i in get_node("Items").get_children():
-		i.just_spawned = false
-		if i.is_in_container:
-			if not i.instance_3d :
-				i.grounded = false
+	for body :item in get_node("Items").get_children():
+		body.just_spawned = false
+		if body.is_in_container:
+			if not body.instance_3d :
+				body.grounded = false
 				return
 			else :
-				i.instance_3d.free()
-				i.grounded = false
+				body.instance_3d.free()
+				body.grounded = false
 		else : 
 			if not player.item_trigger_entered: 
-				i.make_3d()
-	
-
-func _input(_event:InputEvent) -> void:
-	if Input.is_action_just_pressed("escape") :
-		self.quit_inventory()
-
+				body.make_3d()
+				print(body)
+				print(body.instance_3d)
+				print(body.instance_3d.item_2d)
 	
 func _on_ground_touched(area:Area2D) -> void:
 	if not area.owner.just_spawned and not area.owner.grounded :

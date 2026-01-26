@@ -31,6 +31,7 @@ func displayDialog() -> void :
 
 	
 	get_node("Text_box/Name").text = self.npc_name
+	player.HUD.hide()
 	text_box.show()
 	displayed_text.visible_characters = 0
 
@@ -65,6 +66,7 @@ func _on_text_box_click(_event: InputEvent) -> void:
 
 func closeDialogBox() -> void :
 	text_box.hide()
+	player.HUD.show()
 		
 
 

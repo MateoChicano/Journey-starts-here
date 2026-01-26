@@ -12,4 +12,3 @@ func hover_ui() -> void:
 
 func off_ui() -> void:
 	player.skip_rayQuery = false
-
