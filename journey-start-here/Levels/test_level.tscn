@@ -1,10 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfoaluajumgxr"]
+[gd_scene load_steps=22 format=3 uid="uid://bqvfyylnivoli"]
 
-[ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://scenes/Characters/player.tscn" id="1_jbqir"]
-[ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://scenes/camera_trigger.tscn" id="2_yautc"]
-[ext_resource type="PackedScene" uid="uid://d3kpeiyisoabl" path="res://scenes/Items/item_box_3d.tscn" id="4_48ne7"]
-[ext_resource type="PackedScene" uid="uid://dx7kloy1xtmdb" path="res://scenes/Characters/npc.tscn" id="4_v45ci"]
-[ext_resource type="PackedScene" uid="uid://c758l8nlden06" path="res://scenes/target_icon.tscn" id="5_48ne7"]
+[ext_resource type="PackedScene" uid="uid://c758l8nlden06" path="res://Entities/Target_Path/target_icon.tscn" id="1_3158n"]
+[ext_resource type="PackedScene" uid="uid://bukakowd3k1xx" path="res://Entities/Player/player.tscn" id="2_ub4j8"]
+[ext_resource type="PackedScene" uid="uid://cf8limc6h6v4a" path="res://Entities/Player/Camera/camera_trigger.tscn" id="3_pvdih"]
+[ext_resource type="PackedScene" uid="uid://dx7kloy1xtmdb" path="res://Entities/FriendlyNPC/npc.tscn" id="4_7e6fp"]
+[ext_resource type="PackedScene" uid="uid://d3kpeiyisoabl" path="res://Entities/Items/3Ds/item_box_3d.tscn" id="5_4t6x8"]
 
 [sub_resource type="Environment" id="Environment_jbqir"]
 
@@ -140,12 +140,12 @@ mesh = SubResource("BoxMesh_6xh4u")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plateforme qui vole/StaticBody3D"]
 shape = SubResource("BoxShape3D_7x1jh")
 
-[node name="target" parent="." instance=ExtResource("5_48ne7")]
+[node name="target" parent="." instance=ExtResource("1_3158n")]
 
-[node name="player" parent="." instance=ExtResource("1_jbqir")]
+[node name="player" parent="." instance=ExtResource("2_ub4j8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.97268, 2.18622, 1.87338)
 
-[node name="trigger salle" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger salle" parent="." instance=ExtResource("3_pvdih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8879, 3.94307, 0)
 
 [node name="CollisionShape3D" parent="trigger salle" index="0"]
@@ -155,7 +155,7 @@ transform = Transform3D(-0.0320038, 0, -0.999488, 0, 1, 0, 0.999488, 0, -0.03200
 transform = Transform3D(-0.957712, 0, 0.287728, 0, 1, 0, -0.287728, 0, -0.957712, 7.04424, -2.4633, -6.5084)
 has_transition = true
 
-[node name="trigger salle 1" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger salle 1" parent="." instance=ExtResource("3_pvdih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5324, 0)
 
 [node name="CollisionShape3D" parent="trigger salle 1" index="0"]
@@ -167,7 +167,7 @@ transform = Transform3D(0.867826, 0.236452, -0.436999, 0, 0.879507, 0.475885, 0.
 current = true
 has_transition = true
 
-[node name="trigger pont" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger pont" parent="." instance=ExtResource("3_pvdih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0082, 3.13418, 6.76451)
 
 [node name="CollisionShape3D" parent="trigger pont" index="0"]
@@ -177,7 +177,7 @@ shape = SubResource("BoxShape3D_6xh4u")
 [node name="camera" parent="trigger pont" index="1"]
 transform = Transform3D(-0.863923, 0, 0.503623, 0, 1, 0, -0.503623, 0, -0.863923, 2.95995, -2.05695, -4.66301)
 
-[node name="trigger salle1_5" parent="." instance=ExtResource("2_yautc")]
+[node name="trigger salle1_5" parent="." instance=ExtResource("3_pvdih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28005, 2.33628, 9.11724)
 
 [node name="CollisionShape3D" parent="trigger salle1_5" index="0"]
@@ -188,21 +188,21 @@ shape = SubResource("BoxShape3D_2mu0v")
 transform = Transform3D(0.723823, 0, -0.689986, 0, 1, 0, 0.689986, 0, 0.723823, -8.42373, 0, 4.08131)
 has_transition = true
 
-[node name="mec chokbar" parent="." instance=ExtResource("4_v45ci")]
+[node name="mec chokbar" parent="." instance=ExtResource("4_7e6fp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19325, 1.02701, 7.79173)
 npc_name = "mec chokabr"
 completing_quest = "Quest 1"
 
-[node name="mec chill" parent="." instance=ExtResource("4_v45ci")]
+[node name="mec chill" parent="." instance=ExtResource("4_7e6fp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.4394, 0.964924, 5.11824)
 npc_name = "mec chill"
 attached_quest = "Quest 1"
 
-[node name="item_box3d" parent="." instance=ExtResource("4_48ne7")]
+[node name="item_box3d" parent="." instance=ExtResource("5_4t6x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995574, 2.63986, -2.93492)
 nom = "item_logo"
 
-[node name="item_box3d2" parent="." instance=ExtResource("4_48ne7")]
+[node name="item_box3d2" parent="." instance=ExtResource("5_4t6x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69678, 2.63986, -2.93492)
 nom = "item_logo"
 

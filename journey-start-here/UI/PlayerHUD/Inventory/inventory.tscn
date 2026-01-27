@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c2aa0j51ystr4"]
 
-[ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://scripts/Menus/Hud/inventory.gd" id="1_ay0u5"]
-[ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://scripts/Menus/mouse_area.gd" id="3_ovyma"]
+[ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://UI/PlayerHUD/Inventory/inventory.gd" id="1_ay0u5"]
+[ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://UI/PlayerHUD/Inventory/mouse_area.gd" id="3_ovyma"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_me4au"]
 

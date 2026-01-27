@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://dx7kloy1xtmdb"]
 
-[ext_resource type="Script" uid="uid://d2csg587exnig" path="res://scripts/Characters/npc.gd" id="1_i4rdu"]
-[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="2_cdq1g"]
-[ext_resource type="LabelSettings" uid="uid://bnesqci6frrth" path="res://scenes/Characters/Dialog.tres" id="3_o0bl0"]
+[ext_resource type="Script" uid="uid://d2csg587exnig" path="res://Entities/FriendlyNPC/npc.gd" id="1_i4rdu"]
+[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://UI/ui_element.gd" id="2_cdq1g"]
+[ext_resource type="LabelSettings" uid="uid://bnesqci6frrth" path="res://Entities/FriendlyNPC/Dialog.tres" id="3_o0bl0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf8limc6h6v4a"]
 
-[ext_resource type="Script" uid="uid://cjcnfmlgnch8e" path="res://scripts/camera.gd" id="1_ibhd3"]
+[ext_resource type="Script" uid="uid://cjcnfmlgnch8e" path="res://Entities/Player/Camera/camera.gd" id="1_ibhd3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q4lx4"]
 size = Vector3(5.26257, 1, 1)

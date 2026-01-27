@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DialogManager="*res://autoload/dialog_manager.gd"
-QuestManager="*res://autoload/quest_manager.gd"
+DialogManager="*res://Autoload/dialog_manager.gd"
+QuestManager="*res://Autoload/quest_manager.gd"
 
 [debug]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bw175mki5igp0"]
 
-[ext_resource type="Script" uid="uid://2bcbhrxc2koe" path="res://scripts/Menus/Hud/quest_panel.gd" id="1_mbtrr"]
-[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://scripts/Menus/ui_element.gd" id="1_n82jm"]
+[ext_resource type="Script" uid="uid://2bcbhrxc2koe" path="res://UI/PlayerHUD/Quest_Panel/quest_panel.gd" id="1_mbtrr"]
+[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://UI/ui_element.gd" id="1_n82jm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n82jm"]
 font_size = 20
