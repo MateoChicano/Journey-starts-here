@@ -21,12 +21,12 @@ text = "inventory"
 icon_alignment = 1
 script = ExtResource("2_fomu2")
 
-[node name="notification" type="Sprite2D" parent="inventory toggle"]
-position = Vector2(161, 6.99998)
+[node name="inventory_notif" type="Sprite2D" parent="inventory toggle"]
+position = Vector2(161, 7)
 scale = Vector2(0.109334, 0.106482)
 texture = ExtResource("3_ncaqm")
 
-[node name="map toggle" type="Button" parent="."]
+[node name="book toggle" type="Button" parent="."]
 layout_mode = 0
 offset_left = 1041.0
 offset_top = 15.0
@@ -34,6 +34,11 @@ offset_right = 1117.0
 offset_bottom = 63.0
 text = "Notebook"
 script = ExtResource("2_fomu2")
+
+[node name="book_notif" type="Sprite2D" parent="book toggle"]
+position = Vector2(85, 7)
+scale = Vector2(0.109334, 0.106482)
+texture = ExtResource("3_ncaqm")
 
 [node name="menu container" type="Control" parent="."]
 anchors_preset = 0
@@ -80,5 +85,5 @@ size_flags_vertical = 0
 text = "  X  "
 
 [connection signal="pressed" from="inventory toggle" to="." method="on_inventory_pressed"]
-[connection signal="pressed" from="map toggle" to="." method="on_map_pressed"]
+[connection signal="pressed" from="book toggle" to="." method="on_map_pressed"]
 [connection signal="pressed" from="menu container/quit_menu" to="." method="_on_quit_menu_pressed"]

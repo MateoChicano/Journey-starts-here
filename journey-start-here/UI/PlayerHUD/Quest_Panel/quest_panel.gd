@@ -47,6 +47,7 @@ func add_quest(quest_name : String) -> void :
 	var new_quest : Button = Button.new()
 	new_quest.text = quest_name
 	ongoing_container.add_child(new_quest)
+	player.HUD.book_notif.show()
 
 
 func complete_quest(quest_name : String) -> void :

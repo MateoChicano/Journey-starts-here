@@ -139,7 +139,7 @@ func skip_movement() -> void :
 
 func pick_item(p_item : item) -> void :
 	inventory.get_node("Items").add_child(p_item)
-	HUD.notif_icon.show()
+	HUD.inventory_notif.show()
 
 func moveWithKeys() -> void:
 	# var direction : Vector2 = cam.global_rotation.y
