@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://chjumidg76s3m"]
+
+[ext_resource type="Script" uid="uid://ch51fbvehaxd1" path="res://UI/Menus/title_menu/load_button.gd" id="1_fgkus"]
+
+[node name="Title screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 1154.0
+offset_bottom = 648.0
+
+[node name="Load button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 284.0
+offset_right = 656.0
+offset_bottom = 351.0
+text = "Play"
+script = ExtResource("1_fgkus")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 216.0
+offset_right = 712.0
+offset_bottom = 274.0
+text = "Project scene"
+
+[connection signal="pressed" from="Panel/Load button" to="Panel/Load button" method="_on_pressed"]

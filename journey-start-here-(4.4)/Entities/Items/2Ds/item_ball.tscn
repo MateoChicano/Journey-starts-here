@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfuvalwp43cy6"]
+
+[ext_resource type="Script" uid="uid://ha6dvwqncbsf" path="res://Entities/Items/2Ds/item.gd" id="1_y1dhn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k6p6m"]
+
+[node name="Item_ball" type="RigidBody2D"]
+script = ExtResource("1_y1dhn")
+item_shape = "ball"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ball_collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k6p6m")

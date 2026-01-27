@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://c2aa0j51ystr4"]
+
+[ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://UI/PlayerHUD/Inventory/inventory.gd" id="1_ay0u5"]
+[ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://UI/PlayerHUD/Inventory/mouse_area.gd" id="3_ovyma"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_me4au"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay0u5"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ieqw4"]
+size = Vector2(1213, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyma"]
+size = Vector2(26.6251, 35.7779)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57u14"]
+size = Vector2(1141, 102)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1mf"]
+size = Vector2(3.5, 3.5)
+
+[node name="Inventory" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -6.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ay0u5")
+
+[node name="inventory_container" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1166.0
+offset_bottom = 649.0
+pivot_offset = Vector2(-973, 432)
+
+[node name="quit_button" type="Button" parent="inventory_container"]
+layout_mode = 0
+offset_left = 1106.0
+offset_top = 15.0
+offset_right = 1148.0
+offset_bottom = 46.0
+text = "Quit"
+
+[node name="Box_coll" type="Node2D" parent="inventory_container"]
+position = Vector2(547, 273)
+
+[node name="Container" type="StaticBody2D" parent="inventory_container/Box_coll"]
+collision_mask = 0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(5, 131)
+scale = Vector2(137.546, 17.614)
+collision_mask = 0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D"]
+position = Vector2(-2.98023e-08, -2.98023e-08)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_me4au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D"]
+shape = SubResource("RectangleShape2D_ay0u5")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(-117, 13)
+rotation = -1.57079
+scale = Vector2(137.546, 17.614)
+collision_mask = 0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D2"]
+position = Vector2(-2.98023e-08, -2.98023e-08)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_me4au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_ay0u5")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(128, 9)
+rotation = -1.57079
+scale = Vector2(137.546, 17.614)
+collision_mask = 0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D3"]
+position = Vector2(-2.98023e-08, -2.98023e-08)
+scale = Vector2(2, 2)
+mesh = SubResource("QuadMesh_me4au")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_ay0u5")
+
+[node name="ground" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(36, 402)
+shape = SubResource("RectangleShape2D_ieqw4")
+
+[node name="ceiling" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(12, -294)
+shape = SubResource("RectangleShape2D_ieqw4")
+
+[node name="wall_right" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(628.001, -165.5)
+rotation = -1.57079
+shape = SubResource("RectangleShape2D_ieqw4")
+
+[node name="wall_left" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+position = Vector2(-567, 73)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_ieqw4")
+
+[node name="item_container" type="Area2D" parent="inventory_container"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/item_container"]
+position = Vector2(554, 244.814)
+rotation = -3.14159
+scale = Vector2(8.26289, 8.26289)
+shape = SubResource("RectangleShape2D_ovyma")
+debug_color = Color(0.0707943, 0.639989, 0.326614, 0.42)
+
+[node name="Ground_trigger" type="Area2D" parent="inventory_container"]
+position = Vector2(565, 606)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Ground_trigger"]
+position = Vector2(10.5, -15)
+shape = SubResource("RectangleShape2D_57u14")
+debug_color = Color(0.841334, 0.330261, 0.505615, 0.42)
+
+[node name="mouse_area" type="Area2D" parent="."]
+collision_layer = 2
+script = ExtResource("3_ovyma")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_area"]
+shape = SubResource("RectangleShape2D_eh1mf")
+
+[node name="Items" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="inventory_container/quit_button" to="." method="quit_inventory"]
+[connection signal="area_entered" from="inventory_container/Ground_trigger" to="." method="_on_ground_touched"]
+[connection signal="area_entered" from="mouse_area" to="mouse_area" method="_on_area_entered"]
+[connection signal="area_exited" from="mouse_area" to="mouse_area" method="_on_area_exited"]

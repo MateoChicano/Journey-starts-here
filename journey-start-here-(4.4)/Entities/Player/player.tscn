@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://bukakowd3k1xx"]
+
+[ext_resource type="Script" uid="uid://c56dnn6txs57y" path="res://Entities/Player/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://bn6bw6iuuckhv" path="res://UI/PlayerHUD/hud.tscn" id="2_8iw34"]
+[ext_resource type="PackedScene" uid="uid://c2aa0j51ystr4" path="res://UI/PlayerHUD/Inventory/inventory.tscn" id="3_7xbc7"]
+[ext_resource type="PackedScene" uid="uid://bfluwbpmsotx1" path="res://UI/Menus/pause_menu/pause_menu.tscn" id="4_7xbc7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qhqgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xwt18"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwt18"]
+size = Vector3(0.970703, 0.268555, 1)
+
+[node name="player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_3vyb7")
+speed = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qhqgy")
+
+[node name="NPC_detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC_detector"]
+shape = SubResource("CapsuleShape3D_xwt18")
+
+[node name="Cam_detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cam_detector"]
+shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="item_detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_detector"]
+transform = Transform3D(3.36429, 0, 0, 0, 3.36429, 0, 0, 0, 3.36429, 0.0216885, -0.599012, -0.00380611)
+shape = SubResource("BoxShape3D_xwt18")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("2_8iw34")]
+
+[node name="Inventory" parent="." instance=ExtResource("3_7xbc7")]
+
+[node name="pause menu" parent="." instance=ExtResource("4_7xbc7")]
+
+[connection signal="area_entered" from="NPC_detector" to="." method="enter_trigger_npc"]
+[connection signal="area_exited" from="NPC_detector" to="." method="exit_trigger_npc"]
+[connection signal="area_entered" from="Cam_detector" to="." method="enter_trigger_camera"]
+[connection signal="area_entered" from="item_detector" to="." method="enter_trigger_item"]
+[connection signal="area_exited" from="item_detector" to="." method="exit_trigger_item"]

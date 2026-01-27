@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://dx7kloy1xtmdb"]
+
+[ext_resource type="Script" uid="uid://d2csg587exnig" path="res://Entities/FriendlyNPC/npc.gd" id="1_i4rdu"]
+[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://UI/ui_element.gd" id="2_cdq1g"]
+[ext_resource type="LabelSettings" uid="uid://bnesqci6frrth" path="res://Entities/FriendlyNPC/Dialog.tres" id="3_o0bl0"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nh2m4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o0bl0"]
+radius = 1.8378
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_abqhh"]
+radius = 1.84523
+
+[sub_resource type="LabelSettings" id="LabelSettings_i4rdu"]
+font_size = 22
+
+[node name="NPC" type="CharacterBody3D"]
+collision_mask = 0
+script = ExtResource("1_i4rdu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 4
+mesh = SubResource("CapsuleMesh_tcuxl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_nh2m4")
+
+[node name="item_area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_area"]
+shape = SubResource("SphereShape3D_o0bl0")
+
+[node name="Interact_Area" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interact_Area"]
+shape = SubResource("SphereShape3D_abqhh")
+
+[node name="Text_box" type="Panel" parent="."]
+offset_left = 152.0
+offset_top = 403.0
+offset_right = 986.0
+offset_bottom = 618.0
+script = ExtResource("2_cdq1g")
+
+[node name="Dialog" type="Label" parent="Text_box"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013
+anchor_top = 0.205
+anchor_right = 0.922
+anchor_bottom = 0.967
+offset_left = 0.158
+offset_top = -0.0750046
+offset_right = 0.0519409
+offset_bottom = 0.094986
+text = "Lorem ipsum dolor sit amet"
+label_settings = ExtResource("3_o0bl0")
+autowrap_mode = 2
+clip_text = true
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="Name" type="Label" parent="Text_box"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 129.0
+offset_bottom = 38.0
+text = "Nom"
+label_settings = SubResource("LabelSettings_i4rdu")
+
+[connection signal="area_entered" from="item_area" to="." method="_on_item_area_entered"]
+[connection signal="area_exited" from="Interact_Area" to="." method="_on_interact_area_area_exited"]
+[connection signal="gui_input" from="Text_box" to="." method="_on_text_box_click"]

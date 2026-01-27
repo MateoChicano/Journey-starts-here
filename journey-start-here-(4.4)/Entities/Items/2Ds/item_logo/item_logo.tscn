@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bb3rxocbddhb6"]
+
+[ext_resource type="Script" uid="uid://ha6dvwqncbsf" path="res://Entities/Items/2Ds/item.gd" id="1_chhuj"]
+[ext_resource type="Texture2D" uid="uid://btihyk2ahjblk" path="res://icon.svg" id="2_pa8qr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1wcy"]
+size = Vector2(20.87, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chhuj"]
+size = Vector2(21, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pa8qr"]
+size = Vector2(96, 88)
+
+[node name="item_box" type="RigidBody2D" groups=["items"]]
+process_mode = 3
+script = ExtResource("1_chhuj")
+item_name = "item_logo"
+item_shape = "carre"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.748798, 0.671959)
+texture = ExtResource("2_pa8qr")
+
+[node name="box_collision" type="CollisionShape2D" parent="."]
+scale = Vector2(4.57591, 4.57591)
+shape = SubResource("RectangleShape2D_t1wcy")
+
+[node name="mouse_detector" type="Area2D" parent="."]
+scale = Vector2(4.57591, 4.57591)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detector"]
+shape = SubResource("RectangleShape2D_chhuj")
+debug_color = Color(0.797976, 0.324679, 0.691726, 0.42)
+
+[node name="container_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container_detector"]
+shape = SubResource("RectangleShape2D_pa8qr")
+
+[connection signal="mouse_entered" from="mouse_detector" to="." method="mouse_in_body"]
+[connection signal="mouse_exited" from="mouse_detector" to="." method="mouse_off_body"]
+[connection signal="area_entered" from="container_detector" to="." method="_on_entered_container"]
+[connection signal="area_exited" from="container_detector" to="." method="_on_exited_container"]
