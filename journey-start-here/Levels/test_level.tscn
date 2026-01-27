@@ -132,7 +132,7 @@ skeleton = NodePath("StaticBody3D")
 shape = SubResource("BoxShape3D_cyt5c")
 
 [node name="Plateforme qui vole" type="MeshInstance3D" parent="."]
-transform = Transform3D(11.3974, 0, 0, 0, 0.965926, -2.39417, 0, -0.258819, -8.93518, 5.83519, 2.78048, 14.4425)
+transform = Transform3D(11.3974, 0, 0, 0, 0.965926, -2.39417, 0, -0.258819, -8.93518, 5.83519, 1.01779, 12.9814)
 mesh = SubResource("BoxMesh_6xh4u")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plateforme qui vole"]

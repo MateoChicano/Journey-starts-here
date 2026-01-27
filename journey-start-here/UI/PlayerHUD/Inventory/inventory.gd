@@ -2,8 +2,6 @@ class_name Inventory extends Control
 
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
 
-
-
 func quit_inventory() -> void:
 	# var generated_item : item_3d
 	get_tree().paused = false

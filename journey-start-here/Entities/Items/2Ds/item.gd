@@ -64,7 +64,7 @@ func _on_entered_container(_area:Area2D) -> void:
 
 func make_3d() -> void :
 	if item_shape == "carre" :
-		instance_3d = preload("res://scenes/Items/item_box_3d.tscn").instantiate()
+		instance_3d = preload("res://Entities/Items/3Ds/item_box_3d.tscn").instantiate()
 		instance_3d.nom = item_name
 		instance_3d.just_spawned = true
 		instance_3d.item_2d = self

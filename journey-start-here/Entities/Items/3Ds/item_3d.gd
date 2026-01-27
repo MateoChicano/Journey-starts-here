@@ -5,8 +5,11 @@ var item_2d : item
 var just_spawned : bool
 
 func get_item_2d() -> item :
-	item_2d = load("res://scenes/Items/" + self.get_item_name()).instantiate()
+	item_2d = load(self.get_item_path()).instantiate()
 	return item_2d
 
 func get_item_name() -> String :
-	return self.nom + ".tscn"
+	return self.nom
+
+func get_item_path() -> String :
+	return "res://Entities/Items/2Ds/" + self.get_item_name() + "/" + self.get_item_name() + ".tscn"
