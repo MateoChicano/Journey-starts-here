@@ -1,10 +1,10 @@
-class_name item_3d extends RigidBody3D
+class_name Item_3d extends RigidBody3D
 
 @export var nom : String
-var item_2d : item
+var item_2d : Item
 var just_spawned : bool
 
-func get_item_2d() -> item :
+func get_item_2d() -> Item :
 	item_2d = load(self.get_item_path()).instantiate()
 	return item_2d
 

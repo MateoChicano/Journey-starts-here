@@ -1,4 +1,4 @@
-class_name mouse_area extends Area2D
+class_name Mouse_area extends Area2D
 
 
 

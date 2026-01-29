@@ -1,4 +1,4 @@
-class_name ui_element extends Control
+class_name UI_element extends Control
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 

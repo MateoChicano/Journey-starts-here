@@ -1,4 +1,4 @@
-class_name npc extends CharacterBody3D
+class_name Npc extends CharacterBody3D
 
 @export var npc_name : String
 @export var day_ident : String = "0"
@@ -71,5 +71,5 @@ func closeDialogBox() -> void :
 
 
 func _on_item_area_entered(area:Area3D) -> void:
-	if area.owner is item_3d : 
+	if area.owner is Item_3d : 
 		print("npc ramasse ", area.owner.get_item_name())

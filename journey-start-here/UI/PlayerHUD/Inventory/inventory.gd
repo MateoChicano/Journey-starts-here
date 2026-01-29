@@ -8,13 +8,14 @@ func quit_inventory() -> void:
 	self.hide()
 	player.get_node("HUD").show()
 	for body :item in get_node("Items").get_children():
+		print(body)
 		body.just_spawned = false
 		if body.is_in_container:
 			if not body.instance_3d :
 				body.grounded = false
 				return
 			else :
-				body.instance_3d.free()
+				body.instance_3d.queue_free()
 				body.grounded = false
 		else : 
 			if not player.item_trigger_entered : 

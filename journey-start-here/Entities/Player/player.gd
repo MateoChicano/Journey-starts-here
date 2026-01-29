@@ -4,7 +4,7 @@ const RAYLENGTH: int = 100
 const GRAVITY: float = 4
 const TWEEN_DURATION: float = 0.5
 
-@onready var HUD: hud = get_node("HUD")
+@onready var HUD: Hud = get_node("HUD")
 @onready var inventory: Inventory = get_node("Inventory")
 @onready var pause_menu: pause = get_node("pause menu")
 @onready var navAgent := $NavigationAgent3D
@@ -14,7 +14,7 @@ const TWEEN_DURATION: float = 0.5
 var step: float = speed / 50.0
 var input_axis: Vector2
 var item_lo: PackedScene
-var instance_item: item
+var instance_item: Item
 var cam: Camera3D
 var interactable_npc: npc
 var npc_trigger_entered: bool = false
@@ -76,6 +76,7 @@ func enter_trigger_item(area: Area3D) -> void:
 	instance_item = area.owner.get_item_2d()
 	instance_item.just_spawned = true
 	instance_item.instance_3d = area.owner
+	print(instance_item)
 	pick_item(instance_item)
 
 func exit_trigger_item(_area: Area3D) -> void:
@@ -140,7 +141,7 @@ func interactWith(target: Node3D) -> void:
 func skip_movement() -> void:
 	return
 
-func pick_item(p_item: item) -> void:
+func pick_item(p_item: Item) -> void:
 	inventory.get_node("Items").add_child(p_item)
 	HUD.inventory_notif.show()
 

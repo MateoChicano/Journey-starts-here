@@ -1,4 +1,4 @@
-class_name item extends RigidBody2D
+class_name Item extends RigidBody2D
 
 @export var item_name : String
 @export var item_description : String
@@ -9,7 +9,7 @@ const TAILLE_MAX_POS : int = 6
 var mouse_left_down: bool = false
 var mouse_pos : Vector2
 var mouse_force : float = 15
-var instance_3d : item_3d 
+var instance_3d : Item_3d
 var previous_pos : Vector2
 var is_body_entered : bool
 var is_in_container : bool
