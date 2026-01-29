@@ -6,7 +6,7 @@ const TWEEN_DURATION: float = 0.5
 
 @onready var HUD: Hud = get_node("HUD")
 @onready var inventory: Inventory = get_node("Inventory")
-@onready var pause_menu: pause = get_node("pause menu")
+@onready var pause_menu: Pause = get_node("pause menu")
 @onready var navAgent := $NavigationAgent3D
 @onready var dernier_item: int = inventory.get_node("inventory_container").get_child_count()
 @export var speed: int = 4
@@ -16,7 +16,7 @@ var input_axis: Vector2
 var item_lo: PackedScene
 var instance_item: Item
 var cam: Camera3D
-var interactable_npc: npc
+var interactable_npc: Npc
 var npc_trigger_entered: bool = false
 var item_trigger_entered: bool = false
 var skip_rayQuery: bool = false
@@ -76,7 +76,6 @@ func enter_trigger_item(area: Area3D) -> void:
 	instance_item = area.owner.get_item_2d()
 	instance_item.just_spawned = true
 	instance_item.instance_3d = area.owner
-	print(instance_item)
 	pick_item(instance_item)
 
 func exit_trigger_item(_area: Area3D) -> void:
@@ -104,7 +103,7 @@ func _input(_event: InputEvent) -> void:
 			return
 
 		var collider: Node3D = ray.collider
-		if collider is npc:
+		if collider is Npc:
 			if npc_trigger_entered and interactable_npc == collider:
 				self.skip_movement()
 				interactWith(collider)
@@ -135,7 +134,7 @@ func moveToPoint() -> void:
 
 
 func interactWith(target: Node3D) -> void:
-	if target is npc:
+	if target is Npc:
 		target.displayDialog()
 
 func skip_movement() -> void:

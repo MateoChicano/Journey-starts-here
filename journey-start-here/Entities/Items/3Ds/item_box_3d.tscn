@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3kpeiyisoabl"]
+[gd_scene format=3 uid="uid://d3kpeiyisoabl"]
 
 [ext_resource type="Script" uid="uid://dbnc45mkh4k5s" path="res://Entities/Items/3Ds/item_3d.gd" id="1_71yv2"]
 
@@ -8,19 +8,20 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bdxqr"]
 
-[node name="item_box3d" type="RigidBody3D"]
-collision_layer = 0
+[node name="item_box3d" type="RigidBody3D" unique_id=1504266727]
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_71yv2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=944316354]
 mesh = SubResource("BoxMesh_8ud0r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2049244348]
 shape = SubResource("BoxShape3D_71yv2")
 
-[node name="detection_area" type="Area3D" parent="."]
+[node name="detection_area" type="Area3D" parent="." unique_id=1208781308]
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="detection_area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="detection_area" unique_id=1338402748]
 shape = SubResource("BoxShape3D_bdxqr")

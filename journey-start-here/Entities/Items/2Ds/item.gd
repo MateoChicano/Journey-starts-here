@@ -16,6 +16,7 @@ var is_in_container : bool
 var just_spawned : bool
 var grounded : bool
 var move : bool
+var can_make_3d : bool
 var positions : Array[Vector2]
 
 func _input( event:InputEvent ) -> void:

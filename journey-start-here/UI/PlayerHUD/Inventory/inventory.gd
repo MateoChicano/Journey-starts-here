@@ -7,18 +7,18 @@ func quit_inventory() -> void:
 	get_tree().paused = false
 	self.hide()
 	player.get_node("HUD").show()
-	for body :item in get_node("Items").get_children():
-		print(body)
+	for body :Item in get_node("Items").get_children():
 		body.just_spawned = false
 		if body.is_in_container:
 			if not body.instance_3d :
 				body.grounded = false
-				return
 			else :
 				body.instance_3d.queue_free()
 				body.grounded = false
 		else : 
-			if not player.item_trigger_entered : 
+			if not body.instance_3d : # renvoie true si instance_3d est null
+				body.can_make_3d = true
+			if body.can_make_3d : 
 				body.make_3d()
 				player.inventory.get_node("Items").remove_child(body)
 	

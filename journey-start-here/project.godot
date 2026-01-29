@@ -76,6 +76,7 @@ down={
 3d_physics/layer_1="Characters"
 3d_physics/layer_2="CameraTriggers"
 3d_physics/layer_3="NpcTriggers"
+3d_physics/layer_4="3d item instance"
 
 [physics]
 
