@@ -15,7 +15,7 @@ func add_quest(quest_name : String) -> void :
 	name_container.add_child(new_title)
 	desc_container.add_child(new_desc)
 
-func give_item(given : item) -> void :
+func give_item(given : Item) -> void :
 	player.pick_item(given)
 
 

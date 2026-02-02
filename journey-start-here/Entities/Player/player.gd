@@ -12,6 +12,7 @@ const TWEEN_DURATION: float = 0.5
 @export var speed: int = 4
 
 var step: float = speed / 50.0
+var can_interact : bool = true
 var input_axis: Vector2
 var item_lo: PackedScene
 var instance_item: Item
@@ -129,12 +130,14 @@ func _input(_event: InputEvent) -> void:
 func moveToPoint() -> void:
 	var targetPos: Vector3 = navAgent.get_next_path_position()
 	var direction: Vector3 = global_position.direction_to(targetPos)
+	rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), TWEEN_DURATION)
 	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed
+	velocity.z = direction.z * speed 
 
 
 func interactWith(target: Node3D) -> void:
-	if target is Npc:
+	if target is Npc && can_interact:
+		can_interact = false
 		target.displayDialog()
 
 func skip_movement() -> void:

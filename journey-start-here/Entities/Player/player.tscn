@@ -1,9 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bukakowd3k1xx"]
+[gd_scene format=3 uid="uid://bukakowd3k1xx"]
 
 [ext_resource type="Script" uid="uid://c56dnn6txs57y" path="res://Entities/Player/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://ky3tkt2d45uc" path="res://Entities/Player/hooman.blend" id="2_5c2io"]
 [ext_resource type="PackedScene" uid="uid://bn6bw6iuuckhv" path="res://UI/PlayerHUD/hud.tscn" id="2_8iw34"]
 [ext_resource type="PackedScene" uid="uid://c2aa0j51ystr4" path="res://UI/PlayerHUD/Inventory/inventory.tscn" id="3_7xbc7"]
 [ext_resource type="PackedScene" uid="uid://bfluwbpmsotx1" path="res://UI/Menus/pause_menu/pause_menu.tscn" id="4_7xbc7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5c2io"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 
@@ -16,45 +19,54 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xwt18"]
 size = Vector3(0.970703, 0.268555, 1)
 
-[node name="player" type="CharacterBody3D" groups=["Player"]]
+[node name="player" type="CharacterBody3D" unique_id=2004974183 groups=["Player"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_3vyb7")
 speed = 10
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="hooman" parent="." unique_id=3685351 instance=ExtResource("2_5c2io")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.10620654, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="hooman" unique_id=2080198210]
+transform = Transform3D(-6.5510574e-07, 0, -0.99999994, 0, 1, 0, 14.987073, 0, -4.3711385e-08, 0.16270971, 8.386608, 7.9479923)
+mesh = SubResource("BoxMesh_5c2io")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=423561178]
 shape = SubResource("CapsuleShape3D_g2els")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=126782286]
+visible = false
 mesh = SubResource("CapsuleMesh_qhqgy")
 
-[node name="NPC_detector" type="Area3D" parent="."]
+[node name="NPC_detector" type="Area3D" parent="." unique_id=1579059993]
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC_detector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC_detector" unique_id=840340787]
 shape = SubResource("CapsuleShape3D_xwt18")
 
-[node name="Cam_detector" type="Area3D" parent="."]
+[node name="Cam_detector" type="Area3D" parent="." unique_id=1200734591]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cam_detector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cam_detector" unique_id=1774285588]
 shape = SubResource("CapsuleShape3D_3vyb7")
 
-[node name="item_detector" type="Area3D" parent="."]
+[node name="item_detector" type="Area3D" parent="." unique_id=1597590421]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="item_detector"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_detector" unique_id=1900726674]
 transform = Transform3D(3.36429, 0, 0, 0, 3.36429, 0, 0, 0, 3.36429, 0.0216885, -0.599012, -0.00380611)
 shape = SubResource("BoxShape3D_xwt18")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=714007516]
 
-[node name="HUD" parent="." instance=ExtResource("2_8iw34")]
+[node name="HUD" parent="." unique_id=176918484 instance=ExtResource("2_8iw34")]
 
-[node name="Inventory" parent="." instance=ExtResource("3_7xbc7")]
+[node name="Inventory" parent="." unique_id=808742159 instance=ExtResource("3_7xbc7")]
 
-[node name="pause menu" parent="." instance=ExtResource("4_7xbc7")]
+[node name="pause menu" parent="." unique_id=163428681 instance=ExtResource("4_7xbc7")]
 
 [connection signal="area_entered" from="NPC_detector" to="." method="enter_trigger_npc"]
 [connection signal="area_exited" from="NPC_detector" to="." method="exit_trigger_npc"]

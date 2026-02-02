@@ -28,6 +28,7 @@ func displayDialog() -> void :
 
 	var delay : float = 0.02
 	dialog_finished = false
+	player.can_interact = false
 
 	
 	get_node("Text_box/Name").text = self.npc_name
@@ -55,6 +56,7 @@ func displayDialog() -> void :
 			player.HUD.quest.complete_quest(completing_quest)
 	visited = true
 	dialog_finished = true
+	player.can_interact = true
 
 func _on_text_box_click(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :

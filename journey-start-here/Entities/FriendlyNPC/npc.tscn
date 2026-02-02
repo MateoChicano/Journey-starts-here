@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dx7kloy1xtmdb"]
+[gd_scene format=3 uid="uid://dx7kloy1xtmdb"]
 
 [ext_resource type="Script" uid="uid://d2csg587exnig" path="res://Entities/FriendlyNPC/npc.gd" id="1_i4rdu"]
 [ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://UI/ui_element.gd" id="2_cdq1g"]
+[ext_resource type="PackedScene" uid="uid://carcub4blbsds" path="res://Entities/FriendlyNPC/endhell_enemy.blend" id="2_urjno"]
 [ext_resource type="LabelSettings" uid="uid://bnesqci6frrth" path="res://Entities/FriendlyNPC/Dialog.tres" id="3_o0bl0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tcuxl"]
@@ -17,38 +18,42 @@ radius = 1.84523
 [sub_resource type="LabelSettings" id="LabelSettings_i4rdu"]
 font_size = 22
 
-[node name="NPC" type="CharacterBody3D"]
+[node name="NPC" type="CharacterBody3D" unique_id=336829886]
 collision_mask = 0
 script = ExtResource("1_i4rdu")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="endhell_enemy" parent="." unique_id=882505052 instance=ExtResource("2_urjno")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.1037474, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=332310087]
+visible = false
 layers = 4
 mesh = SubResource("CapsuleMesh_tcuxl")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=249975573]
 shape = SubResource("CapsuleShape3D_nh2m4")
 
-[node name="item_area" type="Area3D" parent="."]
+[node name="item_area" type="Area3D" parent="." unique_id=2135080109]
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="item_area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item_area" unique_id=998402872]
 shape = SubResource("SphereShape3D_o0bl0")
 
-[node name="Interact_Area" type="Area3D" parent="."]
+[node name="Interact_Area" type="Area3D" parent="." unique_id=513442280]
 collision_layer = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interact_Area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interact_Area" unique_id=413754280]
 shape = SubResource("SphereShape3D_abqhh")
 
-[node name="Text_box" type="Panel" parent="."]
+[node name="Text_box" type="Panel" parent="." unique_id=1671340898]
 offset_left = 152.0
 offset_top = 403.0
 offset_right = 986.0
 offset_bottom = 618.0
 script = ExtResource("2_cdq1g")
 
-[node name="Dialog" type="Label" parent="Text_box"]
+[node name="Dialog" type="Label" parent="Text_box" unique_id=119417254]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.013
@@ -67,7 +72,7 @@ visible_characters = 0
 visible_characters_behavior = 1
 visible_ratio = 0.0
 
-[node name="Name" type="Label" parent="Text_box"]
+[node name="Name" type="Label" parent="Text_box" unique_id=401839361]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 4.0
