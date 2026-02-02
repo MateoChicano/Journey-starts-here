@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwiug78uim572"]
+[gd_scene format=3 uid="uid://dwiug78uim572"]
 
 [ext_resource type="Script" uid="uid://ha6dvwqncbsf" path="res://Entities/Items/2Ds/item.gd" id="1_ifcx2"]
 
@@ -6,21 +6,31 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ifcx2"]
 
-[node name="item_box" type="RigidBody2D" groups=["items"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbt0x"]
+size = Vector2(96, 88)
+
+[node name="item_box" type="RigidBody2D" unique_id=1987395662 groups=["items"]]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_ifcx2")
 item_shape = "carre"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=496708526]
 
-[node name="box_collision" type="CollisionShape2D" parent="."]
+[node name="box_collision" type="CollisionShape2D" parent="." unique_id=627358254]
 shape = SubResource("RectangleShape2D_t1wcy")
 
-[node name="mouse_detector" type="Area2D" parent="."]
+[node name="mouse_detector" type="Area2D" parent="." unique_id=94882436]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_detector" unique_id=28591840]
 shape = SubResource("RectangleShape2D_ifcx2")
+
+[node name="container_detector" type="Area2D" parent="." unique_id=996953081]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="container_detector" unique_id=1881530968]
+shape = SubResource("RectangleShape2D_wbt0x")
 
 [connection signal="mouse_entered" from="." to="." method="mouse_in_body"]
 [connection signal="mouse_exited" from="." to="." method="mouse_off_body"]

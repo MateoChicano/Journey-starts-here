@@ -200,7 +200,7 @@ attached_quest = "Quest 1"
 
 [node name="item_box3d" parent="." unique_id=1769171005 instance=ExtResource("5_4t6x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995574, 2.63986, -2.93492)
-nom = "item_logo"
+nom = "item_tictac"
 
 [node name="item_box3d2" parent="." unique_id=1969151617 instance=ExtResource("5_4t6x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.69678, 2.63986, -2.93492)

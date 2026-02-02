@@ -68,6 +68,10 @@ shape = SubResource("BoxShape3D_xwt18")
 
 [node name="pause menu" parent="." unique_id=163428681 instance=ExtResource("4_7xbc7")]
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1337896761]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=261171472]
+
 [connection signal="area_entered" from="NPC_detector" to="." method="enter_trigger_npc"]
 [connection signal="area_exited" from="NPC_detector" to="." method="exit_trigger_npc"]
 [connection signal="area_entered" from="Cam_detector" to="." method="enter_trigger_camera"]
