@@ -21,8 +21,6 @@ func give_item() -> void :
 	player.pick_item(quest_item)
 
 
-	
-
 #ui_element
 func _ready() -> void:
 	self.mouse_entered.connect(hover_ui)

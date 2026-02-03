@@ -13,6 +13,7 @@ var has_quest : bool
 var visited : bool
 var cptDialog : int = 0
 var loadDialog : Dictionary
+var picked_item : Item
 
 
 func _ready() -> void:
@@ -74,4 +75,6 @@ func closeDialogBox() -> void :
 
 func _on_item_area_entered(area:Area3D) -> void:
 	if area.owner is Item_3d : 
-		print("npc ramasse ", area.owner.get_item_name())
+		print("npc ramasse ", area.owner.get_item_2d())
+		picked_item = area.owner.get_item_2d()
+
