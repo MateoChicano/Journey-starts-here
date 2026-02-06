@@ -2,24 +2,33 @@ class_name Npc extends CharacterBody3D
 
 @export var npc_name : String
 @export var day_ident : String = "0"
-@export var attached_quest : String
-@export var completing_quest : String
+@export var attached_quest_name : String
+@export var completing_quest_name : String
 @onready var player : Player = get_tree().get_first_node_in_group("Player")
 @onready var displayed_text : Label = get_node("Text_box/Dialog")
 @onready var text_box : Panel = get_node("Text_box")
+@onready var quests : HBoxContainer = player.HUD.quest
 
 var dialog_finished : bool
 var has_quest : bool
 var visited : bool
 var cptDialog : int = 0
 var loadDialog : Dictionary
-var picked_item : Item
+var attached_quest : Quest
+var completing_quest : Quest
 
 
 func _ready() -> void:
+	attached_quest = Quest.new(attached_quest_name)
+	completing_quest = Quest.new(completing_quest_name)
+	print(completing_quest_name)
+	print_rich(completing_quest)
+	print(completing_quest.quest_desc)
+	print(completing_quest.quest_type)
+	print(completing_quest.quest_item)
 	text_box.hide()
 	loadDialog = DialogManager.loadDialog(npc_name)
-	if attached_quest != "" :
+	if attached_quest_name != "" :
 		has_quest = true
 	else :
 		has_quest = false
@@ -49,12 +58,12 @@ func displayDialog() -> void :
 		await get_tree().create_timer(delay).timeout
 
 	if has_quest and not visited:
-		player.HUD.quest.add_quest(attached_quest)
-		player.HUD.quest.update_quests()
+		quests.add_quest(attached_quest_name)
+		quests.update_quests()
 
-	for i : String in player.HUD.quest.get_ongoing_quests() :
-		if i == completing_quest :
-			player.HUD.quest.complete_quest(completing_quest)
+	for i : String in quests.get_ongoing_quests() :
+		if i == completing_quest.get_name() :
+			quests.complete_quest(completing_quest)
 	visited = true
 	dialog_finished = true
 	player.can_interact = true
@@ -76,5 +85,5 @@ func closeDialogBox() -> void :
 func _on_item_area_entered(area:Area3D) -> void:
 	if area.owner is Item_3d : 
 		print("npc ramasse ", area.owner.get_item_2d())
-		picked_item = area.owner.get_item_2d()
-
+		if area.owner.get_item_2d() == completing_quest.get_quest_item() :
+			print("delivered !")

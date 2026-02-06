@@ -1,5 +1,9 @@
 {
-    "Livraison de charbon" : "Livrer le charbon a Jean le forgeron",
 
-    "Quest 1" : "fait la quete de la quete quetattrice"
+    "Quest 1" : 
+        {
+            "desc" : "livrer tictac a mec chokabr",
+            "type" : "livraison",
+            "item" : "item_titac"
+        }
 } 

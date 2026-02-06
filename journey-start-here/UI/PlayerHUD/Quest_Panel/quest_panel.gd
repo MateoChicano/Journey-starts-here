@@ -13,7 +13,7 @@ func _ready() -> void:
 	update_quests()
 
 func get_quest(quest_name : String) -> void:
-	displayed_desc.text = QuestManager.load_quest(quest_name)
+	displayed_desc.text = QuestManager.load_quest(quest_name)["desc"]
 
 func update_quests() -> void:
 	for i in ongoing_container.get_children() :

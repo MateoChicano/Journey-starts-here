@@ -73,3 +73,7 @@ func make_3d() -> void :
 		player.get_parent().add_child(instance_3d)
 		
 		instance_3d.global_position = player.global_position + offset
+
+#Getters
+func get_item_name() -> String :
+	return item_name

@@ -191,12 +191,12 @@ has_transition = true
 [node name="mec chokbar" parent="." unique_id=336829886 instance=ExtResource("4_7e6fp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.19325, 1.02701, 7.79173)
 npc_name = "mec chokabr"
-completing_quest = "Quest 1"
+completing_quest_name = "Quest 1"
 
 [node name="mec chill" parent="." unique_id=1613227535 instance=ExtResource("4_7e6fp")]
 transform = Transform3D(-0.99537104, 0, -0.09610641, 0, 1, 0, 0.09610641, 0, -0.99537104, 23.4394, 0.964924, 5.11824)
 npc_name = "mec chill"
-attached_quest = "Quest 1"
+attached_quest_name = "Quest 1"
 
 [node name="item_box3d" parent="." unique_id=1769171005 instance=ExtResource("5_4t6x8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.995574, 2.63986, -2.93492)

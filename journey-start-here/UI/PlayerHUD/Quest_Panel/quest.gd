@@ -1,21 +1,46 @@
-extends HBoxContainer
+class_name Quest extends HBoxContainer
 
 
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 @onready var name_container : VBoxContainer = get_node("name_container")
 @onready var desc_container : Panel = get_node("desc_container")
+var quest_name : String
 var quest_desc : String
 var quest_type : String
 var quest_item : Item
 
-func add_quest(quest_name : String) -> void :
+func _init(qname : String) -> void:
+	quest_name = qname
+	quest_desc = get_quest_desc()
+	quest_type = get_quest_type()
+	if quest_type == "livraison" :
+		var item_name : String = QuestManager.load_quest(quest_name)["item"]
+		var returned_item : Item = load("res://Entities/Items/2Ds/" + item_name + "/" + item_name + ".tscn").instantiate()
+		quest_item = returned_item
+	else :
+		quest_item = null
+
+func add_quest() -> void :
+	if quest_type == "livraison" :
+		give_item()
 	var new_title : Label = Label.new()
 	var new_desc : Label = Label.new()
-	new_title.text = quest_name
-	new_desc.text = QuestManager.load_quest(quest_name)
+	new_title.text = name
+	new_desc.text = self.get_quest_desc()
 	name_container.add_child(new_title)
 	desc_container.add_child(new_desc)
-	
+
+func get_quest_name() -> String :
+	return quest_name
+
+func get_quest_desc() -> String :
+	return quest_desc
+
+func get_quest_item() -> Item :
+	return quest_item
+
+func get_quest_type() -> String :
+	return quest_type
 
 func give_item() -> void :
 	player.pick_item(quest_item)
