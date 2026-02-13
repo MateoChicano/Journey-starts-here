@@ -10,13 +10,18 @@ var quest_type : String
 var quest_item : Item
 
 func _init(qname : String) -> void:
-	quest_name = qname
-	quest_desc = get_quest_desc()
-	quest_type = get_quest_type()
-	if quest_type == "livraison" :
-		var item_name : String = QuestManager.load_quest(quest_name)["item"]
-		var returned_item : Item = load("res://Entities/Items/2Ds/" + item_name + "/" + item_name + ".tscn").instantiate()
-		quest_item = returned_item
+	if qname=="" :
+		return
+
+	self.quest_name = qname
+	self.quest_desc = QuestManager.load_quest(qname)["desc"]
+	self.quest_type = QuestManager.load_quest(qname)["type"]
+	if self.quest_type == "livraison" :
+		var item_name : String = QuestManager.load_quest(qname)["item"]
+		print(item_name)
+		var returned_item : Item = load("res://Entities/Items/2Ds/"+item_name+"/"+item_name+".tscn").instantiate()
+		print_rich(returned_item)
+		self.quest_item = returned_item
 	else :
 		quest_item = null
 
@@ -57,4 +62,3 @@ func hover_ui() -> void:
 
 func off_ui() -> void:
 	player.skip_rayQuery = false
-

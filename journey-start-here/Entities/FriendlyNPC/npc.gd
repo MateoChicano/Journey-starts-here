@@ -21,11 +21,6 @@ var completing_quest : Quest
 func _ready() -> void:
 	attached_quest = Quest.new(attached_quest_name)
 	completing_quest = Quest.new(completing_quest_name)
-	print(completing_quest_name)
-	print_rich(completing_quest)
-	print(completing_quest.quest_desc)
-	print(completing_quest.quest_type)
-	print(completing_quest.quest_item)
 	text_box.hide()
 	loadDialog = DialogManager.loadDialog(npc_name)
 	if attached_quest_name != "" :
@@ -34,23 +29,24 @@ func _ready() -> void:
 		has_quest = false
 	
 
-func displayDialog() -> void :
+func displayDialog(completed : bool = false) -> void :
 
 	var delay : float = 0.02
 	dialog_finished = false
 	player.can_interact = false
-
 	
 	get_node("Text_box/Name").text = self.npc_name
 	player.HUD.hide()
 	text_box.show()
 	displayed_text.visible_characters = 0
-
-	if cptDialog < loadDialog["day"+day_ident].size() :
-		displayed_text.text = loadDialog["day"+day_ident][cptDialog] #recupere la ligne numéro cptDialog
-		cptDialog += 1
+	if completed :
+		displayed_text.text = loadDialog["completed"][cptDialog]
 	else :
-		displayed_text.text = loadDialog["day"+day_ident][cptDialog-1] #recup la derniere ligne de dialogue
+		if cptDialog < loadDialog["day"+day_ident].size() :
+			displayed_text.text = loadDialog["day"+day_ident][cptDialog] #recupere la ligne numéro cptDialog
+			cptDialog += 1
+		else :
+			displayed_text.text = loadDialog["day"+day_ident][cptDialog-1] #recup la derniere ligne de dialogue
 	var char_max : int = len(displayed_text.text) + 1
 
 	for i in range(char_max) :
@@ -68,6 +64,7 @@ func displayDialog() -> void :
 	dialog_finished = true
 	player.can_interact = true
 
+
 func _on_text_box_click(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
 		if visited :
@@ -76,14 +73,16 @@ func _on_text_box_click(_event: InputEvent) -> void:
 			else :
 				self.displayDialog()
 
+
 func closeDialogBox() -> void :
 	text_box.hide()
 	player.HUD.show()
 		
 
-
 func _on_item_area_entered(area:Area3D) -> void:
 	if area.owner is Item_3d : 
 		print("npc ramasse ", area.owner.get_item_2d())
-		if area.owner.get_item_2d() == completing_quest.get_quest_item() :
+		if area.owner.get_item_name() == completing_quest.get_quest_item().get_item_name() :
 			print("delivered !")
+			displayDialog(true)
+			area.owner.queue_free()

@@ -107,7 +107,7 @@ func _input(_event: InputEvent) -> void:
 		if collider is Npc:
 			if npc_trigger_entered and interactable_npc == collider:
 				self.skip_movement()
-				interactWith(collider)
+				interactWithNpc(collider)
 			else:
 				navAgent.set_target_position(ray.position)
 			
@@ -135,10 +135,10 @@ func moveToPoint() -> void:
 	velocity.z = direction.z * speed 
 
 
-func interactWith(target: Node3D) -> void:
-	if target is Npc && can_interact:
-		can_interact = false
-		target.displayDialog()
+func interactWithNpc(target: Npc) -> void:
+			if can_interact :
+				can_interact = false
+				target.displayDialog()
 
 func skip_movement() -> void:
 	return

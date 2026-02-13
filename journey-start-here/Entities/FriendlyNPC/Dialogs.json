@@ -3,12 +3,14 @@
     "mec chokabr" : 
         { 
             "day0" : ["zejyhjhghthghfjtyffghfg dghfghfjru"], 
-            "day1" : ["On est le lendemain mdr", "je suis chokabr"]
+            "day1" : ["On est le lendemain mdr", "je suis chokabr"],
+            "completed": ["Merci mon reuf tu régales","Tié l'appareil électrique qui renvoie les balles de tennis"]
         },
     "mec chill" :
         {
             "day0" : ["Je suis juste un nouveau mec chill","Tiens va parler a ce mec fou la bas"],
-            "day1" : ["ya quoi ?"]
+            "day1" : ["ya quoi ?"],
+            "completed": [""]
         }
     
             

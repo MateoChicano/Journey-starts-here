@@ -4,6 +4,6 @@
         {
             "desc" : "livrer tictac a mec chokabr",
             "type" : "livraison",
-            "item" : "item_titac"
+            "item" : "item_tictac"
         }
 } 
