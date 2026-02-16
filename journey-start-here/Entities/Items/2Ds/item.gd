@@ -69,7 +69,7 @@ func make_3d() -> void :
 		instance_3d.nom = item_name
 		instance_3d.just_spawned = true
 		instance_3d.item_2d = self
-		var offset : Vector3 = Vector3(2,2,2)
+		var offset : Vector3 = Vector3(2,2,0)
 		player.get_parent().add_child(instance_3d)
 		
 		instance_3d.global_position = player.global_position + offset

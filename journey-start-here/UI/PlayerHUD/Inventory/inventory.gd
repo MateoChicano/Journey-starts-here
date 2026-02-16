@@ -12,8 +12,8 @@ func quit_inventory() -> void:
 			body.grounded = false
 			if body.instance_3d :
 				body.instance_3d.queue_free()
-			else : 
-				body.can_make_3d = true
+			
+			body.can_make_3d = true
 		else :
 			if body.can_make_3d : 
 				body.make_3d()
