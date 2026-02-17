@@ -138,7 +138,7 @@ func moveToPoint() -> void:
 func interactWithNpc(target: Npc) -> void:
 			if can_interact :
 				can_interact = false
-				target.displayDialog()
+				target.displayDialog("day"+target.day_ident)
 
 func skip_movement() -> void:
 	return

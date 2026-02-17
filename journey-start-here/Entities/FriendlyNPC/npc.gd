@@ -16,6 +16,7 @@ var cptDialog : int = 0
 var loadDialog : Dictionary
 var attached_quest : Quest
 var completing_quest : Quest
+var dialog : Array
 
 
 func _ready() -> void:
@@ -29,7 +30,7 @@ func _ready() -> void:
 		has_quest = false
 	
 
-func displayDialog(completed : bool = false) -> void :
+func displayText(text : String) -> void :
 
 	var delay : float = 0.02
 	dialog_finished = false
@@ -39,14 +40,7 @@ func displayDialog(completed : bool = false) -> void :
 	player.HUD.hide()
 	text_box.show()
 	displayed_text.visible_characters = 0
-	if completed :
-		displayed_text.text = loadDialog["completed"][cptDialog]
-	else :
-		if cptDialog < loadDialog["day"+day_ident].size() :
-			displayed_text.text = loadDialog["day"+day_ident][cptDialog] #recupere la ligne numéro cptDialog
-			cptDialog += 1
-		else :
-			displayed_text.text = loadDialog["day"+day_ident][cptDialog-1] #recup la derniere ligne de dialogue
+	displayed_text.text = text
 	var char_max : int = len(displayed_text.text) + 1
 
 	for i in range(char_max) :
@@ -55,6 +49,8 @@ func displayDialog(completed : bool = false) -> void :
 
 	if has_quest and not visited:
 		quests.add_quest(attached_quest_name)
+		if attached_quest.get_quest_type() == "livraison" :
+			player.pick_item(attached_quest.get_quest_item()) #Pas sur de ça
 		quests.update_quests()
 
 	for i : String in quests.get_ongoing_quests() :
@@ -64,14 +60,19 @@ func displayDialog(completed : bool = false) -> void :
 	dialog_finished = true
 	player.can_interact = true
 
-
+func displayDialog(key : String) -> void :
+	dialog = loadDialog[key]
+	displayText(dialog[cptDialog])
+	cptDialog += 1
+	
 func _on_text_box_click(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click") :
 		if visited :
-			if cptDialog == loadDialog["day"+day_ident].size():
+			if displayed_text.text == dialog[dialog.size()-1]:
+				cptDialog = 0
 				self.closeDialogBox()
 			else :
-				self.displayDialog()
+				self.displayText(dialog[cptDialog])
 
 
 func closeDialogBox() -> void :
@@ -81,8 +82,6 @@ func closeDialogBox() -> void :
 
 func _on_item_area_entered(area:Area3D) -> void:
 	if area.owner is Item_3d : 
-		print("npc ramasse ", area.owner.get_item_2d())
 		if area.owner.get_item_name() == completing_quest.get_quest_item().get_item_name() :
-			print("delivered !")
-			displayDialog(true)
+			displayDialog("completed")
 			area.owner.queue_free()

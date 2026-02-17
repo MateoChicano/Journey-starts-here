@@ -18,9 +18,7 @@ func _init(qname : String) -> void:
 	self.quest_type = QuestManager.load_quest(qname)["type"]
 	if self.quest_type == "livraison" :
 		var item_name : String = QuestManager.load_quest(qname)["item"]
-		print(item_name)
 		var returned_item : Item = load("res://Entities/Items/2Ds/"+item_name+"/"+item_name+".tscn").instantiate()
-		print_rich(returned_item)
 		self.quest_item = returned_item
 	else :
 		quest_item = null
@@ -48,7 +46,7 @@ func get_quest_type() -> String :
 	return quest_type
 
 func give_item() -> void :
-	player.pick_item(quest_item)
+	player.pick_item(self.get_quest_item())
 
 
 #ui_element
