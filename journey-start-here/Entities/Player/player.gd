@@ -12,7 +12,7 @@ const TWEEN_DURATION: float = 0.5
 @export var speed: int = 4
 
 var step: float = speed / 50.0
-var can_interact : bool = true
+var can_interact: bool = true
 var input_axis: Vector2
 var item_lo: PackedScene
 var instance_item: Item
@@ -22,8 +22,9 @@ var npc_trigger_entered: bool = false
 var item_trigger_entered: bool = false
 var skip_rayQuery: bool = false
 
-	
-#Fonctions communes
+#============================# 
+#     Fonctions communes	 #
+#============================#
 func _physics_process(delta: float) -> void:
 	if (navAgent.is_navigation_finished()):
 		return
@@ -42,7 +43,9 @@ func _ready() -> void:
 	pause_menu.hide()
 	
 
-#Fonctions trigger
+#============================# 
+#     Fonctions trigger	     #
+#============================#
 #Gère les fonctions liés à  des détection de Area
 func enter_trigger_camera(area: Area3D) -> void:
 	var camOrigin: Camera3D = get_viewport().get_camera_3d()
@@ -86,24 +89,22 @@ func exit_trigger_item(_area: Area3D) -> void:
 			HUD.inventory_notif.hide()
 
 
-#Input
+#============================# 
+#       Fonctions Input	     #
+#============================#
 #Gère les fonctions liés à des entrées clavier ou souris
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click"):
+		hide_items_context()
 		if skip_rayQuery or inventory.visible:
 			return
 
-		var mousePos: Vector2 = get_viewport().get_mouse_position()
-		var from: Vector3 = cam.project_ray_origin(mousePos)
-		var to: Vector3 = from + cam.project_ray_normal(mousePos) * RAYLENGTH
-		var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-		var rayQuery: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
-		
-		var ray: Dictionary = space.intersect_ray(rayQuery)
+		var ray: Dictionary = ray_from_camera()
 		if ray.is_empty():
 			return
 
 		var collider: Node3D = ray.collider
+		
 		if collider is Npc:
 			if npc_trigger_entered and interactable_npc == collider:
 				self.skip_movement()
@@ -113,6 +114,7 @@ func _input(_event: InputEvent) -> void:
 			
 		if collider.get_parent().get_parent() is NavigationRegion3D:
 				navAgent.set_target_position(ray.position)
+	
 
 	if Input.is_action_just_pressed("escape"):
 		if HUD.contain_menu.visible:
@@ -125,20 +127,32 @@ func _input(_event: InputEvent) -> void:
 			else:
 				pause_menu.show()
 				get_tree().paused = true
+	
+	if Input.is_action_just_pressed("right_click"):
+		hide_items_context()
+		var ray: Dictionary = ray_from_camera()
+		if ray.is_empty():
+			return
 
-#Fonctions custom
+		var collider: Node3D = ray.collider
+		if collider is Item_3d:
+			collider.showContext()
+
+#============================# 
+#     Fonctions définies	 #
+#============================#
 func moveToPoint() -> void:
 	var targetPos: Vector3 = navAgent.get_next_path_position()
 	var direction: Vector3 = global_position.direction_to(targetPos)
 	rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), TWEEN_DURATION)
 	velocity.x = direction.x * speed
-	velocity.z = direction.z * speed 
+	velocity.z = direction.z * speed
 
 
 func interactWithNpc(target: Npc) -> void:
-			if can_interact :
+			if can_interact:
 				can_interact = false
-				target.displayDialog("day"+target.day_ident)
+				target.displayDialog("day" + target.day_ident)
 
 func skip_movement() -> void:
 	return
@@ -166,3 +180,21 @@ func moveWithKeys() -> void:
 		navAgent.target_position.z -= direction.y * step
 		navAgent.target_position.x += direction.x * step
 	move_and_slide()
+
+func ray_from_camera() -> Dictionary:
+	var mousePos: Vector2 = get_viewport().get_mouse_position()
+	var from: Vector3 = cam.project_ray_origin(mousePos)
+	var to: Vector3 = from + cam.project_ray_normal(mousePos) * RAYLENGTH
+	var space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
+	var rayQuery: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
+	return space.intersect_ray(rayQuery)
+
+func hide_items_context() -> void:
+	for items in get_tree().current_scene.get_children():
+			if items is Item_3d and items.context_menu.visible:
+				items.hideContext()
+
+func go_and_take(item : Item) -> void :
+	navAgent.target_position = item.instance_3d.position
+	await navAgent.is_navigation_finished()
+	pick_item(item)
