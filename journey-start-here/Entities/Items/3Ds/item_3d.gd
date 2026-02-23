@@ -28,7 +28,6 @@ func hideContext() -> void :
 	for buttons in self.get_node("ContextMenu").get_children():
 		buttons.hide()
 	
-
-
 func _on_take_pressed() -> void:
-	player.go_and_take(self.item_2d)
+	player.go_and_take(self)
+	hideContext()

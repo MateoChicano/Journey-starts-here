@@ -21,6 +21,7 @@ var interactable_npc: Npc
 var npc_trigger_entered: bool = false
 var item_trigger_entered: bool = false
 var skip_rayQuery: bool = false
+var from_context : bool = false
 
 #============================# 
 #     Fonctions communes	 #
@@ -80,7 +81,10 @@ func enter_trigger_item(area: Area3D) -> void:
 	instance_item = area.owner.get_item_2d()
 	instance_item.just_spawned = true
 	instance_item.instance_3d = area.owner
-	pick_item(instance_item)
+	if from_context :
+		inventory.pick_item(instance_item, true)
+	else :
+		inventory.pick_item(instance_item)
 
 func exit_trigger_item(_area: Area3D) -> void:
 		item_trigger_entered = false
@@ -95,14 +99,13 @@ func exit_trigger_item(_area: Area3D) -> void:
 #Gère les fonctions liés à des entrées clavier ou souris
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click"):
+		
+		if get_viewport().gui_get_hovered_control() != null:
+			return
 		hide_items_context()
-		if skip_rayQuery or inventory.visible:
-			return
-
 		var ray: Dictionary = ray_from_camera()
-		if ray.is_empty():
+		if ray.is_empty() :
 			return
-
 		var collider: Node3D = ray.collider
 		
 		if collider is Npc:
@@ -115,18 +118,8 @@ func _input(_event: InputEvent) -> void:
 		if collider.get_parent().get_parent() is NavigationRegion3D:
 				navAgent.set_target_position(ray.position)
 	
-
 	if Input.is_action_just_pressed("escape"):
-		if HUD.contain_menu.visible:
-			HUD.contain_menu.hide()
-		if inventory.visible:
-			inventory.quit_inventory()
-		else:
-			if pause_menu.visible:
-				pause_menu.quit_menu()
-			else:
-				pause_menu.show()
-				get_tree().paused = true
+		hide_menus()
 	
 	if Input.is_action_just_pressed("right_click"):
 		hide_items_context()
@@ -157,28 +150,18 @@ func interactWithNpc(target: Npc) -> void:
 func skip_movement() -> void:
 	return
 
-func pick_item(p_item: Item) -> void:
-	inventory.get_node("Items").add_child(p_item)
-	HUD.inventory_notif.show()
-
 func moveWithKeys() -> void:
 	var direction: Vector2 = Vector2.ZERO
 	direction.x += input_axis.x * cos(cam.global_rotation.y) + input_axis.y * sin(cam.global_rotation.y);
 	direction.y += input_axis.y * cos(cam.global_rotation.y) + input_axis.x * sin(cam.global_rotation.y);
 	direction = direction.normalized();
 
-	if Input.is_action_pressed("up"):
-		navAgent.target_position.x += direction.x * step
-		navAgent.target_position.z += direction.y * step
-	if Input.is_action_pressed("down"):
-		navAgent.target_position.x += direction.x * step
-		navAgent.target_position.z += direction.y * step
-	if Input.is_action_pressed("left"):
+	navAgent.target_position.x += direction.x * step
+	if (input_axis.x != 0):
 		navAgent.target_position.z -= direction.y * step
-		navAgent.target_position.x += direction.x * step
-	if Input.is_action_pressed("right"):
-		navAgent.target_position.z -= direction.y * step
-		navAgent.target_position.x += direction.x * step
+	else:
+		navAgent.target_position.z += direction.y * step
+
 	move_and_slide()
 
 func ray_from_camera() -> Dictionary:
@@ -194,7 +177,21 @@ func hide_items_context() -> void:
 			if items is Item_3d and items.context_menu.visible:
 				items.hideContext()
 
-func go_and_take(item : Item) -> void :
-	navAgent.target_position = item.instance_3d.position
+func go_and_take(item: Item_3d) -> void:
+	navAgent.target_position = item.global_position
+	from_context = true
 	await navAgent.is_navigation_finished()
-	pick_item(item)
+
+
+func hide_menus() -> void:
+	if HUD.contain_menu.visible:
+		HUD.contain_menu.hide()
+		return
+	if inventory.visible:
+		inventory.quit_inventory()
+		return
+	if pause_menu.visible:
+		pause_menu.quit_menu()
+	else:
+		pause_menu.show()
+		get_tree().paused = true

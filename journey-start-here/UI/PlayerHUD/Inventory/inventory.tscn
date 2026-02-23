@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2aa0j51ystr4"]
+[gd_scene format=3 uid="uid://c2aa0j51ystr4"]
 
 [ext_resource type="Script" uid="uid://srxawdv3rggp" path="res://UI/PlayerHUD/Inventory/inventory.gd" id="1_ay0u5"]
 [ext_resource type="Script" uid="uid://boldcrjm0mk8d" path="res://UI/PlayerHUD/Inventory/mouse_area.gd" id="3_ovyma"]
@@ -12,15 +12,15 @@ size = Vector2(2, 2)
 size = Vector2(1213, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ovyma"]
-size = Vector2(26.6251, 35.7779)
+size = Vector2(217.0007, 269.99945)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57u14"]
-size = Vector2(1141, 102)
+size = Vector2(1134.5, 103)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eh1mf"]
 size = Vector2(3.5, 3.5)
 
-[node name="Inventory" type="Control"]
+[node name="Inventory" type="Control" unique_id=1442287438]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -32,13 +32,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ay0u5")
 
-[node name="inventory_container" type="Panel" parent="."]
+[node name="inventory_container" type="Panel" parent="." unique_id=1697441330]
 layout_mode = 0
 offset_right = 1166.0
 offset_bottom = 649.0
 pivot_offset = Vector2(-973, 432)
 
-[node name="quit_button" type="Button" parent="inventory_container"]
+[node name="quit_button" type="Button" parent="inventory_container" unique_id=965874485]
 layout_mode = 0
 offset_left = 1106.0
 offset_top = 15.0
@@ -46,101 +46,105 @@ offset_right = 1148.0
 offset_bottom = 46.0
 text = "Quit"
 
-[node name="Box_coll" type="Node2D" parent="inventory_container"]
+[node name="Box_coll" type="Node2D" parent="inventory_container" unique_id=1410800723]
 position = Vector2(547, 273)
 
-[node name="Container" type="StaticBody2D" parent="inventory_container/Box_coll"]
+[node name="Container" type="StaticBody2D" parent="inventory_container/Box_coll" unique_id=1606545949]
 collision_mask = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
+[node name="StaticBody2D" type="StaticBody2D" parent="inventory_container/Box_coll/Container" unique_id=536618124]
 position = Vector2(5, 131)
 scale = Vector2(137.546, 17.614)
 collision_mask = 0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D" unique_id=1234178877]
 position = Vector2(-2.98023e-08, -2.98023e-08)
 scale = Vector2(2, 2)
 mesh = SubResource("QuadMesh_me4au")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D" unique_id=895852190]
 shape = SubResource("RectangleShape2D_ay0u5")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
+[node name="StaticBody2D2" type="StaticBody2D" parent="inventory_container/Box_coll/Container" unique_id=57165243]
 position = Vector2(-117, 13)
 rotation = -1.57079
 scale = Vector2(137.546, 17.614)
 collision_mask = 0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D2"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D2" unique_id=1579568066]
 position = Vector2(-2.98023e-08, -2.98023e-08)
 scale = Vector2(2, 2)
 mesh = SubResource("QuadMesh_me4au")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D2" unique_id=1564868537]
 shape = SubResource("RectangleShape2D_ay0u5")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="inventory_container/Box_coll/Container"]
+[node name="StaticBody2D3" type="StaticBody2D" parent="inventory_container/Box_coll/Container" unique_id=559451530]
 position = Vector2(128, 9)
 rotation = -1.57079
 scale = Vector2(137.546, 17.614)
 collision_mask = 0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D3"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inventory_container/Box_coll/Container/StaticBody2D3" unique_id=103072093]
 position = Vector2(-2.98023e-08, -2.98023e-08)
 scale = Vector2(2, 2)
 mesh = SubResource("QuadMesh_me4au")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Box_coll/Container/StaticBody2D3" unique_id=349172267]
 shape = SubResource("RectangleShape2D_ay0u5")
 
-[node name="ground" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+[node name="ground" type="CollisionShape2D" parent="inventory_container/Box_coll/Container" unique_id=1352886303]
 position = Vector2(36, 402)
 shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="ceiling" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+[node name="ceiling" type="CollisionShape2D" parent="inventory_container/Box_coll/Container" unique_id=2001606614]
 position = Vector2(12, -294)
 shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="wall_right" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+[node name="wall_right" type="CollisionShape2D" parent="inventory_container/Box_coll/Container" unique_id=1182765441]
 position = Vector2(628.001, -165.5)
 rotation = -1.57079
 shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="wall_left" type="CollisionShape2D" parent="inventory_container/Box_coll/Container"]
+[node name="wall_left" type="CollisionShape2D" parent="inventory_container/Box_coll/Container" unique_id=1153570085]
 position = Vector2(-567, 73)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_ieqw4")
 
-[node name="item_container" type="Area2D" parent="inventory_container"]
+[node name="item_container" type="Area2D" parent="inventory_container" unique_id=177033622]
+position = Vector2(552, 250)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/item_container"]
-position = Vector2(554, 244.814)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/item_container" unique_id=1276708741]
 rotation = -3.14159
-scale = Vector2(8.26289, 8.26289)
 shape = SubResource("RectangleShape2D_ovyma")
 debug_color = Color(0.0707943, 0.639989, 0.326614, 0.42)
 
-[node name="Ground_trigger" type="Area2D" parent="inventory_container"]
-position = Vector2(565, 606)
+[node name="Ground_trigger" type="Area2D" parent="inventory_container" unique_id=381663301]
+position = Vector2(577, 586)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Ground_trigger"]
-position = Vector2(10.5, -15)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inventory_container/Ground_trigger" unique_id=1816984889]
 shape = SubResource("RectangleShape2D_57u14")
 debug_color = Color(0.841334, 0.330261, 0.505615, 0.42)
 
-[node name="mouse_area" type="Area2D" parent="."]
+[node name="mouse_area" type="Area2D" parent="." unique_id=1936234540]
 collision_layer = 2
 script = ExtResource("3_ovyma")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mouse_area" unique_id=573978204]
 shape = SubResource("RectangleShape2D_eh1mf")
 
-[node name="Items" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Items" type="Control" parent="." unique_id=1126646486]
+layout_mode = 1
+anchor_left = -0.002610966
+anchor_top = 0.001529052
+anchor_right = -0.002610966
+anchor_bottom = 0.001529052
+offset_left = 564.0
+offset_top = 565.0
+offset_right = 604.0
+offset_bottom = 605.0
 
 [connection signal="pressed" from="inventory_container/quit_button" to="." method="quit_inventory"]
 [connection signal="area_entered" from="inventory_container/Ground_trigger" to="." method="_on_ground_touched"]

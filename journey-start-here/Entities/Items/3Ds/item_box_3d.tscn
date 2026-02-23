@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d3kpeiyisoabl"]
 
 [ext_resource type="Script" uid="uid://dbnc45mkh4k5s" path="res://Entities/Items/3Ds/item_3d.gd" id="1_71yv2"]
+[ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://UI/ui_element.gd" id="2_ou3wh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8ud0r"]
 
@@ -29,13 +30,18 @@ shape = SubResource("BoxShape3D_bdxqr")
 [node name="ContextMenu" type="Control" parent="." unique_id=242795009]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -31.0
+offset_top = -17.0
+offset_right = 133.0
+offset_bottom = 42.0
 
 [node name="Take" type="Button" parent="ContextMenu" unique_id=20298235]
 layout_mode = 0
-offset_right = 123.0
-offset_bottom = 31.0
+offset_left = 22.0
+offset_top = 17.0
+offset_right = 145.0
+offset_bottom = 48.0
 text = "Prendre l'objet"
+script = ExtResource("2_ou3wh")
 
 [connection signal="pressed" from="ContextMenu/Take" to="." method="_on_take_pressed"]

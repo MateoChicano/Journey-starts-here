@@ -1,12 +1,33 @@
 [gd_scene format=3 uid="uid://bukakowd3k1xx"]
 
 [ext_resource type="Script" uid="uid://c56dnn6txs57y" path="res://Entities/Player/player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://ky3tkt2d45uc" path="res://Entities/Player/hooman.blend" id="2_5c2io"]
+[ext_resource type="PackedScene" uid="uid://irvwhgmphcip" path="res://Entities/Player/player_model.tscn" id="2_5c2io"]
 [ext_resource type="PackedScene" uid="uid://bn6bw6iuuckhv" path="res://UI/PlayerHUD/hud.tscn" id="2_8iw34"]
+[ext_resource type="Animation" uid="uid://gc7akhtfyhm1" path="res://Entities/Player/Animations/Ammorce marche.res" id="3_01a4e"]
 [ext_resource type="PackedScene" uid="uid://c2aa0j51ystr4" path="res://UI/PlayerHUD/Inventory/inventory.tscn" id="3_7xbc7"]
+[ext_resource type="Animation" uid="uid://cdf3dktfodr38" path="res://Entities/Player/Animations/Marcher.res" id="4_7a1se"]
 [ext_resource type="PackedScene" uid="uid://bfluwbpmsotx1" path="res://UI/Menus/pause_menu/pause_menu.tscn" id="4_7xbc7"]
+[ext_resource type="Animation" uid="uid://7hyq1h8wbj3g" path="res://Entities/Player/Animations/Tourner tete droite.res" id="5_lub02"]
+[ext_resource type="Animation" uid="uid://5ht3xtknr8bu" path="res://Entities/Player/Animations/Tourner tete gauche.res" id="6_x1y6q"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_5c2io"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ap3xn"]
+_data = {
+&"Ammorce marche": ExtResource("3_01a4e"),
+&"Marcher": ExtResource("4_7a1se"),
+&"Tourner tete droite": ExtResource("5_lub02"),
+&"Tourner tete gauche": ExtResource("6_x1y6q")
+}
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_iplt1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owvpp"]
+advance_mode = 2
+advance_expression = "self.velocity > Vector3.ZERO()"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iplt1"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_iplt1")
+states/BlendSpace1D/position = Vector2(382, 99.872)
+transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_owvpp")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.30566406
@@ -25,12 +46,17 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_3vyb7")
 speed = 10
 
-[node name="hooman" parent="." unique_id=3685351 instance=ExtResource("2_5c2io")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.10620654, 0)
+[node name="hooman" parent="." unique_id=1491216766 instance=ExtResource("2_5c2io")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.20090094, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="hooman" unique_id=2080198210]
-transform = Transform3D(-6.5510574e-07, 0, -0.99999994, 0, 1, 0, 14.987073, 0, -4.3711385e-08, 0.16270971, 8.386608, 7.9479923)
-mesh = SubResource("BoxMesh_5c2io")
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="hooman" unique_id=522912373]
+libraries/librare = SubResource("AnimationLibrary_ap3xn")
+
+[node name="AnimationTree" type="AnimationTree" parent="hooman" unique_id=1651183014]
+tree_root = SubResource("AnimationNodeStateMachine_iplt1")
+advance_expression_base_node = NodePath("../..")
+anim_player = NodePath("../AnimationPlayer2")
+parameters/BlendSpace1D/blend_position = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=423561178]
 transform = Transform3D(0.9999981, 0, 0, 0, 1, 0, 0, 0, 0.9999981, 0, 0, 0)
@@ -69,10 +95,6 @@ shape = SubResource("BoxShape3D_xwt18")
 [node name="Inventory" parent="." unique_id=808742159 instance=ExtResource("3_7xbc7")]
 
 [node name="pause menu" parent="." unique_id=163428681 instance=ExtResource("4_7xbc7")]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1337896761]
-
-[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=261171472]
 
 [connection signal="area_entered" from="NPC_detector" to="." method="enter_trigger_npc"]
 [connection signal="area_exited" from="NPC_detector" to="." method="exit_trigger_npc"]

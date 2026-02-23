@@ -50,11 +50,11 @@ func displayText(text : String) -> void :
 	if has_quest and not visited:
 		quests.add_quest(attached_quest_name)
 		if attached_quest.get_quest_type() == "livraison" :
-			player.pick_item(attached_quest.get_quest_item()) #Pas sur de ça
+			player.inventory.pick_item(attached_quest.get_quest_item(), true) #Pas sur de ça
 		quests.update_quests()
 
-	for i : String in quests.get_ongoing_quests() :
-		if i == completing_quest.get_name() :
+	for quest : String in quests.get_ongoing_quests() :
+		if quest == completing_quest.get_name() :
 			quests.complete_quest(completing_quest)
 	visited = true
 	dialog_finished = true
@@ -84,4 +84,5 @@ func _on_item_area_entered(area:Area3D) -> void:
 	if area.owner is Item_3d : 
 		if area.owner.get_item_name() == completing_quest.get_quest_item().get_item_name() :
 			displayDialog("completed")
+			quests.complete_quest(completing_quest_name)
 			area.owner.queue_free()
