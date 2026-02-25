@@ -22,19 +22,22 @@ var npc_trigger_entered: bool = false
 var item_trigger_entered: bool = false
 var skip_rayQuery: bool = false
 var from_context : bool = false
+var moving : bool = false
 
 #============================# 
 #     Fonctions communes	 #
 #============================#
 func _physics_process(delta: float) -> void:
-	if (navAgent.is_navigation_finished()):
+	if navAgent.is_navigation_finished():
 		return
 	if ! self.is_on_floor():
 		velocity.y -= GRAVITY * delta
+	# if abs(self.velocity)
 	input_axis = Vector2(
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
 	)
+	print(abs(self.velocity))
 	moveToPoint()
 	moveWithKeys()
 
@@ -140,6 +143,7 @@ func moveToPoint() -> void:
 	rotation.y = lerp_angle(rotation.y, atan2(direction.x, direction.z), TWEEN_DURATION)
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
+	await navAgent.is_navigation_finished()
 
 
 func interactWithNpc(target: Npc) -> void:
@@ -163,6 +167,7 @@ func moveWithKeys() -> void:
 		navAgent.target_position.z += direction.y * step
 
 	move_and_slide()
+	await navAgent.is_navigation_finished()
 
 func ray_from_camera() -> Dictionary:
 	var mousePos: Vector2 = get_viewport().get_mouse_position()
@@ -178,9 +183,11 @@ func hide_items_context() -> void:
 				items.hideContext()
 
 func go_and_take(item: Item_3d) -> void:
+	self.moving = true
 	navAgent.target_position = item.global_position
 	from_context = true
 	await navAgent.is_navigation_finished()
+	self.moving = false
 
 
 func hide_menus() -> void:

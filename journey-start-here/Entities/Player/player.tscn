@@ -18,16 +18,21 @@ _data = {
 &"Tourner tete gauche": ExtResource("6_x1y6q")
 }
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_iplt1"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lub02"]
+animation = &"librare/Marcher"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owvpp"]
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_lub02"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_lub02")
+blend_point_0/pos = 0.90000004
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x1y6q"]
 advance_mode = 2
-advance_expression = "self.velocity > Vector3.ZERO()"
+advance_expression = "abs(self.velocity) > Vector3(0.1,0,0.1)"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iplt1"]
-states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_iplt1")
-states/BlendSpace1D/position = Vector2(382, 99.872)
-transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_owvpp")]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_lub02")
+states/BlendSpace1D/position = Vector2(375.59998, 100.48)
+transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_x1y6q")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.30566406
