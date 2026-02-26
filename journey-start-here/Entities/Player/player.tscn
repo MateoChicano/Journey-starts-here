@@ -8,12 +8,14 @@
 [ext_resource type="Animation" uid="uid://cdf3dktfodr38" path="res://Entities/Player/Animations/Marcher.res" id="4_7a1se"]
 [ext_resource type="PackedScene" uid="uid://bfluwbpmsotx1" path="res://UI/Menus/pause_menu/pause_menu.tscn" id="4_7xbc7"]
 [ext_resource type="Animation" uid="uid://7hyq1h8wbj3g" path="res://Entities/Player/Animations/Tourner tete droite.res" id="5_lub02"]
+[ext_resource type="Animation" uid="uid://kmax3s2kuo7s" path="res://Entities/Player/Animations/Rest.res" id="5_x1y6q"]
 [ext_resource type="Animation" uid="uid://5ht3xtknr8bu" path="res://Entities/Player/Animations/Tourner tete gauche.res" id="6_x1y6q"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ap3xn"]
 _data = {
 &"Ammorce marche": ExtResource("3_01a4e"),
 &"Marcher": ExtResource("4_7a1se"),
+&"Rest": ExtResource("5_x1y6q"),
 &"Tourner tete droite": ExtResource("5_lub02"),
 &"Tourner tete gauche": ExtResource("6_x1y6q")
 }
@@ -25,14 +27,28 @@ animation = &"librare/Marcher"
 blend_point_0/node = SubResource("AnimationNodeAnimation_lub02")
 blend_point_0/pos = 0.90000004
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x1y6q"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1y6q"]
+animation = &"librare/Rest"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owvpp"]
+xfade_time = 0.2
 advance_mode = 2
 advance_expression = "abs(self.velocity) > Vector3(0.1,0,0.1)"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ap3xn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iplt1"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "abs(self.velocity) < Vector3(1,0,1)"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iplt1"]
 states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_lub02")
-states/BlendSpace1D/position = Vector2(375.59998, 100.48)
-transitions = ["Start", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_x1y6q")]
+states/BlendSpace1D/position = Vector2(582.8, 99.9878)
+states/librare_Rest/node = SubResource("AnimationNodeAnimation_x1y6q")
+states/librare_Rest/position = Vector2(382, 98.0312)
+transitions = ["librare_Rest", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_owvpp"), "Start", "librare_Rest", SubResource("AnimationNodeStateMachineTransition_ap3xn"), "BlendSpace1D", "librare_Rest", SubResource("AnimationNodeStateMachineTransition_iplt1")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.30566406
@@ -49,7 +65,6 @@ size = Vector3(0.970703, 0.268555, 1)
 [node name="player" type="CharacterBody3D" unique_id=2004974183 groups=["Player"]]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_3vyb7")
-speed = 10
 
 [node name="hooman" parent="." unique_id=1491216766 instance=ExtResource("2_5c2io")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.20090094, 0)
@@ -61,7 +76,7 @@ libraries/librare = SubResource("AnimationLibrary_ap3xn")
 tree_root = SubResource("AnimationNodeStateMachine_iplt1")
 advance_expression_base_node = NodePath("../..")
 anim_player = NodePath("../AnimationPlayer2")
-parameters/BlendSpace1D/blend_position = 0.0
+parameters/BlendSpace1D/blend_position = -0.0033085346
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=423561178]
 transform = Transform3D(0.9999981, 0, 0, 0, 1, 0, 0, 0, 0.9999981, 0, 0, 0)

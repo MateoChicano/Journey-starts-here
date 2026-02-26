@@ -37,7 +37,6 @@ func _physics_process(delta: float) -> void:
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
 	)
-	print(abs(self.velocity))
 	moveToPoint()
 	moveWithKeys()
 
