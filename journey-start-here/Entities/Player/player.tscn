@@ -1,54 +1,61 @@
 [gd_scene format=3 uid="uid://bukakowd3k1xx"]
 
 [ext_resource type="Script" uid="uid://c56dnn6txs57y" path="res://Entities/Player/player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://irvwhgmphcip" path="res://Entities/Player/player_model.tscn" id="2_5c2io"]
+[ext_resource type="PackedScene" uid="uid://6g4auledw20f" path="res://Entities/Player/Model/bas_emodel.tscn" id="2_5c2io"]
 [ext_resource type="PackedScene" uid="uid://bn6bw6iuuckhv" path="res://UI/PlayerHUD/hud.tscn" id="2_8iw34"]
 [ext_resource type="Animation" uid="uid://gc7akhtfyhm1" path="res://Entities/Player/Animations/Ammorce marche.res" id="3_01a4e"]
 [ext_resource type="PackedScene" uid="uid://c2aa0j51ystr4" path="res://UI/PlayerHUD/Inventory/inventory.tscn" id="3_7xbc7"]
 [ext_resource type="Animation" uid="uid://cdf3dktfodr38" path="res://Entities/Player/Animations/Marcher.res" id="4_7a1se"]
 [ext_resource type="PackedScene" uid="uid://bfluwbpmsotx1" path="res://UI/Menus/pause_menu/pause_menu.tscn" id="4_7xbc7"]
 [ext_resource type="Animation" uid="uid://7hyq1h8wbj3g" path="res://Entities/Player/Animations/Tourner tete droite.res" id="5_lub02"]
-[ext_resource type="Animation" uid="uid://kmax3s2kuo7s" path="res://Entities/Player/Animations/Rest.res" id="5_x1y6q"]
+[ext_resource type="Animation" uid="uid://d2dokhnthrqcr" path="res://Entities/Player/Animations/Rest.res" id="5_x1y6q"]
 [ext_resource type="Animation" uid="uid://5ht3xtknr8bu" path="res://Entities/Player/Animations/Tourner tete gauche.res" id="6_x1y6q"]
+[ext_resource type="Animation" uid="uid://dnnuj22hmxbdf" path="res://Entities/Player/Animations/Walk.res" id="8_ap3xn"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ap3xn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iplt1"]
 _data = {
 &"Ammorce marche": ExtResource("3_01a4e"),
 &"Marcher": ExtResource("4_7a1se"),
 &"Rest": ExtResource("5_x1y6q"),
 &"Tourner tete droite": ExtResource("5_lub02"),
-&"Tourner tete gauche": ExtResource("6_x1y6q")
+&"Tourner tete gauche": ExtResource("6_x1y6q"),
+&"Walk": ExtResource("8_ap3xn")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lub02"]
-animation = &"librare/Marcher"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owvpp"]
+animation = &"Library/Walk"
+use_custom_timeline = true
+timeline_length = 0.5
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_lub02"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_lub02")
-blend_point_0/pos = 0.90000004
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_xr8lj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_owvpp")
+blend_point_0/pos = 0.8
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x1y6q"]
-animation = &"librare/Rest"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r8fok"]
+animation = &"Library/Rest"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owvpp"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nhbkt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vskfa"]
 xfade_time = 0.2
 advance_mode = 2
 advance_expression = "abs(self.velocity) > Vector3(0.1,0,0.1)"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ap3xn"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iplt1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pjcup"]
 xfade_time = 0.2
 advance_mode = 2
 advance_expression = "abs(self.velocity) < Vector3(1,0,1)"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iplt1"]
-states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_lub02")
-states/BlendSpace1D/position = Vector2(582.8, 99.9878)
-states/librare_Rest/node = SubResource("AnimationNodeAnimation_x1y6q")
-states/librare_Rest/position = Vector2(382, 98.0312)
-transitions = ["librare_Rest", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_owvpp"), "Start", "librare_Rest", SubResource("AnimationNodeStateMachineTransition_ap3xn"), "BlendSpace1D", "librare_Rest", SubResource("AnimationNodeStateMachineTransition_iplt1")]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0poeq"]
+states/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_xr8lj")
+states/BlendSpace1D/position = Vector2(550, 108.799995)
+states/Library_Rest/node = SubResource("AnimationNodeAnimation_r8fok")
+states/Library_Rest/position = Vector2(360.4, 100.8)
+transitions = ["Start", "Library_Rest", SubResource("AnimationNodeStateMachineTransition_nhbkt"), "Library_Rest", "BlendSpace1D", SubResource("AnimationNodeStateMachineTransition_vskfa"), "BlendSpace1D", "Library_Rest", SubResource("AnimationNodeStateMachineTransition_pjcup")]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.30566406
@@ -66,17 +73,19 @@ size = Vector3(0.970703, 0.268555, 1)
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 script = ExtResource("1_3vyb7")
 
-[node name="hooman" parent="." unique_id=1491216766 instance=ExtResource("2_5c2io")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.20090094, 0)
+[node name="BASEmodel" parent="." unique_id=815677953 instance=ExtResource("2_5c2io")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 0, -0.9457695, 0)
 
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="hooman" unique_id=522912373]
-libraries/librare = SubResource("AnimationLibrary_ap3xn")
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="BASEmodel" unique_id=748669079]
+libraries/Library = SubResource("AnimationLibrary_iplt1")
+speed_scale = 1.5
 
-[node name="AnimationTree" type="AnimationTree" parent="hooman" unique_id=1651183014]
-tree_root = SubResource("AnimationNodeStateMachine_iplt1")
-advance_expression_base_node = NodePath("../..")
-anim_player = NodePath("../AnimationPlayer2")
-parameters/BlendSpace1D/blend_position = -0.0033085346
+[node name="AnimationTree" type="AnimationTree" parent="BASEmodel/AnimationPlayer2" unique_id=1077190052]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_0poeq")
+advance_expression_base_node = NodePath("../../..")
+anim_player = NodePath("..")
+parameters/BlendSpace1D/blend_position = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=423561178]
 transform = Transform3D(0.9999981, 0, 0, 0, 1, 0, 0, 0, 0.9999981, 0, 0, 0)
