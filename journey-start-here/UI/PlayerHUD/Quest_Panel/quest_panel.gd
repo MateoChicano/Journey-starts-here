@@ -23,8 +23,13 @@ func update_quests() -> void:
 		if i.is_class("Label") :
 			continue
 		selectors.append(i)
-		i.pressed.connect(_on_select_pressed.bind(i))
-	
+		i.pressed.connect(_on_select_pressed.bind(i))	
+
+func has_quest(quest_name : String) -> bool :
+	for quests : String in get_ongoing_quests() :
+		if quests == quest_name :
+			return true
+	return false
 
 func get_ongoing_quests() -> Array :
 	var quests : Array

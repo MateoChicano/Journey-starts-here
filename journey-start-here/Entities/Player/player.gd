@@ -76,7 +76,7 @@ func enter_trigger_npc(area: Area3D) -> void:
 	if giving:
 		var quest_item: Item = interactable_npc.completing_quest.get_quest_item()
 		for items in inventory.get_node("Items").get_children():
-			if items == quest_item:
+			if items.get_item_name() == quest_item.get_item_name():
 				items.queue_free()
 				interactable_npc.displayDialog("completed")
 				HUD.quest.complete_quest(interactable_npc.completing_quest_name)

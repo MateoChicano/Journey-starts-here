@@ -94,7 +94,7 @@ func showContext() -> void :
 
 		buttons.show()
 		if buttons.get_name() == "Give" :
-			if not player.inventory.has_item(completing_quest.get_quest_item()):
+			if not player.inventory.has_item(completing_quest.get_quest_item()) or not quests.has_quest(completing_quest_name):
 				buttons.hide()
 
 func hideContext() -> void :
