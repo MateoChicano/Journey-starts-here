@@ -80,6 +80,7 @@ func enter_trigger_npc(area: Area3D) -> void:
 				items.queue_free()
 				interactable_npc.displayDialog("completed")
 				HUD.quest.complete_quest(interactable_npc.completing_quest_name)
+				break;
 		giving = false
 	if from_context :
 		interactWithNpc(interactable_npc)
