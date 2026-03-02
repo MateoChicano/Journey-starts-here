@@ -81,6 +81,20 @@ offset_bottom = 38.0
 text = "Nom"
 label_settings = SubResource("LabelSettings_i4rdu")
 
+[node name="ContextMenu" type="VBoxContainer" parent="." unique_id=844122769]
+offset_right = 191.0
+offset_bottom = 66.0
+
+[node name="Give" type="Button" parent="ContextMenu" unique_id=813107958]
+layout_mode = 2
+text = "Donner l'objet de quête"
+
+[node name="Interact" type="Button" parent="ContextMenu" unique_id=155787417]
+layout_mode = 2
+text = "Parler"
+
 [connection signal="area_entered" from="item_area" to="." method="_on_item_area_entered"]
 [connection signal="area_exited" from="Interact_Area" to="." method="_on_interact_area_area_exited"]
 [connection signal="gui_input" from="Text_box" to="." method="_on_text_box_click"]
+[connection signal="pressed" from="ContextMenu/Give" to="." method="_on_give_pressed"]
+[connection signal="pressed" from="ContextMenu/Interact" to="." method="_on_interact_pressed"]

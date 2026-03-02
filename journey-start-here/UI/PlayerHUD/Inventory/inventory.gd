@@ -54,3 +54,11 @@ func pick_item(p_item: Item, context : bool = false) -> void:
 
 	
 	player.from_context = false
+
+func has_item(item:Item) -> bool :
+	if item == null :
+		return false
+	for items in self.get_node("Items").get_children() :
+		if items.get_item_name() == item.get_item_name() :
+			return true
+	return false

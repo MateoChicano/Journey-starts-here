@@ -27,20 +27,14 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="detection_area" unique_id=1338402748]
 shape = SubResource("BoxShape3D_bdxqr")
 
-[node name="ContextMenu" type="Control" parent="." unique_id=242795009]
-layout_mode = 3
-anchors_preset = 0
+[node name="ContextMenu" type="VBoxContainer" parent="." unique_id=1506548408]
 offset_left = -31.0
 offset_top = -17.0
 offset_right = 133.0
 offset_bottom = 42.0
 
 [node name="Take" type="Button" parent="ContextMenu" unique_id=20298235]
-layout_mode = 0
-offset_left = 22.0
-offset_top = 17.0
-offset_right = 145.0
-offset_bottom = 48.0
+layout_mode = 2
 text = "Prendre l'objet"
 script = ExtResource("2_ou3wh")
 

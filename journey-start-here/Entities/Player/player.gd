@@ -21,8 +21,8 @@ var interactable_npc: Npc
 var npc_trigger_entered: bool = false
 var item_trigger_entered: bool = false
 var skip_rayQuery: bool = false
-var from_context : bool = false
-var moving : bool = false
+var from_context: bool = false
+var giving : bool = false
 
 #============================# 
 #     Fonctions communes	 #
@@ -73,6 +73,17 @@ func enter_trigger_camera(area: Area3D) -> void:
 func enter_trigger_npc(area: Area3D) -> void:
 	interactable_npc = area.owner
 	npc_trigger_entered = true
+	if giving:
+		var quest_item: Item = interactable_npc.completing_quest.get_quest_item()
+		for items in inventory.get_node("Items").get_children():
+			if items == quest_item:
+				items.queue_free()
+				interactable_npc.displayDialog("completed")
+				HUD.quest.complete_quest(interactable_npc.completing_quest_name)
+		giving = false
+	if from_context :
+		interactWithNpc(interactable_npc)
+		from_context = false
 
 func exit_trigger_npc(area: Area3D) -> void:
 	area.owner.closeDialogBox()
@@ -83,9 +94,9 @@ func enter_trigger_item(area: Area3D) -> void:
 	instance_item = area.owner.get_item_2d()
 	instance_item.just_spawned = true
 	instance_item.instance_3d = area.owner
-	if from_context :
+	if from_context:
 		inventory.pick_item(instance_item, true)
-	else :
+	else:
 		inventory.pick_item(instance_item)
 
 func exit_trigger_item(_area: Area3D) -> void:
@@ -101,12 +112,11 @@ func exit_trigger_item(_area: Area3D) -> void:
 #Gère les fonctions liés à des entrées clavier ou souris
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("left_click"):
-		
 		if get_viewport().gui_get_hovered_control() != null:
 			return
-		hide_items_context()
+		hide_contexts()
 		var ray: Dictionary = ray_from_camera()
-		if ray.is_empty() :
+		if ray.is_empty():
 			return
 		var collider: Node3D = ray.collider
 		
@@ -124,13 +134,13 @@ func _input(_event: InputEvent) -> void:
 		hide_menus()
 	
 	if Input.is_action_just_pressed("right_click"):
-		hide_items_context()
+		hide_contexts()
 		var ray: Dictionary = ray_from_camera()
 		if ray.is_empty():
 			return
 
 		var collider: Node3D = ray.collider
-		if collider is Item_3d:
+		if collider is Item_3d or collider is Npc:
 			collider.showContext()
 
 #============================# 
@@ -176,17 +186,25 @@ func ray_from_camera() -> Dictionary:
 	var rayQuery: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(from, to)
 	return space.intersect_ray(rayQuery)
 
-func hide_items_context() -> void:
+func hide_contexts() -> void:
 	for items in get_tree().current_scene.get_children():
-			if items is Item_3d and items.context_menu.visible:
+			if (items is Item_3d or items is Npc and items.context_menu.visible) and items.context_menu.visible:
 				items.hideContext()
 
 func go_and_take(item: Item_3d) -> void:
-	self.moving = true
 	navAgent.target_position = item.global_position
 	from_context = true
 	await navAgent.is_navigation_finished()
-	self.moving = false
+
+func go_and_give(npc : Npc) -> void:
+	navAgent.target_position = npc.global_position
+	giving = true
+	await navAgent.is_navigation_finished()
+
+func go_and_interact(npc : Npc) -> void :
+	navAgent.target_position = npc.global_position
+	from_context = true
+	await navAgent.is_navigation_finished()
 
 
 func hide_menus() -> void:

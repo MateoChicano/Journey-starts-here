@@ -20,8 +20,8 @@ func get_item_path() -> String :
 	return "res://Entities/Items/2Ds/" + self.get_item_name() + "/" + self.get_item_name() + ".tscn"
 
 func showContext() -> void :
+	self.get_node("ContextMenu").position = get_viewport().get_mouse_position()
 	for buttons in self.get_node("ContextMenu").get_children():
-		buttons.position = get_viewport().get_mouse_position()
 		buttons.show()
 
 func hideContext() -> void :
