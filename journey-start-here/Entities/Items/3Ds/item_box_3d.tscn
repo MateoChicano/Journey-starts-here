@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dbnc45mkh4k5s" path="res://Entities/Items/3Ds/item_3d.gd" id="1_71yv2"]
 [ext_resource type="Script" uid="uid://bvw80cnhdc4ad" path="res://UI/ui_element.gd" id="2_ou3wh"]
+[ext_resource type="PackedScene" uid="uid://dhv2v7iavgn1u" path="res://Entities/Items/3Ds/Models/item_box.blend" id="3_yr3dq"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_8ud0r"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_71yv2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr3dq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bdxqr"]
 
@@ -14,11 +13,11 @@ collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_71yv2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=944316354]
-mesh = SubResource("BoxMesh_8ud0r")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1598111600]
+shape = SubResource("BoxShape3D_yr3dq")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2049244348]
-shape = SubResource("BoxShape3D_71yv2")
+[node name="item_box" parent="." unique_id=483631084 instance=ExtResource("3_yr3dq")]
+transform = Transform3D(0.42500007, 0, 0, 0, 0.42500007, 0, 0, 0, 0.42500007, 0, 0, 0)
 
 [node name="detection_area" type="Area3D" parent="." unique_id=1208781308]
 collision_layer = 8
@@ -39,3 +38,5 @@ text = "Prendre l'objet"
 script = ExtResource("2_ou3wh")
 
 [connection signal="pressed" from="ContextMenu/Take" to="." method="_on_take_pressed"]
+
+[editable path="item_box"]
