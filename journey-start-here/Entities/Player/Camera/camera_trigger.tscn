@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf8limc6h6v4a"]
+[gd_scene format=3 uid="uid://cf8limc6h6v4a"]
 
 [ext_resource type="Script" uid="uid://cjcnfmlgnch8e" path="res://Entities/Player/Camera/camera.gd" id="1_ibhd3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_q4lx4"]
-size = Vector3(5.26257, 1, 1)
+size = Vector3(28.707977, 11.431152, 6.1375732)
 
-[node name="camera_trigger" type="Area3D"]
+[node name="camera_trigger" type="Area3D" unique_id=1167926448]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=738464380]
 shape = SubResource("BoxShape3D_q4lx4")
+debug_color = Color(0.8167681, 0.29812303, 0.7012576, 0.41960785)
 
-[node name="camera" type="Camera3D" parent="."]
+[node name="camera" type="Camera3D" parent="." unique_id=1535348137]
 script = ExtResource("1_ibhd3")

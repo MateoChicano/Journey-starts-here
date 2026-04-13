@@ -9,6 +9,7 @@ const TWEEN_DURATION: float = 0.5
 @onready var pause_menu: Pause = get_node("pause menu")
 @onready var navAgent := $NavigationAgent3D
 @onready var dernier_item: int = inventory.get_node("inventory_container").get_child_count()
+@onready var cam: Camera3D = get_viewport().get_camera_3d()
 @export var speed: int = 4
 
 var step: float = speed / 50.0
@@ -16,7 +17,7 @@ var can_interact: bool = true
 var input_axis: Vector2
 var item_lo: PackedScene
 var instance_item: Item
-var cam: Camera3D
+
 var interactable_npc: Npc
 var npc_trigger_entered: bool = false
 var item_trigger_entered: bool = false
@@ -180,6 +181,7 @@ func moveWithKeys() -> void:
 	await navAgent.is_navigation_finished()
 
 func ray_from_camera() -> Dictionary:
+	
 	var mousePos: Vector2 = get_viewport().get_mouse_position()
 	var from: Vector3 = cam.project_ray_origin(mousePos)
 	var to: Vector3 = from + cam.project_ray_normal(mousePos) * RAYLENGTH

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cxilc8l5d1uq4"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gbce7"]
+vertices = PackedVector3Array(-4.9712276, 0.8759295, 0.02943039, -2.7212276, 0.8759295, 0.02943039, -2.4712276, 0.8759295, -1.2205696, -4.9712276, 0.8759295, -8.72057, 2.5287724, 0.8759295, -1.2205696, 2.7787724, 0.8759295, 0.02943039, 5.0287724, 0.8759295, 0.02943039, 5.0287724, 0.8759295, -8.72057, 2.5287724, 0.8759295, 1.0294304, 5.0287724, 0.8759295, 8.77943, -2.4712276, 0.8759295, 1.0294304, -4.9712276, 0.8759295, 8.77943)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(2, 3, 4), PackedInt32Array(4, 3, 7), PackedInt32Array(5, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(1, 10, 0), PackedInt32Array(0, 10, 11), PackedInt32Array(8, 9, 10), PackedInt32Array(10, 9, 11)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nsw7g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s7a6p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2j3p7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbce7"]
+
+[node name="level_example" type="Node3D" unique_id=1740570042]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1026524281]
+navigation_mesh = SubResource("NavigationMesh_gbce7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=1665328375]
+transform = Transform3D(10.942455, 0, 0, 0, 1, 0, 0, 0, 18.44114, 0, 0, 0)
+mesh = SubResource("BoxMesh_nsw7g")
+skeleton = NodePath("StaticBody3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D" unique_id=1084682043]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D" unique_id=384768530]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+shape = SubResource("BoxShape3D_s7a6p")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=463670644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.615513, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1341388230]
+transform = Transform3D(4.06588, 0, 0, 0, 2.8804061, 0, 0, 0, 1, 0, -3.7993803, 0)
+mesh = SubResource("BoxMesh_2j3p7")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=1314207225]
+shape = SubResource("BoxShape3D_gbce7")
